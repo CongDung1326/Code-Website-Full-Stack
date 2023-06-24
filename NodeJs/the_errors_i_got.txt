@@ -1,0 +1,1 @@
+- Import các thì nhớ phải thêm đuôi js vào nếu không sẽ báo lỗi

@@ -1,0 +1,2 @@
+- .gitignore dùng để khi ta upload github lên thì các file hoặc thư mục ta đã ghi bên trong đó sẽ không upload lên
+- viewEngine.js dùng để cấu hình các setting cho website
