@@ -1,1 +1,3 @@
 - Import các thì nhớ phải thêm đuôi js vào nếu không sẽ báo lỗi
+- Khi mà ta migrations bằng cú pháp : npx sequelize-cli db:migrate nó nếu nó có lỗi gì liên quan tới "type":"module" thì chỉ cần xóa đi là sử dụng được (upload lên rồi xóa cũng được)
+- Muốn sử dụng được câu lệnh import thì ta phải vào file package.json thêm "type":"module" thì mới sử dụng được

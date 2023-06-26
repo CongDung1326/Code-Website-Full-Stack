@@ -1,0 +1,18 @@
+import { Sequelize } from 'sequelize';
+
+const sequelize = new Sequelize('donvau', 'root', null, {
+    host: 'localhost',
+    dialect: 'mysql', // Sử dụng kết nối với mysql
+    logging: false // Dùng để tắt đi dòng (Executing (default): SELECT 1+1 AS result)
+});
+
+const connection_database = async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+}
+
+export default connection_database; // Check database đã kết nối thành công chưa

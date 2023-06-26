@@ -2,10 +2,12 @@ import express from "express";
 import bodyParser from "body-parser"; // Dùng để lấy các query VD: /user?id=7
 import viewEngine from './config/viewEngine.js'; // Cách kiểm tra ta đã tới được file đó chưa giữ ctrl + trõ vô src của nó
 import initWebRoutes from './route/web.js';
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'; // hoặc require('dotenv').config();
+import connection_database from '../connection_database.js';
 
 let app = express();
 dotenv.config(); // config mới sử dụng được thằng process.env.PORT
+connection_database();
 
 //config app
 

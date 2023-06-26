@@ -1,2 +1,8 @@
 - .gitignore dùng để khi ta upload github lên thì các file hoặc thư mục ta đã ghi bên trong đó sẽ không upload lên
 - viewEngine.js dùng để cấu hình các setting cho website
+- route dùng để điều hướng các website
+- public là các file ta sẽ công khai (chủ yếu dùng để sử dụng cho web VD: Hình ảnh, video,...)
+- config là chỉnh cài đặt các cấu hình cho trang web
+- views là chỉnh các file html
+- .env là chỉnh các PORT đường dẫn cho localhost của chúng ta
+- .sequelizerc cài setting môi trường cho mySQL
