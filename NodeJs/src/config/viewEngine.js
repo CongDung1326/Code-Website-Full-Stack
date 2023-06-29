@@ -1,4 +1,5 @@
-import express from "express";
+const express = require("express");
+const { config } = require("../../.sequelizerc");
 
 let configViewEngine = (app) => {
     app.use(express.static('./src/public')); // Public folder
@@ -6,4 +7,4 @@ let configViewEngine = (app) => {
     app.set('views', './src/views'); // Setting views for html
 };
 
-export default configViewEngine;
+module.exports = configViewEngine;

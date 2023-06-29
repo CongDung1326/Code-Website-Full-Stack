@@ -6,3 +6,6 @@
 - views là chỉnh các file html
 - .env là chỉnh các PORT đường dẫn cho localhost của chúng ta
 - .sequelizerc cài setting môi trường cho mySQL
+- connectDB.js là dữ liệu kết nối với database để nhằm kiểm tra xem nó đã kết nối với database chưa
+- config.json trong file config nhằm chỉnh server database ta muốn chuyển tới
+- models là các dữ liệu trên database

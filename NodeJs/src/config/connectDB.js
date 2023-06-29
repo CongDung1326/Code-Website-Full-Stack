@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('donvau', 'root', null, {
     host: 'localhost',
@@ -15,4 +15,4 @@ const connection_database = async () => {
     }
 }
 
-export default connection_database; // Check database đã kết nối thành công chưa
+module.exports = connection_database; // Check database đã kết nối thành công chưa

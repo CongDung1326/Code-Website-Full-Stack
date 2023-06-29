@@ -1,3 +1,6 @@
 - Import các thì nhớ phải thêm đuôi js vào nếu không sẽ báo lỗi
 - Khi mà ta migrations bằng cú pháp : npx sequelize-cli db:migrate nó nếu nó có lỗi gì liên quan tới "type":"module" thì chỉ cần xóa đi là sử dụng được (upload lên rồi xóa cũng được)
 - Muốn sử dụng được câu lệnh import thì ta phải vào file package.json thêm "type":"module" thì mới sử dụng được
+
+- Sau khi fjx bug thì rút ra kinh nghiệm là cứ xài require bình thường thôi muốn xài import thì phải có "type":"module" thì mới sử dụng được nhưng mà có 1 cái là nó không sử dụng được nhiều toàn là báo lỗi không
+- require thì sử dụng module.exports nhé còn import thì mới sử dụng export (default)? bình thường thôi

@@ -1,13 +1,14 @@
-import express from "express";
-import bodyParser from "body-parser"; // Dùng để lấy các query VD: /user?id=7
-import viewEngine from './config/viewEngine.js'; // Cách kiểm tra ta đã tới được file đó chưa giữ ctrl + trõ vô src của nó
-import initWebRoutes from './route/web.js';
-import dotenv from 'dotenv'; // hoặc require('dotenv').config();
-import connection_database from '../connection_database.js';
+const express = require("express");
+const bodyParser = require("body-parser"); // Dùng để lấy các query VD: /user?id=7
+const viewEngine = require('./config/viewEngine.js'); // Cách kiểm tra ta đã tới được file đó chưa giữ ctrl + trõ vô src của nó
+const initWebRoutes = require('./route/web.js');
+const dotenv = require('dotenv'); // hoặc require('dotenv').config();
+const connection_database = require('./config/connectDB.js');
 
 let app = express();
 dotenv.config(); // config mới sử dụng được thằng process.env.PORT
-connection_database();
+
+connection_database(); // Kiểm tra xem đã connect tới server sql chưa && nhớ chú ý thứ tự xếp
 
 //config app
 

@@ -1,5 +1,5 @@
-import express from "express";
-import * as homeControllers from '../controllers/homeControllers.js'
+const express = require("express");
+const homeControllers = require('../controllers/homeControllers.js');
 
 let router = express.Router();
 
@@ -15,4 +15,4 @@ let initWebRoutes = (app) => {
     return app.use('/', router);
 }
 
-export default initWebRoutes;
+module.exports = initWebRoutes;
