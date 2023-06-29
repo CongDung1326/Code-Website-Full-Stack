@@ -9,4 +9,4 @@
     - npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string (Tạo model hay còn gọi là tạo bảng)
     - npx sequelize-cli db:migrate (Tạo migrations hiểu đơn giản là upload nó lên)
     - npx sequelize-cli seed:generate --name demo-user (Tạo seed upload dữ liệu lên)
-    - npx sequelize-cli db:seed:all (Running seed) (Bị lỗi thì đọc trong the_errors_i_got.txt)
+    - npx sequelize-cli db:seed:all (Running seed, update seed) (Bị lỗi thì đọc trong the_errors_i_got.txt)

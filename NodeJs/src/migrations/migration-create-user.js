@@ -1,12 +1,20 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    // Muốn add table thì đọc thêm ở query sequelize
     await queryInterface.createTable('Users', {
+      // Ở user.js khai báo gì thì ở đây khái báo tương tự vậy
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      email: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
       },
       firstName: {
         type: Sequelize.STRING
@@ -14,7 +22,22 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING
       },
-      email: {
+      address: {
+        type: Sequelize.STRING
+      },
+      phoneNumber: {
+        type: Sequelize.STRING
+      },
+      gender: {
+        type: Sequelize.BOOLEAN
+      },
+      image: {
+        type: Sequelize.STRING
+      },
+      roleId: {
+        type: Sequelize.STRING
+      },
+      positionId: {
         type: Sequelize.STRING
       },
       createdAt: {

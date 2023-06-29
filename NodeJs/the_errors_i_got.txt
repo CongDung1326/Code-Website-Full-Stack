@@ -4,3 +4,5 @@
 
 - Sau khi fjx bug thì rút ra kinh nghiệm là cứ xài require bình thường thôi muốn xài import thì phải có "type":"module" thì mới sử dụng được nhưng mà có 1 cái là nó không sử dụng được nhiều toàn là báo lỗi không
 - require thì sử dụng module.exports nhé còn import thì mới sử dụng export (default)? bình thường thôi
+
+- Nếu cập nhật 'npx sequelize-cli db:migrate' mà báo lỗi 'No migrations were executed, database schema was already up to date.' thì ta chỉ cần xoá table (sequelizemeta và bảng cần sửa(xoá nó đi)) đi là sử dụng (thêm table mới là được)
