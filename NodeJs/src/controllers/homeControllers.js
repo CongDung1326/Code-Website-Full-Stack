@@ -69,6 +69,15 @@ let getEditCRUD = async (req, res) => {
     }
 }
 
+let deleteCRUD = async (req, res) => {
+    let useId = req.query.id;
+    if (useId) {
+        await CRUDService.getDeleteCRUD(useId);
+        return res.send('delete success!');
+    }
+    return res.send("Can't defind the user");
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getAboutPage: getAboutPage,
@@ -76,5 +85,6 @@ module.exports = {
     postCRUD: postCRUD,
     displayGetCRUD: displayGetCRUD,
     getEditCRUD: getEditCRUD,
-    putCRUD: putCRUD
+    putCRUD: putCRUD,
+    deleteCRUD: deleteCRUD
 }
