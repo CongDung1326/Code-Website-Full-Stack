@@ -1,4 +1,5 @@
 const db = require('../models/index.js') // Lấy dữ liệu database
+const CRUDService = require('../services/CRUDService.js');
 
 let getHomePage = async (req, res) => {
     // Mỗi lần làm việc với database thì nên vứt vào try and catch
@@ -11,7 +12,7 @@ let getHomePage = async (req, res) => {
         // console.log(data); // Trả về object của sql
         // console.log('-------------------------------');
 
-        return res.render('homePage.ejs', {
+        return res.render('./homePage.ejs', {
             data: JSON.stringify(data) // Đẩy qua ejs thằng data
         }); // render là xuất cái file homePage.ejs lên web
     } catch (e) {
@@ -23,7 +24,20 @@ let getAboutPage = (req, res) => {
     return res.render('./test/aboutPage.ejs'); // Tại mặc định thằng viewEngine ta config cho nó là ./src/views nên chỉ cần ./test là ra được file aboutPage.ejsy
 }
 
+let getCRUD = (req, res) => {
+    return res.render('./crud.ejs')
+}
+
+let postCRUD = async (req, res) => {
+    let message = await CRUDService.createNewUser(req.body);
+    console.log(message);
+    //console.log(req.body); // Lấy các tham số từ phía client gửi cho chúng ta
+    return res.send('post crud from server');
+}
+
 module.exports = {
     getHomePage: getHomePage,
-    getAboutPage: getAboutPage
+    getAboutPage: getAboutPage,
+    getCRUD: getCRUD,
+    postCRUD: postCRUD,
 }

@@ -9,3 +9,6 @@
 - connectDB.js là dữ liệu kết nối với database để nhằm kiểm tra xem nó đã kết nối với database chưa
 - config.json trong file config nhằm chỉnh server database ta muốn chuyển tới
 - models là các dữ liệu trên database
+- CRUD là viết tắt của create, read, update, delete
+- Services là các dịch vụ hay còn gọi đơn giản là các chức năng ta làm cho website
+- Hash Password là nó sẽ băm các password của chúng ta thành các password khó đọc hơn (tăng tính bảo mật)
