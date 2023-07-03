@@ -61,7 +61,7 @@ let getUserInfoById = (userId) => {
                 resolve(user);
             }
             else {
-                resolve([]);
+                resolve([]); // Trả về mảng để nó không bị lỗi
             }
         } catch (e) {
             reject(e);
