@@ -4,6 +4,7 @@ const viewEngine = require('./config/viewEngine.js'); // Cách kiểm tra ta đ�
 const initWebRoutes = require('./route/web.js');
 const dotenv = require('dotenv'); // hoặc require('dotenv').config();
 const connection_database = require('./config/connectDB.js');
+const initAPIRoutes = require('./route/API.js'); // Call APIs
 
 let app = express();
 dotenv.config(); // config mới sử dụng được thằng process.env.PORT
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 viewEngine(app);
 initWebRoutes(app);
+initAPIRoutes(app);
 
 let port = process.env.PORT || 3000;
 

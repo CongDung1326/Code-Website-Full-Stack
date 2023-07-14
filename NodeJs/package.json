@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --watch app --watch libs ./src/server.js"
+    "start": "nodemon ./src/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "nodemon": "^2.0.22",
     "sequelize": "^6.32.1"
   },
   "devDependencies": {
@@ -31,7 +32,6 @@
     "@babel/node": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "mysql2": "^2.3.3",
-    "nodemon": "^2.0.7",
     "sequelize-cli": "^6.2.0"
   }
 }
