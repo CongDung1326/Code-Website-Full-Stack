@@ -1,0 +1,7 @@
+- Components 
+    - Có 2 loại component (theo như mình biết)
+        1. Là class component
+        2. Là arrow component
+    - Sự khác nhau
+        1. class component cũ hơn và rườm rà hơn nhưng với những người mới học thì sẽ hiểu sâu hơn
+        2. arrow component mới hơn nhìn gọn gàng đẹp đẽ hơn nhưng sẽ không chuyên sâu lắm dành cho người hiểu r
