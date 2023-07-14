@@ -30,11 +30,11 @@
     font-weight: bold;
 }
 
-.login-container :is(.user-name, .password) {
+.login-container :is(.user-name-container, .password-container) {
     margin: 10px 0;
 }
 
-.login-container :is(.user-name, .password) input {
+.login-container :is(.user-name-container, .password-container) input {
     width: 100%;
     height: 40px;
     border: 1px solid silver;
@@ -43,7 +43,7 @@
     padding: 10px;
 }
 
-.login-container :is(.user-name, .password) label {
+.login-container :is(.user-name-container, .password-container) label {
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -96,4 +96,20 @@
 
 .login-container .login-options .options i:last-child {
     background: rgb(255, 84, 84);
+}
+
+.password {
+    position: relative;
+}
+
+.password input {
+    position: relative;
+}
+
+.password i {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
