@@ -41,12 +41,22 @@ class Login extends Component {
         })
 
         try {
-            await handleLogin(username, password); // (Check được API thì mở network để kiếm tra)
+            let user = await handleLogin(username, password); // (Check được API thì mở network để kiếm tra)
+
+            if (user && user.errCode !== 0) {
+                this.setState({
+                    errMessage: user.message
+                })
+            }
+            //
+            else {
+                this.props.userLoginSuccess(user.user)
+
+                console.log('Login success!');
+            }
+
         } catch (e) {
             console.log(e);
-            this.setState({
-                errMessage: e.message
-            })
         }
 
         //console.log(`${username} + ${password}`)
@@ -74,7 +84,7 @@ class Login extends Component {
                             <i class={this.state.showOfHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'} onClick={() => this.handlePassword()}></i>
                         </div>
                     </div>
-                    <span className='remind'>{this.state.errMessage}</span>
+                    <span className='remind' style={{ color: 'red' }}>{this.state.errMessage}</span>
                     <button type='submit' className='login' onClick={() => this.handleLogin()}>Login</button>
                     <span className='forgot-password'>Forgot your password?</span>
                     <div className='login-options'>
@@ -99,8 +109,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        //
+        //userLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
     };
 };
 
