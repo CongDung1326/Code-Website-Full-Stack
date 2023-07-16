@@ -5,7 +5,9 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 
 import './Login.scss';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
+
+import { handleLogin } from '../../services/userServices';
 
 class Login extends Component {
     constructor(props) {
@@ -14,7 +16,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            showOfHidden: true
+            showOfHidden: true,
+            errMessage: ''
         }
     }
 
@@ -29,11 +32,24 @@ class Login extends Component {
         //console.log(event.target.value);
     }
 
-    handleLogin = () => {
+    handleLogin = async () => {
         let username = this.state.username;
         let password = this.state.password;
 
-        alert(`${username} + ${password}`)
+        this.setState({
+            errMessage: ''
+        })
+
+        try {
+            await handleLogin(username, password); // (Check được API thì mở network để kiếm tra)
+        } catch (e) {
+            console.log(e);
+            this.setState({
+                errMessage: e.message
+            })
+        }
+
+        //console.log(`${username} + ${password}`)
     }
 
     handlePassword = () => {
@@ -58,13 +74,14 @@ class Login extends Component {
                             <i class={this.state.showOfHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'} onClick={() => this.handlePassword()}></i>
                         </div>
                     </div>
+                    <span className='remind'>{this.state.errMessage}</span>
                     <button type='submit' className='login' onClick={() => this.handleLogin()}>Login</button>
                     <span className='forgot-password'>Forgot your password?</span>
                     <div className='login-options'>
                         <p>Or login with:</p>
                         <div className='options'>
-                            <i class="fa-brands fa-facebook-f"></i>
-                            <i class="fa-brands fa-google"></i>
+                            <i className="fa-brands fa-facebook-f"></i>
+                            <i className="fa-brands fa-google"></i>
                         </div>
                     </div>
                 </div>
