@@ -5,8 +5,14 @@ const initWebRoutes = require('./route/web.js');
 const dotenv = require('dotenv'); // hoặc require('dotenv').config();
 const connection_database = require('./config/connectDB.js');
 const initAPIRoutes = require('./route/API.js'); // Call APIs
+const cors = require('cors')
 
 let app = express();
+app.use(cors(
+    {
+        origin: true
+    }
+))
 dotenv.config(); // config mới sử dụng được thằng process.env.PORT
 
 connection_database(); // Kiểm tra xem đã connect tới server sql chưa && nhớ chú ý thứ tự xếp

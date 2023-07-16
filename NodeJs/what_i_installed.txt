@@ -12,3 +12,5 @@
     - npx sequelize-cli db:seed:all (Running seed, update seed) (Bị lỗi thì đọc trong the_errors_i_got.txt)
 - Bảo mật người dùng
     - npm i bcrypt@5.0.1
+- Chia sẻ tài nguyên bị hạn chế trên một trang web
+    - npm i cors@2.8.5

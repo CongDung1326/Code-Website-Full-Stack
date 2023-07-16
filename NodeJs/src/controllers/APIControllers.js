@@ -5,7 +5,7 @@ let handleLogin = async (req, res) => {
     let password = req.body.password;
 
     if (!email || !password) {
-        return res.status(404).json({
+        return res.status(500).json({
             errCode: 1,
             message: 'Missing inputs parameter!'
         })
@@ -25,7 +25,18 @@ let handleLogin = async (req, res) => {
     })
 }
 
+let test = (req, res) => {
+    return res.status(200).json({
+        message: 'ok',
+        yourName: {
+            firstName: 'Hoang',
+            lastName: 'Cong Dung'
+        },
+        bietDanh: ['Don Vau', 'Khong ngai va cham']
+    })
+}
+
 module.exports = {
     handleLogin: handleLogin,
-
+    test: test
 }
