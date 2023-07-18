@@ -15,4 +15,12 @@ let handleLogin = async (username, password) => {
     }).then(res => res.json())
 }
 
-export { handleLogin }
+let getAllUsers = async (id) => {
+    let users = await fetch(`http://localhost:8080/api/get-all-users?id=${id}`, {
+        method: 'GET', // method get thì sẽ không chuyền tham số body
+    }).then(res => res.json())
+
+    return users;
+}
+
+export { handleLogin, getAllUsers }
