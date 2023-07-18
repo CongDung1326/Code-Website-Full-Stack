@@ -1,5 +1,9 @@
 const userAPIsService = require('../services/userAPIsService.js');
 
+// Sự khác nhau giữa req.body và req.query
+// - query là các tham số truyền vào VD: localhost:8080?id=8 (? là query và id là name parameter)
+// - body là các tham số ẩn (đã truyền vào) không cho người khác thấy
+
 let handleLogin = async (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
@@ -26,7 +30,7 @@ let handleLogin = async (req, res) => {
 }
 
 let handleGetAllUsers = async (req, res) => {
-    let id = req.body.id; // ALL, id
+    let id = req.query.id; // ALL, id
 
     if (!id) {
         return res.status(200).json({
@@ -41,7 +45,7 @@ let handleGetAllUsers = async (req, res) => {
     return res.status(200).json({
         errCode: 0,
         message: 'ok',
-        user
+        users: user
     })
 }
 
