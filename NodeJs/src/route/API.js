@@ -1,12 +1,14 @@
 const express = require("express");
-const APIControllers = require('../controllers/APIControllers.js');
+const userAPIsControllers = require('../controllers/userAPIsControllers.js');
 
 let router = express.Router();
 
 let initAPIRoutes = (app) => {
-    router.post('/login', APIControllers.handleLogin);
+    router.post('/login', userAPIsControllers.handleLogin);
+    // Lấy all thông tin user
+    router.get('/get-all-users', userAPIsControllers.handleGetAllUsers);
 
-    router.get('/test', APIControllers.test)
+    router.get('/test', userAPIsControllers.test);
 
     return app.use('/api', router);
 }

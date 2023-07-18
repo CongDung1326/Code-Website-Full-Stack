@@ -61,6 +61,42 @@ let checkUserEmail = (email) => {
     })
 }
 
+let getALlUsers = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            // Check nếu không truyền vào id
+            if (id) {
+                // Check id là ALL hay một id người dùng
+                if (id === 'all' || id === 'ALL') {
+                    let users = await db.User.findAll({
+                        attributes: {
+                            exclude: ['password']
+                        }
+                    });
+                    resolve(users);
+                }
+
+                let user = await db.User.findOne({
+                    where: { id: id },
+                    attributes: {
+                        exclude: ['password']
+                    },
+                });
+
+                // check user
+                if (user) {
+                    console.log(user);
+                    resolve(user)
+                }
+            }
+            resolve(`can't find id user`);
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     handleUserLogin: handleUserLogin,
+    getALlUsers: getALlUsers,
 }

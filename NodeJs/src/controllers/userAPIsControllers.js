@@ -1,4 +1,4 @@
-const APIsService = require('../services/APIsService.js');
+const userAPIsService = require('../services/userAPIsService.js');
 
 let handleLogin = async (req, res) => {
     let email = req.body.email;
@@ -11,7 +11,7 @@ let handleLogin = async (req, res) => {
         })
     }
 
-    let userData = await APIsService.handleUserLogin(email, password);
+    let userData = await userAPIsService.handleUserLogin(email, password);
 
     // status là trạng thái sau đó in ra file json (hiểu thêm thì tìm lại khoá học learning NodeJS)
     return res.status(200).json({
@@ -24,6 +24,27 @@ let handleLogin = async (req, res) => {
         user: userData.user ? userData.user : {}
     })
 }
+
+let handleGetAllUsers = async (req, res) => {
+    let id = req.body.id; // ALL, id
+
+    if (!id) {
+        return res.status(200).json({
+            errCode: 1,
+            message: 'Missing required parameter',
+            users: []
+        })
+    }
+
+    let user = await userAPIsService.getALlUsers(id);
+
+    return res.status(200).json({
+        errCode: 0,
+        message: 'ok',
+        user
+    })
+}
+
 
 let test = (req, res) => {
     return res.status(200).json({
@@ -38,5 +59,6 @@ let test = (req, res) => {
 
 module.exports = {
     handleLogin: handleLogin,
+    handleGetAllUsers: handleGetAllUsers,
     test: test
 }
