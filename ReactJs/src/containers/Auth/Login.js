@@ -81,7 +81,7 @@ class Login extends Component {
                         <label>Password:</label>
                         <div className='password'>
                             <input type={this.state.showOfHidden ? 'password' : 'text'} placeholder='Enter your password' onChange={(event) => this.handleOnChangeInput(event, 'password')} />
-                            <i class={this.state.showOfHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'} onClick={() => this.handlePassword()}></i>
+                            <i className={this.state.showOfHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'} onClick={() => this.handlePassword()}></i>
                         </div>
                     </div>
                     <span className='remind' style={{ color: 'red' }}>{this.state.errMessage}</span>

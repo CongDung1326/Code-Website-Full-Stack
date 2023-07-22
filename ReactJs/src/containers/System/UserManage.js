@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import './UserManage.scss';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllUsers } from '../../services/userServices';
+
+import { getAllUsers, addNewUser } from '../../services/userServices';
+
+import ModalUser from './ModalUser';
 class UserManage extends Component {
 
     /** Life cycle
@@ -12,19 +15,21 @@ class UserManage extends Component {
      * 3. Render
      */
 
-    constructor(props) {
-        super(props);
+    constructor(props) { // Hiểu đơn giản thằng property là tài sản, hiểu đơn giản thằng cha sẽ truyền tham số xuống thằng con và thằng con sử dụng chúng (tính kế thừa trong class)
+        super(props); // Kế thừa
 
         this.state = {
-            arrayUsers: []
+            arrayUsers: [],
+            isOpenModalUser: false,
         }
     }
 
-    state = {
-
+    // Thằng này là một biến có sẵn trong thằng Component nên chỉ ghi nhiêu đây
+    async componentDidMount() { // (Dùng chỉ để set thuộc tính VD: set hiển thị những người dùng (mặc định) còn xử lý thì không được)
+        await this.getAllUsersFromReact();
     }
 
-    async componentDidMount() {
+    getAllUsersFromReact = async () => {
         let response = await getAllUsers('all');
 
         if (response && response.errCode === 0) {
@@ -32,7 +37,38 @@ class UserManage extends Component {
                 arrayUsers: response.users
             })
         }
+    }
 
+    // Thằng này là một biến không có sẵn nên ghi arrow function
+    handleAddNewUser = () => {
+        this.setState({
+            isOpenModalUser: true
+        })
+    }
+
+    toggleUserModal = () => {
+        let toggle = this.state.isOpenModalUser;
+
+        this.setState({
+            isOpenModalUser: !toggle
+        })
+    }
+
+    createNewUser = async (data) => {
+        try {
+            let response = await addNewUser(data);
+            if (response && response.message.errCode === 0) {
+                await this.getAllUsersFromReact(); // Gọi lại thằng này khi tạo thành công
+                this.setState({
+                    isOpenModalUser: false
+                })
+            }
+            else {
+                alert(response.message.message)
+            }
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     render() {
@@ -43,7 +79,15 @@ class UserManage extends Component {
 
         return (
             <div className="users-container">
+                <ModalUser
+                    isOpen={this.state.isOpenModalUser} // Chuyền prop qua cho thằng ModalUser
+                    toggle={this.toggleUserModal}
+                    className='modal-lg modal-add-new-user'
+                    testProp={'Test prop success'}
+                    createNewUser={this.createNewUser} // Lúc này thì không nên thêm () do ta truyền thẳng thằng này qua thằng con để xử lý, sau đó thằng con chuyển lại cho chúng ta
+                />
                 <div className='title'>Manage users with Don Vau</div>
+                <button className='btn-add-user' onClick={() => this.handleAddNewUser()}>Add new user</button>
                 <div className='table-users'>
                     <table id="customers">
                         <tr>

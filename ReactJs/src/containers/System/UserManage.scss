@@ -41,3 +41,83 @@ td button {
 td button.delete {
     color: red;
 }
+
+.btn-add-user {
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+    background: #35baf6;
+    font-weight: bold;
+    color: white;
+    transition: .25s linear;
+}
+
+.btn-add-user:hover {
+    transform: scale(0.95);
+}
+
+.btn-add-user:active {
+    transform: scale(1.05);
+}
+
+.container-user {
+    display: grid;
+    grid-template-areas:
+        '. .'
+        '. .'
+        'address address'
+    ;
+    gap: 10px;
+
+    .address {
+        grid-area: address;
+    }
+
+    :is(.email, .password, .first-name, .last-name, .address) {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            outline: none;
+            border: 1px solid black;
+        }
+    }
+}
+
+.modal-footer {
+    :is(.add-user, .close) {
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        background: #35baf6;
+        color: white;
+        font-weight: bold;
+    }
+
+    .close {
+        background: #f63559;
+    }
+}
+
+.modal-header {
+    .close {
+        outline: none;
+        border: none;
+        font-size: 24px;
+        font-weight: bold;
+        color: #f63559;
+        background: transparent;
+    }
+}
+
+.modal-content {
+    border-radius: 10px;
+    overflow: hidden;
+    outline: none;
+    border: none;
+}

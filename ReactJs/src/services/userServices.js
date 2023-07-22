@@ -23,4 +23,18 @@ let getAllUsers = async (id) => {
     return users;
 }
 
-export { handleLogin, getAllUsers }
+let addNewUser = async (data) => {
+    return await fetch('http://localhost:8080/api/create-new-user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            email: data.email,
+            password: data.password,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            address: data.address
+        })
+    }).then(res => res.json());
+}
+
+export { handleLogin, getAllUsers, addNewUser }
