@@ -51,6 +51,13 @@ let handleGetAllUsers = async (req, res) => {
 
 let handleCreateUser = async (req, res) => {
     let user = req.body;
+
+    if (!user.email || !user.password) {
+        return res.status(200).json({
+            errCode: 2,
+            message: 'Plz write full email and password',
+        })
+    }
     let message = await userAPIsService.createNewUser(user);
 
     return res.status(200).json({
