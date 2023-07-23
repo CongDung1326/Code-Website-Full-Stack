@@ -37,4 +37,27 @@ let addNewUser = async (data) => {
     }).then(res => res.json());
 }
 
-export { handleLogin, getAllUsers, addNewUser }
+let deleteUser = async (id) => {
+    return await fetch('http://localhost:8080/api/delete-user', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            id: id
+        })
+    }).then(res => res.json())
+}
+
+let EditUser = async (data) => {
+    return await fetch('http://localhost:8080/api/edit-user', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            id: data.id,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            address: data.address
+        })
+    }).then(res => res.json())
+}
+
+export { handleLogin, getAllUsers, addNewUser, deleteUser, EditUser }

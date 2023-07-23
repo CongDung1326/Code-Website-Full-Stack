@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './UserManage.scss';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import { emitter } from '../../utils/emitter';
 
-import { getAllUsers, addNewUser } from '../../services/userServices';
+import { getAllUsers, addNewUser, deleteUser, EditUser } from '../../services/userServices';
 
 import ModalUser from './ModalUser';
+import ModalEditUser from './ModalEditUser';
 class UserManage extends Component {
 
     /** Life cycle
@@ -21,6 +23,8 @@ class UserManage extends Component {
         this.state = {
             arrayUsers: [],
             isOpenModalUser: false,
+            isOpenModalEditUser: false,
+            dataUserEdit: {}
         }
     }
 
@@ -54,6 +58,14 @@ class UserManage extends Component {
         })
     }
 
+    toggleEditUserModal = () => {
+        let toggle = this.state.isOpenModalEditUser;
+
+        this.setState({
+            isOpenModalEditUser: !toggle
+        })
+    }
+
     createNewUser = async (data) => {
         try {
             let response = await addNewUser(data);
@@ -61,10 +73,54 @@ class UserManage extends Component {
                 await this.getAllUsersFromReact(); // Gọi lại thằng này khi tạo thành công
                 this.setState({
                     isOpenModalUser: false
-                })
+                });
+
+                emitter.emit('EVENT_CLEAR_MODAL_DATA') // emit là thằng fire event
             }
             else {
                 alert(response.message.message)
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    handleDeleteUser = async (user) => {
+        try {
+            let response = await deleteUser(user.id);
+            if (response && response.message.errCode === 0) {
+                await this.getAllUsersFromReact();
+                console.log('Delete user success!');
+            }
+            else {
+                alert(response.message.message)
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    handleEditUser = async (data) => {
+        this.setState({
+            isOpenModalEditUser: true,
+            dataUserEdit: data
+        });
+    }
+
+    editUser = async (data) => {
+        // console.log('>>> check data in userManage', data);
+        try {
+            let response = await EditUser(data);
+
+            if (response && response.message.errCode === 0) {
+                await this.getAllUsersFromReact();
+
+                this.setState({
+                    isOpenModalEditUser: false
+                })
+
+            } else {
+                alert('Edit not success!');
             }
         } catch (e) {
             console.log(e);
@@ -86,6 +142,15 @@ class UserManage extends Component {
                     testProp={'Test prop success'}
                     createNewUser={this.createNewUser} // Lúc này thì không nên thêm () do ta truyền thẳng thằng này qua thằng con để xử lý, sau đó thằng con chuyển lại cho chúng ta
                 />
+                {this.state.isOpenModalEditUser === true && // Hiểu đơn giản thì bên thằng ModalEditUser thằng componentDidMount nó sẽ chạy khi mà lần đầu khởi chạy ReactJS nên thêm điều kiện để khi mà vừa mở lên thì dữ liệu bên thằng cha truyền qua cho thằng con thì thằng DidMount nó bắt được
+                    <ModalEditUser
+                        isOpen={this.state.isOpenModalEditUser} // Chuyền prop qua cho thằng ModalUser
+                        toggle={this.toggleEditUserModal}
+                        className='modal-lg modal-edit-user'
+                        dataUserEdit={this.state.dataUserEdit}
+                        editUser={this.editUser}
+                    />
+                }
                 <div className='title'>Manage users with Don Vau</div>
                 <button className='btn-add-user' onClick={() => this.handleAddNewUser()}>Add new user</button>
                 <div className='table-users'>
@@ -105,8 +170,8 @@ class UserManage extends Component {
                                     <td>{user.lastName}</td>
                                     <td>{user.address}</td>
                                     <td>
-                                        <button className='edit'><i className="fa-solid fa-pen-to-square"></i></button>
-                                        <button className='delete'><i className="fa-solid fa-trash"></i></button>
+                                        <button className='edit' onClick={() => this.handleEditUser(user)}><i className="fa-solid fa-pen-to-square"></i></button>
+                                        <button className='delete' onClick={() => this.handleDeleteUser(user)}><i className="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                             )
