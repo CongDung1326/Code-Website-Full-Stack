@@ -62,10 +62,36 @@
     cursor: pointer;
 }
 
-.login-container .forgot-password {
-    margin: 5px 0;
-    cursor: pointer;
-    font-size: 1.1em;
+.login-container {
+
+
+    .forgot-password {
+        transition: 0.25s ease;
+        position: relative;
+        margin: 5px 0;
+        cursor: pointer;
+        font-size: 1.1em;
+        display: inline-block;
+    }
+
+    .forgot-password:hover {
+        color: #3559f6;
+    }
+
+    .forgot-password::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: #3559f6;
+        width: 0px;
+        transition: 0.25s ease;
+    }
+
+    .forgot-password:hover::before {
+        width: 100%;
+    }
 }
 
 .login-container .login-options p {

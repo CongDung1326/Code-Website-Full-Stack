@@ -1,0 +1,96 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.m-header-container {
+  height: 60px;
+  width: 100%;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.menu :is(.left, .m-center) {
+  display: flex;
+  gap: 10px;
+}
+.menu .left {
+  width: 20%;
+  height: 100%;
+}
+.menu .left ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+.menu .left .bars {
+  font-size: 25px;
+  color: #969495;
+  cursor: pointer;
+}
+.menu .left .header-logo img {
+  width: 160px;
+  height: 40px;
+}
+.menu .m-center {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu .m-center p {
+  font-size: 12px;
+  margin: 0;
+}
+.menu .m-center div p:first-child {
+  font-weight: bold;
+}
+.menu .m-center div p:last-child {
+  font-size: 10px;
+}
+@media screen and (max-width: 911px) {
+  .menu .m-center {
+    display: none;
+  }
+}
+.menu .right {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.menu .right .support {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.menu .right .support i {
+  background: #45c3d2;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 50%;
+  font-size: 10px;
+}
+.menu .right .support p {
+  color: #969495;
+  margin: 0;
+}
+.menu .right .phone-number {
+  color: #45c3d2;
+}
+@media screen and (max-width: 911px) {
+  .menu .right {
+    width: max-content;
+  }
+}
+
+/*# sourceMappingURL=Header.css.map */
