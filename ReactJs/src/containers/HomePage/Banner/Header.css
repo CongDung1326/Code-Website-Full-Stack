@@ -93,4 +93,149 @@
   }
 }
 
+.m-header-banner-container .m-header-banner-bg {
+  background: url("../../../assets/images/header/bg-header.jpg") center/cover no-repeat;
+  height: 700px;
+  width: 100%;
+  position: relative;
+}
+.m-header-banner-container .m-header-banner-bg .m-find {
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.1));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.m-header-banner-container .m-header-banner-bg .m-find h1 {
+  color: #FFFFFF;
+  text-shadow: 1px 1px black;
+}
+.m-header-banner-container .m-header-banner-bg .m-find .m-bottom {
+  font-weight: bold;
+  text-align: center;
+}
+.m-header-banner-container .m-header-banner-bg .m-find .m-find-doctor {
+  position: relative;
+}
+.m-header-banner-container .m-header-banner-bg .m-find .m-find-doctor input {
+  width: min(100vw, 500px);
+  height: 50px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background: #f7d800;
+  padding: 10px 40px;
+  position: relative;
+}
+.m-header-banner-container .m-header-banner-bg .m-find .m-find-doctor i {
+  position: absolute;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.m-header-banner-container .m-header-banner-bg .m-options {
+  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgb(255, 255, 255));
+  display: flex;
+  justify-content: space-around;
+  padding: 0px 150px;
+  width: 100%;
+  height: 30%;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option {
+  cursor: pointer;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option .option-name {
+  text-align: center;
+  font-weight: bold;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option .img {
+  padding: 10px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0px 5px 5px silver;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option .img span {
+  background: url("../../../assets/images/header/161340-iconxet-nghiem-y-hoc.png") center/contain no-repeat;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option.options-kham-tu-xa span {
+  background: url("../../../assets/images/header/161817-iconkham-tu-xa.png") center/contain no-repeat;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option.options-kham-tong-quat span {
+  background: url("../../../assets/images/header/161350-iconkham-tong-quan.png") center/contain no-repeat;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option.options-xet-nghiem-y-hoc span {
+  background: url("../../../assets/images/header/161340-iconxet-nghiem-y-hoc.png") center/contain no-repeat;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option.options-suc-khoe-tinh-than span {
+  background: url("../../../assets/images/header/161403-iconsuc-khoe-tinh-than.png") center/contain no-repeat;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option.options-kham-nha-khoa span {
+  background: url("../../../assets/images/header/161410-iconkham-nha-khoa.png") center/contain no-repeat;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option.options-goi-phau-thuat span {
+  background: url("../../../assets/images/header/161421-icongoi-phau-thuat.png") center/contain no-repeat;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option.options-san-pham-y-te span {
+  background: url("../../../assets/images/header/161542-iconsan-pham-y-te.png") center/contain no-repeat;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option.options-bai-test-suc-khoe span {
+  background: url("../../../assets/images/header/161442-iconbai-test-suc-khoe2.png") center/contain no-repeat;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option.options-y-te-gan-ban span {
+  background: url("../../../assets/images/header/163421-153524-near-home-01.png") center/contain no-repeat;
+}
+.m-header-banner-container .m-header-banner-bg .m-options .option:hover .option-name {
+  color: #45c3d2;
+}
+@media screen and (max-width: 1200px) {
+  .m-header-banner-container .m-header-banner-bg .m-options {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .m-header-banner-container .m-header-banner-bg .m-options {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .m-header-banner-container .m-header-banner-bg .m-options .options-bai-test-suc-khoe {
+    grid-column: 1/3;
+  }
+  .m-header-banner-container .m-header-banner-bg .m-options .options-y-te-gan-ban {
+    grid-column: 3/5;
+  }
+}
+.m-header-banner-container .m-header-banner-bg .m-download-app {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.m-header-banner-container .m-header-banner-bg .m-download-app .m-google-play {
+  background: url("../../../assets/images/header/google-play-badge.svg") center/contain no-repeat;
+  width: 35px;
+  height: 35px;
+}
+.m-header-banner-container .m-header-banner-bg .m-download-app .m-app-store {
+  background: url("../../../assets/images/header/app-store-badge-black.svg") center/contain no-repeat;
+  width: 35px;
+  height: 35px;
+}
+
 /*# sourceMappingURL=Header.css.map */
