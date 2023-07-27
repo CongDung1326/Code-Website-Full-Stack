@@ -74,7 +74,19 @@
         height: 100%;
         display: flex;
         justify-content: center;
-        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+
+        .language {
+            display: flex;
+            gap: 10px;
+
+            h3 {
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
 
         .support {
             display: flex;
@@ -261,17 +273,23 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
 
             .m-google-play {
                 background: url('../../../assets/images/header/google-play-badge.svg') center / contain no-repeat;
-                width: 35px;
-                height: 35px;
+                width: 120px;
+                height: 100px;
+                cursor: pointer;
             }
 
             .m-app-store {
                 background: url('../../../assets/images/header/app-store-badge-black.svg') center / contain no-repeat;
-                width: 35px;
-                height: 35px;
+                width: 110px;
+                height: 100px;
+                cursor: pointer;
             }
         }
     }

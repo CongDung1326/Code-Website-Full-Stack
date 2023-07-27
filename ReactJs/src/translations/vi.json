@@ -1,4 +1,29 @@
 {
+    "home_header": {
+        "speciality": "Chuyên khoa",
+        "search_dortor": "Tìm bác sĩ theo chuyên khoa",
+        "base": "Cơ sở y tế",
+        "choose_hospital": "Chọn bệnh viên văn phòng",
+        "doctor": "Bác sĩ",
+        "choose_dortor": "Chọn bác sĩ giỏi",
+        "examination_package": "Gói khám",
+        "general_health": "Khám sức khoẻ tổng quát",
+        "support": "Hỗ trợ"
+    },
+    "banner_header": {
+        "title1": "NỀN TẢNG Y TẾ",
+        "title2": "CHĂM SÓC SỨC KHOẺ TOÀN DIỆN",
+        "specialist_examination": "Khám chuyên khoa",
+        "remote_examination": "Khám từ xa",
+        "general_examination": "Khám tổng quát",
+        "medical_test": "Xét nghiệm y học",
+        "mental_health": "Sức khoẻ tinh thần",
+        "dental_examination": "Khám nha khoa",
+        "surgery_pack": "Gói phẫu thuật",
+        "medical_products": "Sản phẩm y tế",
+        "health_test": "Bài test sức khoẻ",
+        "healthcare_near_you": "Y tế gần bạn"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",

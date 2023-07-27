@@ -7,6 +7,8 @@ import Header from './Banner/Header';
 class HomePage extends Component {
 
     render() {
+        console.log('Check props : ', this.props)
+
         return (
             <div>
                 <Header />
@@ -16,9 +18,12 @@ class HomePage extends Component {
 
 }
 
+// Thằng này để có thể sử dụng Redux
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language
+        // inject
     };
 };
 

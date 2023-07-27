@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 // img
 import Logo from '../../../assets/images/header/logo.svg';
@@ -9,7 +10,6 @@ import Banner from '../../../assets/images/header/bg-header.jpg'
 import './Header.css'
 
 class Header extends Component {
-
     render() {
         return (
             <>
@@ -24,28 +24,34 @@ class Header extends Component {
                         </div>
                         <div className='m-center'>
                             <div className='chuyen-khoa'>
-                                <p>Chuyên khoa</p>
-                                <p>Tìm bác sĩ theo chuyên khoa</p>
+                                <p><FormattedMessage id="home_header.speciality" /></p>
+                                <p><FormattedMessage id="home_header.search_dortor" /></p>
                             </div>
                             <div className='co-so-y-te'>
-                                <p>Cơ sở y tế</p>
-                                <p>Chọn bệnh viện văn phòng</p>
+                                <p><FormattedMessage id="home_header.base" /></p>
+                                <p><FormattedMessage id="home_header.choose_hospital" /></p>
                             </div>
                             <div className='bac-si'>
-                                <p>Bác sĩ</p>
-                                <p>Chọn bác sĩ giỏi</p>
+                                <p><FormattedMessage id="home_header.doctor" /></p>
+                                <p><FormattedMessage id="home_header.choose_dortor" /></p>
                             </div>
                             <div className='goi-kham'>
-                                <p>Gói khám</p>
-                                <p>Khám sức khoẻ tổng quát</p>
+                                <p><FormattedMessage id="home_header.examination_package" /></p>
+                                <p><FormattedMessage id="home_header.general_health" /></p>
                             </div>
                         </div>
                         <div className='right'>
-                            <div className='support'>
-                                <i className="fa-solid fa-question"></i>
-                                <p>Hỗ trợ</p>
+                            <div className='m-support'>
+                                <div className='support'>
+                                    <i className="fa-solid fa-question"></i>
+                                    <p><FormattedMessage id="home_header.support" /></p>
+                                </div>
+                                <div className='phone-number'>0346-976-586</div>
                             </div>
-                            <div className='phone-number'>0346-976-586</div>
+                            <div className='language'>
+                                <h3 className='language-vi'>VI</h3>
+                                <h3 className='language-en'>EN</h3>
+                            </div>
                         </div>
                     </nav>
                 </div>
@@ -54,8 +60,8 @@ class Header extends Component {
                     <div className='m-header-banner-wrapper'>
                         <div className='m-header-banner-bg'>
                             <div className='m-find'>
-                                <h1 className='m-top'>NỀN TẢNG Y TẾ</h1>
-                                <h1 className='m-bottom'>CHĂM SÓC SỨC KHOẺ TOÀN DIỆN</h1>
+                                <h1 className='m-top'><FormattedMessage id="banner_header.title1" /></h1>
+                                <h1 className='m-bottom'><FormattedMessage id="banner_header.title2" /></h1>
                                 <div className='m-find-doctor'>
                                     <input type='text' placeholder='Tìm kiếm bác sĩ' />
                                     <i className="fa-solid fa-magnifying-glass"></i>
@@ -68,43 +74,43 @@ class Header extends Component {
                             <div className='m-options'>
                                 <div className='option options-kham-chuyen-khoa'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='kham-chuyen-khoa'>Khám chuyên khoa</div>
+                                    <div className="option-name" form='kham-chuyen-khoa'><FormattedMessage id="banner_header.specialist_examination" /></div>
                                 </div>
                                 <div className='option options-kham-tu-xa'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='kham-tu-xa'>Khám từ xa</div>
+                                    <div className="option-name" form='kham-tu-xa'><FormattedMessage id="banner_header.remote_examination" /></div>
                                 </div>
                                 <div className='option options-kham-tong-quat'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='kham-tong-quat'>Khám tổng quát</div>
+                                    <div className="option-name" form='kham-tong-quat'><FormattedMessage id="banner_header.general_examination" /></div>
                                 </div>
                                 <div className='option options-xet-nghiem-y-hoc'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='xet-nghiem-y-hoc'>Xét nghiệm y học</div>
+                                    <div className="option-name" form='xet-nghiem-y-hoc'><FormattedMessage id="banner_header.medical_test" /></div>
                                 </div>
                                 <div className='option options-suc-khoe-tinh-than'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='suc-khoe-tinh-than'>Sức khoẻ tinh thần</div>
+                                    <div className="option-name" form='suc-khoe-tinh-than'><FormattedMessage id="banner_header.mental_health" /></div>
                                 </div>
                                 <div className='option options-kham-nha-khoa'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='kham-nha-khoa'>Khám nha khoa</div>
+                                    <div className="option-name" form='kham-nha-khoa'><FormattedMessage id="banner_header.dental_examination" /></div>
                                 </div>
                                 <div className='option options-goi-phau-thuat'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='goi-phau-thuat'>Gói phẫu thuật</div>
+                                    <div className="option-name" form='goi-phau-thuat'><FormattedMessage id="banner_header.surgery_pack" /></div>
                                 </div>
                                 <div className='option options-san-pham-y-te'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='san-pham-y-te'>Sản phẩm y tế</div>
+                                    <div className="option-name" form='san-pham-y-te'><FormattedMessage id="banner_header.medical_products" /></div>
                                 </div>
                                 <div className='option options-bai-test-suc-khoe'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='bai-test-suc-khoe'>Bài test sức khoẻ</div>
+                                    <div className="option-name" form='bai-test-suc-khoe'><FormattedMessage id="banner_header.health_test" /></div>
                                 </div>
                                 <div className='option options-y-te-gan-ban'>
                                     <div className='img'><span></span></div>
-                                    <div className="option-name" form='y-te-gan-ban'>Y tế gần bạn</div>
+                                    <div className="option-name" form='y-te-gan-ban'><FormattedMessage id="banner_header.healthcare_near_you" /></div>
                                 </div>
                             </div>
                         </div>
