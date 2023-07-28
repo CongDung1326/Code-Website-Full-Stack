@@ -16,6 +16,7 @@ const initialState = {
     }
 }
 
+// Sau khi ghi xong bên action thì ta qua reducer
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.APP_START_UP_COMPLETE:
@@ -30,6 +31,13 @@ const appReducer = (state = initialState, action) => {
                     ...state.contentOfConfirmModal,
                     ...action.contentOfConfirmModal
                 }
+            }
+
+        case actionTypes.CHANGE_LANGUAGE:
+            console.log('Don vau check redux', action)
+            return {
+                ...state,
+                language: action.language
             }
         default:
             return state;

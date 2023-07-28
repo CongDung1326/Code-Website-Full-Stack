@@ -85,6 +85,16 @@
             h3 {
                 font-size: 20px;
                 cursor: pointer;
+                transition: 0.25s ease;
+                color: #969495;
+
+                &:hover {
+                    color: #718af8;
+                }
+
+                &.action {
+                    color: #f7d800;
+                }
             }
         }
 

@@ -2,15 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
+// Languages
+import { languages } from '../../../utils'; // Do thằng index nên không cần phải vào thẳng file
+import { changeLanguageApp } from '../../../store/actions'; // Do thằng index nên không cần phải vào thẳng file
+
 // img
 import Logo from '../../../assets/images/header/logo.svg';
-import Banner from '../../../assets/images/header/bg-header.jpg'
 
 // CSS
 import './Header.css'
 
 class Header extends Component {
+
+    handleChangeLanguage = (language) => {
+        //console.log('Event on click handle language: ', language);
+        // fire redux event: actions
+        this.props.changeLanguageAppRedux(language); // nên nhớ props này là của thằng redux không liên quan gì tới thằng cha truyền thằng con nhé!
+    }
+
     render() {
+        let language = this.props.language; // redux
+        console.log('check language redux', language);
+
         return (
             <>
                 {/* Menu */}
@@ -49,8 +62,8 @@ class Header extends Component {
                                 <div className='phone-number'>0346-976-586</div>
                             </div>
                             <div className='language'>
-                                <h3 className='language-vi'>VI</h3>
-                                <h3 className='language-en'>EN</h3>
+                                <h3 className={language === languages.VI ? 'language-vi action' : 'language-vi'} onClick={() => this.handleChangeLanguage(languages.VI)}>VI</h3>
+                                <h3 className={language === languages.EN ? 'language-en action' : 'language-en'} onClick={() => this.handleChangeLanguage(languages.EN)}>EN</h3>
                             </div>
                         </div>
                     </nav>
@@ -124,12 +137,14 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
     };
 };
 

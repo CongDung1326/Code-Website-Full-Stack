@@ -21,7 +21,7 @@ class HomePage extends Component {
 // Thằng này để có thể sử dụng Redux
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn,
+        isLoggedIn: state.user.isLoggedIn, // Các biến từ redux
         language: state.app.language
         // inject
     };

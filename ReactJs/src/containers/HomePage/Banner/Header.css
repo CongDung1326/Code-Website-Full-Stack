@@ -76,6 +76,14 @@
 .menu .right .language h3 {
   font-size: 20px;
   cursor: pointer;
+  transition: 0.25s ease;
+  color: #969495;
+}
+.menu .right .language h3:hover {
+  color: #718af8;
+}
+.menu .right .language h3.action {
+  color: #f7d800;
 }
 .menu .right .support {
   display: flex;
