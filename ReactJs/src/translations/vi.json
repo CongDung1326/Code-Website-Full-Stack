@@ -18,11 +18,11 @@
         "general_examination": "Khám tổng quát",
         "medical_test": "Xét nghiệm y học",
         "mental_health": "Sức khoẻ tinh thần",
-        "dental_examination": "Khám nha khoa",
-        "surgery_pack": "Gói phẫu thuật",
-        "medical_products": "Sản phẩm y tế",
-        "health_test": "Bài test sức khoẻ",
-        "healthcare_near_you": "Y tế gần bạn"
+        "dental_examination": "Khám nha khoa"
+    },
+    "slick": {
+        "popular_specialty": "Chuyên khoa phổ biến",
+        "see_more": "Xem thêm"
     },
     "common": {
         "add": "Thêm",

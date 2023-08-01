@@ -18,11 +18,11 @@
         "general_examination": "General examination",
         "medical_test": "Medical test",
         "mental_health": "Mental health",
-        "dental_examination": "Dental examination",
-        "surgery_pack": "Surgery pack",
-        "medical_products": "Medical products",
-        "health_test": "Health test",
-        "healthcare_near_you": "Health test"
+        "dental_examination": "Dental examination"
+    },
+    "slick": {
+        "popular_specialty": "Popular specialty",
+        "see_more": "See more"
     },
     "common": {
         "add": "Add",

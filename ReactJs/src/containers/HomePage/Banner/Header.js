@@ -115,22 +115,6 @@ class Header extends Component {
                                         <div className='img'><span></span></div>
                                         <div className="option-name" form='kham-nha-khoa'><FormattedMessage id="banner_header.dental_examination" /></div>
                                     </div>
-                                    <div className='option options-goi-phau-thuat'>
-                                        <div className='img'><span></span></div>
-                                        <div className="option-name" form='goi-phau-thuat'><FormattedMessage id="banner_header.surgery_pack" /></div>
-                                    </div>
-                                    <div className='option options-san-pham-y-te'>
-                                        <div className='img'><span></span></div>
-                                        <div className="option-name" form='san-pham-y-te'><FormattedMessage id="banner_header.medical_products" /></div>
-                                    </div>
-                                    <div className='option options-bai-test-suc-khoe'>
-                                        <div className='img'><span></span></div>
-                                        <div className="option-name" form='bai-test-suc-khoe'><FormattedMessage id="banner_header.health_test" /></div>
-                                    </div>
-                                    <div className='option options-y-te-gan-ban'>
-                                        <div className='img'><span></span></div>
-                                        <div className="option-name" form='y-te-gan-ban'><FormattedMessage id="banner_header.healthcare_near_you" /></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
