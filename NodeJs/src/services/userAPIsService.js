@@ -75,18 +75,19 @@ let getALlUsers = (id) => {
                     });
                     resolve(users);
                 }
+                else {
+                    let user = await db.User.findOne({
+                        where: { id: id },
+                        attributes: {
+                            exclude: ['password']
+                        },
+                    });
 
-                let user = await db.User.findOne({
-                    where: { id: id },
-                    attributes: {
-                        exclude: ['password']
-                    },
-                });
-
-                // check user
-                if (user) {
-                    //console.log(user);
-                    resolve(user)
+                    // check user
+                    if (user) {
+                        //console.log(user);
+                        resolve(user)
+                    }
                 }
             }
             resolve(`can't find id user`);
