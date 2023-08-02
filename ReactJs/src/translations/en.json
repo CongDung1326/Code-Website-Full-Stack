@@ -22,7 +22,13 @@
     },
     "slick": {
         "popular_specialty": "Popular specialty",
-        "see_more": "See more"
+        "see_more": "See more",
+        "medical_facility": "Medical facility",
+        "medical_facility_name": {
+            "viet_duc": "Viet Duc Friendship Hospital"
+        },
+        "find": "Find",
+        "featured_doctor": "Last week's featured doctor"
     },
     "common": {
         "add": "Add",

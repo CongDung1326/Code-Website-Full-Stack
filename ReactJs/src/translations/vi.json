@@ -22,7 +22,20 @@
     },
     "slick": {
         "popular_specialty": "Chuyên khoa phổ biến",
-        "see_more": "Xem thêm"
+        "see_more": "Xem thêm",
+        "medical_facility": "Cơ sở y tế nổi bật",
+        "medical_facility_name": {
+            "viet_duc": "Bệnh viện Hữu nghị Việt Đức"
+        },
+        "find": "Tìm kiếm",
+        "featured_doctor": "Bác sĩ nổi bật tuần qua",
+        "doctor": {
+            "hoang_cong_dung": {
+                "degree": "Phó Giáo Sư, Tiến Sĩ, Bác Sĩ",
+                "name": "Hoàng Công Dũng",
+                "position": "Thần kinh"
+            }
+        }
     },
     "common": {
         "add": "Thêm",

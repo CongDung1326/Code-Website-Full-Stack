@@ -1,0 +1,102 @@
+// Trong đây chứa các code chung (tái sử dụng nhiều lần)
+
+// Slick
+@import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css');
+
+.section-share {
+    padding: 40px;
+    border-top: 3px solid #efeef5;
+    border-bottom: 3px solid #efeef5;
+
+    .section-img {
+        display: flex;
+        gap: 10px;
+        width: 90%;
+        padding: 5px;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .slick-prev {
+        left: -15px;
+        z-index: 2;
+
+        &:before {
+            font-size: 30px;
+            opacity: 1;
+        }
+    }
+
+    .slick-next {
+        right: -4px;
+
+        &:before {
+            font-size: 30px;
+            opacity: 1;
+        }
+    }
+
+    .specialist-popular {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h3 {
+            font-weight: bold;
+        }
+
+        .see-more {
+            border: none;
+            outline: none;
+            padding: 5px;
+            border-radius: 5px;
+            text-transform: uppercase;
+
+            &:hover {
+                background: #FFC419;
+                color: #FFF;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            padding: 0 10px;
+
+            .see-more {
+                padding: 10px;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .section-img {
+            padding: 10px;
+        }
+
+        .slick-prev {
+            left: -25px;
+            z-index: 2;
+
+            &:before {
+                font-size: 50px;
+                opacity: 1;
+            }
+        }
+
+        .slick-next {
+            right: 4px;
+
+            &:before {
+                font-size: 50px;
+                opacity: 1;
+            }
+        }
+    }
+
+    @media screen and (max-width: 555px) {
+        padding: 20px 40px;
+    }
+}

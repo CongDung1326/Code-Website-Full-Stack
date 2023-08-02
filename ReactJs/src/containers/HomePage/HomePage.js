@@ -4,14 +4,36 @@ import { connect } from 'react-redux';
 
 import Header from './Banner/Header';
 import Specialty from './Section/Specialty';
+import MedicalFacility from './Section/MedicalFacility';
+import FeaturedDoctor from './Section/FeaturedDoctor';
+
+import './HomePage.scss'
 
 class HomePage extends Component {
-
     render() {
+        let settings = {
+            dots: true,
+            infinite: true,
+            speed: 1000,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            responsive: [{
+                breakpoint: 855,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            }]
+        };
+
         return (
             <div>
                 <Header />
-                <Specialty />
+                <Specialty settings={settings} />
+                <MedicalFacility settings={settings} />
+                <FeaturedDoctor settings={settings} />
             </div>
         );
     }
