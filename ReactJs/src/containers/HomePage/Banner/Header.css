@@ -190,6 +190,8 @@
   font-weight: bold;
   transition: 0.25s ease;
   cursor: pointer;
+  margin: 0 auto;
+  width: 88px;
 }
 .m-header-banner-container .m-header-banner-bg .m-options .option .img {
   padding: 10px;
@@ -239,7 +241,7 @@
 .m-header-banner-container .m-header-banner-bg .m-options .option:hover .option-name {
   color: #45c3d2;
 }
-@media screen and (max-width: 855px) {
+@media screen and (max-width: 1100px) {
   .m-header-banner-container .m-header-banner-bg .m-options {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -251,10 +253,20 @@
     grid-column: 3/5;
   }
 }
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 700px) {
+  .m-header-banner-container .m-header-banner-bg .m-options {
+    gap: 20px 60px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .m-header-banner-container .m-header-banner-bg .m-options {
+    gap: 20px 40px;
+  }
+}
+@media screen and (max-width: 500px) {
   .m-header-banner-container .m-header-banner-bg .m-options {
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px 50px;
+    gap: 5px;
   }
   .m-header-banner-container .m-header-banner-bg .m-options .options-bai-test-suc-khoe {
     grid-column: unset;

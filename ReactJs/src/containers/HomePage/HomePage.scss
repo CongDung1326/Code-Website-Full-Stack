@@ -99,4 +99,96 @@
     @media screen and (max-width: 555px) {
         padding: 20px 40px;
     }
+
+    @media screen and (max-width: 480px) {
+        * {
+            font-size: 12px;
+        }
+    }
+
+    &.section-featured-doctor {
+        background: silver;
+        text-align: center;
+
+        .section-img {
+            .container-border {
+                border: 1px solid white;
+                padding: 5px;
+
+                .avatar {
+
+                    img {
+                        border-radius: 50%;
+                        width: 50%;
+                        margin: 0 auto 10px;
+                    }
+                }
+
+                .position {
+                    color: #555555;
+
+                    @media screen and (max-width: 555px) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &.section-handbook {
+        background: white;
+
+        .slick-prev::before,
+        .slick-next::before {
+            color: silver;
+        }
+
+        .handbook-box {
+            padding: 10px;
+
+            display: flex !important;
+
+            h3 {
+                font-size: 20px;
+                padding: 10px;
+            }
+
+            img {
+                width: 70%;
+
+            }
+
+            @media screen and (max-width: 1200px) {
+                display: inline-block !important;
+
+                img {
+                    height: 150px;
+                    margin: 0 auto;
+                }
+
+                h3 {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    &.section-medical-facility {
+        background: #FFFFFF;
+
+        .slick-prev::before,
+        .slick-next::before {
+            color: silver;
+        }
+
+        .name {
+            padding: 10px 0 0 0;
+        }
+    }
+
+    &.section-speciatly {
+        background: silver;
+    }
+
+
 }

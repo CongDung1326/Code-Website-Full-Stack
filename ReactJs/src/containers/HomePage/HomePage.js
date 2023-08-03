@@ -6,6 +6,8 @@ import Header from './Banner/Header';
 import Specialty from './Section/Specialty';
 import MedicalFacility from './Section/MedicalFacility';
 import FeaturedDoctor from './Section/FeaturedDoctor';
+import Handbook from './Section/Handbook';
+import HomeFooter from './HomeFooter';
 
 import './HomePage.scss'
 
@@ -34,6 +36,8 @@ class HomePage extends Component {
                 <Specialty settings={settings} />
                 <MedicalFacility settings={settings} />
                 <FeaturedDoctor settings={settings} />
+                <Handbook settings={settings} />
+                <HomeFooter />
             </div>
         );
     }

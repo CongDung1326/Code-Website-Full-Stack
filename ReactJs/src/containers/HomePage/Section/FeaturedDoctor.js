@@ -2,30 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
-// CSS
-import './FeaturedDoctor.scss'
-
 import Slider from 'react-slick';
 
 class FeaturedDoctor extends Component {
 
     render() {
-        let settings = {
-            dots: true,
-            infinite: true,
-            speed: 1000,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            responsive: [{
-                breakpoint: 855,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            }]
-        };
+        let settings = this.props.settings;
 
         return (
             <>

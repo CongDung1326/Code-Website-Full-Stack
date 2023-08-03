@@ -35,7 +35,9 @@
                 "name": "Hoàng Công Dũng",
                 "position": "Thần kinh"
             }
-        }
+        },
+        "handbook": "Cẩm nang",
+        "all_posts": "Tất cả bài viết"
     },
     "common": {
         "add": "Thêm",
