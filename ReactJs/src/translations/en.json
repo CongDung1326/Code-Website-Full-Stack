@@ -28,7 +28,16 @@
             "viet_duc": "Viet Duc Friendship Hospital"
         },
         "find": "Find",
-        "featured_doctor": "Last week's featured doctor"
+        "featured_doctor": "Last week's featured doctor",
+        "doctor": {
+            "hoang_cong_dung": {
+                "degree": "Associate Professor, Doctor, Doctor",
+                "name": "Hoang Cong Dung",
+                "position": "Nerve"
+            }
+        },
+        "handbook": "Handbook",
+        "all_posts": "All posts"
     },
     "common": {
         "add": "Add",

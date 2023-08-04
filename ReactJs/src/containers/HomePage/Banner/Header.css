@@ -18,6 +18,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 40px 10px 20px;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  background: white;
+  margin-bottom: 60px;
 }
 .menu :is(.left, .m-center) {
   display: flex;
