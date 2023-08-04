@@ -15,6 +15,8 @@ let initAPIRoutes = (app) => {
     // Edit user
     router.put('/edit-user', userAPIsControllers.handleEditUser);
 
+    router.get('/all-codes', userAPIsControllers.getAllCodes);
+
     router.get('/test', userAPIsControllers.test);
 
     return app.use('/api', router);

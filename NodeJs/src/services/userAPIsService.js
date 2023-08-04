@@ -194,10 +194,34 @@ let updateUserData = (data) => {
     })
 }
 
+let getAllCodes = (type) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let res = await db.Allcode.findAll({ where: { type: type } });
+            if (!res) {
+                resolve({
+                    errCode: 2,
+                    message: 'Missing required parameters!'
+                })
+            }
+            else {
+                resolve({
+                    errCode: 0,
+                    message: 'ok',
+                    data: res
+                });
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     handleUserLogin: handleUserLogin,
     getALlUsers: getALlUsers,
     createNewUser: createNewUser,
     deleteUser: deleteUser,
-    updateUserData: updateUserData
+    updateUserData: updateUserData,
+    getAllCodes: getAllCodes
 }
