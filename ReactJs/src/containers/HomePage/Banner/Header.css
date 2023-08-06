@@ -7,13 +7,14 @@
 .m-header-container {
   width: 100%;
 }
+
 @media screen and (max-width: 855px) {
   .m-header-container {
     margin-bottom: 50px;
   }
 }
 
-.menu {
+.menu-home-page {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,15 +25,18 @@
   background: white;
   margin-bottom: 60px;
 }
-.menu :is(.left, .m-center) {
+
+.menu-home-page :is(.left, .m-center) {
   display: flex;
   gap: 10px;
 }
-.menu .left {
+
+.menu-home-page .left {
   width: 20%;
   height: 100%;
 }
-.menu .left ul {
+
+.menu-home-page .left ul {
   display: flex;
   list-style: none;
   align-items: center;
@@ -40,43 +44,52 @@
   margin: 0;
   padding: 0;
 }
-.menu .left .bars {
+
+.menu-home-page .left .bars {
   font-size: 25px;
   color: #969495;
   cursor: pointer;
 }
-.menu .left .header-logo img {
+
+.menu-home-page .left .header-logo img {
   width: 160px;
   height: 100%;
 }
+
 @media screen and (max-width: 555px) {
-  .menu .left .header-logo img {
+  .menu-home-page .left .header-logo img {
     width: 120px;
   }
 }
-.menu .m-center {
+
+.menu-home-page .m-center {
   height: 100%;
   width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.menu .m-center p {
+
+.menu-home-page .m-center p {
   font-size: 12px;
   margin: 0;
 }
-.menu .m-center div p:first-child {
+
+.menu-home-page .m-center div p:first-child {
   font-weight: bold;
 }
-.menu .m-center div p:last-child {
+
+.menu-home-page .m-center div p:last-child {
   font-size: 10px;
 }
+
 @media screen and (max-width: 911px) {
-  .menu .m-center {
+  .menu-home-page .m-center {
     display: none;
   }
 }
-.menu .right {
+
+.menu-home-page .right {
   width: 20%;
   height: 100%;
   display: flex;
@@ -84,53 +97,64 @@
   align-items: center;
   gap: 20px;
 }
-.menu .right .language {
+
+.menu-home-page .right .language {
   display: flex;
   gap: 10px;
 }
-.menu .right .language h3 {
+
+.menu-home-page .right .language h3 {
   font-size: 20px;
   cursor: pointer;
   transition: 0.25s ease;
   color: #969495;
 }
-.menu .right .language h3:hover {
+
+.menu-home-page .right .language h3:hover {
   color: #718af8;
 }
-.menu .right .language h3.action {
+
+.menu-home-page .right .language h3.action {
   color: #f7d800;
 }
+
 @media screen and (max-width: 555px) {
-  .menu .right .language h3 {
+  .menu-home-page .right .language h3 {
     font-size: 12px;
   }
 }
-.menu .right .support {
+
+.menu-home-page .right .support {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.menu .right .support i {
+
+.menu-home-page .right .support i {
   background: #45c3d2;
   color: white;
   padding: 2px 4px;
   border-radius: 50%;
   font-size: 10px;
 }
-.menu .right .support p {
+
+.menu-home-page .right .support p {
   color: #969495;
   margin: 0;
 }
-.menu .right .phone-number {
+
+.menu-home-page .right .phone-number {
   color: #45c3d2;
 }
+
 @media screen and (max-width: 911px) {
-  .menu .right {
+  .menu-home-page .right {
     width: max-content;
   }
 }
+
 @media screen and (max-width: 555px) {
-  .menu {
+  .menu-home-page {
     padding: 2px 30px 2px 10px;
   }
 }
@@ -141,6 +165,7 @@
   width: 100%;
   position: relative;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-find {
   width: 100%;
   height: 70%;
@@ -150,17 +175,21 @@
   align-items: center;
   flex-direction: column;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-find h1 {
   color: #FFFFFF;
   text-shadow: 1px 1px black;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-find .m-bottom {
   font-weight: bold;
   text-align: center;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-find .m-find-doctor {
   position: relative;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-find .m-find-doctor input {
   width: min(100vw, 500px);
   height: 50px;
@@ -171,6 +200,7 @@
   padding: 10px 40px;
   position: relative;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-find .m-find-doctor i {
   position: absolute;
   left: 3%;
@@ -178,6 +208,7 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options {
   background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgb(255, 255, 255));
   display: flex;
@@ -187,9 +218,11 @@
   height: 30%;
   gap: 20px 100px;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option {
   cursor: pointer;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option .option-name {
   text-align: center;
   font-weight: bold;
@@ -198,6 +231,7 @@
   margin: 0 auto;
   width: 88px;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option .img {
   padding: 10px;
   background: white;
@@ -210,76 +244,96 @@
   margin: 0 auto;
   cursor: pointer;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option .img span {
   background: url("../../../assets/images/header/161340-iconxet-nghiem-y-hoc.png") center/contain no-repeat;
   width: 35px;
   height: 35px;
   display: inline-block;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option.options-kham-tu-xa span {
   background: url("../../../assets/images/header/161817-iconkham-tu-xa.png") center/contain no-repeat;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option.options-kham-tong-quat span {
   background: url("../../../assets/images/header/161350-iconkham-tong-quan.png") center/contain no-repeat;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option.options-xet-nghiem-y-hoc span {
   background: url("../../../assets/images/header/161340-iconxet-nghiem-y-hoc.png") center/contain no-repeat;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option.options-suc-khoe-tinh-than span {
   background: url("../../../assets/images/header/161403-iconsuc-khoe-tinh-than.png") center/contain no-repeat;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option.options-kham-nha-khoa span {
   background: url("../../../assets/images/header/161410-iconkham-nha-khoa.png") center/contain no-repeat;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option.options-goi-phau-thuat span {
   background: url("../../../assets/images/header/161421-icongoi-phau-thuat.png") center/contain no-repeat;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option.options-san-pham-y-te span {
   background: url("../../../assets/images/header/161542-iconsan-pham-y-te.png") center/contain no-repeat;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option.options-bai-test-suc-khoe span {
   background: url("../../../assets/images/header/161442-iconbai-test-suc-khoe2.png") center/contain no-repeat;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option.options-y-te-gan-ban span {
   background: url("../../../assets/images/header/163421-153524-near-home-01.png") center/contain no-repeat;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-options .option:hover .option-name {
   color: #45c3d2;
 }
+
 @media screen and (max-width: 1100px) {
   .m-header-banner-container .m-header-banner-bg .m-options {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
+
   .m-header-banner-container .m-header-banner-bg .m-options .options-suc-khoe-tinh-than {
     grid-column: 1/3;
   }
+
   .m-header-banner-container .m-header-banner-bg .m-options .options-kham-nha-khoa {
     grid-column: 3/5;
   }
 }
+
 @media screen and (max-width: 700px) {
   .m-header-banner-container .m-header-banner-bg .m-options {
     gap: 20px 60px;
   }
 }
+
 @media screen and (max-width: 550px) {
   .m-header-banner-container .m-header-banner-bg .m-options {
     gap: 20px 40px;
   }
 }
+
 @media screen and (max-width: 500px) {
   .m-header-banner-container .m-header-banner-bg .m-options {
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
   }
+
   .m-header-banner-container .m-header-banner-bg .m-options .options-bai-test-suc-khoe {
     grid-column: unset;
   }
+
   .m-header-banner-container .m-header-banner-bg .m-options .options-y-te-gan-ban {
     grid-column: unset;
   }
 }
+
 .m-header-banner-container .m-header-banner-bg .m-download-app {
   position: absolute;
   width: 100%;
@@ -292,12 +346,14 @@
   align-items: center;
   gap: 10px;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-download-app .m-google-play {
   background: url("../../../assets/images/header/google-play-badge.svg") center/contain no-repeat;
   width: 120px;
   height: 35px;
   cursor: pointer;
 }
+
 .m-header-banner-container .m-header-banner-bg .m-download-app .m-app-store {
   background: url("../../../assets/images/header/app-store-badge-black.svg") center/contain no-repeat;
   width: 110px;

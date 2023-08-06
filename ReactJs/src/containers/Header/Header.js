@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import * as actions from "../../store/actions"; // Do ta đã khai báo actions của redux rồi nên cũng không cần gọi thẳng chỉ cần actions rồi nó tự ra thôi
@@ -16,10 +17,9 @@ class Header extends Component {
     }
 
     render() {
-        console.log('>> check props ', this.props)
+        const { processLogout, language, userInfo } = this.props;
 
-        const { processLogout, language } = this.props;
-
+        console.log('Check user info => ', userInfo.lastName);
         return (
             <div className="header-container">
                 {/* thanh navigator */}
@@ -29,6 +29,8 @@ class Header extends Component {
 
                 {/* nút logout */}
                 <div className='languages'>
+                    <div className='welcome'><FormattedMessage id="home_header.welcome" />, {(userInfo && (userInfo.firstName || userInfo.lastName)) ? (userInfo.firstName + ' ' + userInfo.lastName) : ''} {/* Tránh tình trạng không tìm thấy thì ta thêm điều kiện */}
+                    </div>
                     <div className={language === languages.VI ? 'language-vi active' : 'language-vi'} onClick={() => this.handleChangeLanguage(languages.VI)}>VI</div>
                     <div className={language === languages.EN ? 'language-en active' : 'language-en'} onClick={() => this.handleChangeLanguage(languages.EN)}>EN</div>
                     <div className="btn btn-logout" onClick={processLogout} title='Log out'>
@@ -44,7 +46,8 @@ class Header extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        language: state.app.language
+        language: state.app.language,
+        userInfo: state.user.userInfo
     };
 };
 

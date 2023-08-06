@@ -35,7 +35,7 @@ class Header extends Component {
             <>
                 {/* Menu */}
                 <div className='m-header-container'>
-                    <nav className='menu'>
+                    <nav className='menu-home-page'>
                         <div className='left'>
                             <ul>
                                 <li className='bars'><i className="fa-solid fa-bars"></i></li>

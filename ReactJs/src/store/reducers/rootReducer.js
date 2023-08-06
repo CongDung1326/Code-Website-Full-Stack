@@ -23,7 +23,7 @@ const userPersistConfig = {
 const appPersistConfig = {
     ...persistCommonConfig,
     key: 'app',
-    whitelist: ['language']
+    whitelist: ['language'] // Do thằng app nó có list là 'language' nên khi gọi language thì ta sẽ tự động thay đổi language bên trong thằng redux
 };
 
 export default (history) => combineReducers({
