@@ -60,4 +60,10 @@ let EditUser = async (data) => {
     }).then(res => res.json())
 }
 
-export { handleLogin, getAllUsers, addNewUser, deleteUser, EditUser }
+let handleGetAllCode = async (inputData) => {
+    return await fetch(`http://localhost:8080/api/all-codes?type=${inputData}`, {
+        method: "GET"
+    }).then(res => res.json())
+}
+
+export { handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode }

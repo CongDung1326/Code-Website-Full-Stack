@@ -47,6 +47,11 @@
                     color: $text-in-light;
                 }
 
+                &.active a {
+                    color: orange;
+                    font-weight: bold;
+                }
+
                 .sub-menu-list {
                     display: none;
                     background-color: $bg-menu-color;

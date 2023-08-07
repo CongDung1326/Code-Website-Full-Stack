@@ -22,7 +22,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -33,7 +33,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -44,7 +44,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -55,7 +55,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -66,7 +66,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -77,7 +77,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -88,7 +88,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -99,7 +99,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -110,7 +110,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -121,7 +121,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -132,7 +132,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -143,7 +143,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -154,7 +154,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -165,7 +165,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -176,7 +176,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>
@@ -187,7 +187,7 @@ class FeaturedDoctor extends Component {
                                 <div className='section-img'>
                                     <div className='container-border'>
                                         <div className='avatar'>
-                                            <img src='https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/364755011_1630668147417713_8943145024904963399_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=amfc9mdO8AcAX8ALijv&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfDDdObsXv5DXc3hyhVdxJZwp-QkF2l8xrppdeT6zv3MMA&oe=64CE3EEE' alt='' />
+                                            <img src='https://plus.unsplash.com/premium_photo-1675804669860-9e27f22b0681?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60' alt='' />
                                         </div>
                                         <div className='introduce'>
                                             <div className='degree'><FormattedMessage id="slick.doctor.hoang_cong_dung.degree" /> <FormattedMessage id="slick.doctor.hoang_cong_dung.name" /></div>

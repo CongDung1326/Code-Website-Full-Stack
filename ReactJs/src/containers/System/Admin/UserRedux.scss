@@ -1,0 +1,57 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.add-new-user {
+    width: 100%;
+    padding: 0 100px;
+    display: grid;
+    gap: 20px;
+    grid-template-areas:
+        '. . . .'
+        '. address address address'
+        '. . . .'
+        '. . . button'
+    ;
+    margin-top: 30px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            outline: none;
+            border: 1px solid silver;
+            border-radius: 5px;
+            height: 30px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        select {
+            border: 1px solid silver;
+            height: 30px;
+            border-radius: 5px;
+            width: 100%;
+        }
+    }
+
+    .address {
+        grid-area: address;
+    }
+
+    .save-user {
+        grid-area: button;
+        outline: none;
+        border: none;
+        background: #108dc7;
+        color: white;
+        font-weight: bold;
+        border-radius: 10px;
+        width: min-content;
+        padding: 5px 10px;
+        margin-left: auto;
+    }
+}

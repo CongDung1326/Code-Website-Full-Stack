@@ -54,5 +54,24 @@
             "manage_handbook": "Quản lý cẩm nang",
             "handbook": "Cẩm nang"
         }
+    },
+    "manage_user": {
+        "crud_user_redux": {
+            "email": "Email",
+            "password": "Mật khẩu",
+            "first_name": "Họ",
+            "last_name": "Tên",
+            "phone_number": "Số điện thoại",
+            "address": "Địa chỉ",
+            "gender": {
+                "gender": "Giới tính",
+                "male": "Nam",
+                "female": "Nữ"
+            },
+            "position": "Chức vụ",
+            "role_id": "Vai trò",
+            "image": "Ảnh",
+            "save": "Lưu"
+        }
     }
 }

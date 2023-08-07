@@ -54,5 +54,24 @@
             "manage_handbook": "Manage handbook",
             "handbook": "Handbook"
         }
+    },
+    "manage_user": {
+        "crud_user_redux": {
+            "email": "Email",
+            "password": "Password",
+            "first_name": "First name",
+            "last_name": "Last name",
+            "phone_number": "Phone number",
+            "address": "Address",
+            "gender": {
+                "gender": "Gender",
+                "male": "Male",
+                "female": "Female"
+            },
+            "position": "Position",
+            "role_id": "Role id",
+            "image": "Image",
+            "save": "Save"
+        }
     }
 }
