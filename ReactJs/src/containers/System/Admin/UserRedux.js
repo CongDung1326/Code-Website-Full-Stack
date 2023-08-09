@@ -10,6 +10,9 @@ import { handleGetAllCode } from '../../../services/userServices';
 // Language
 import { languages } from '../../../utils/constant'
 
+// Redux
+import * as actions from '../../../store/actions';
+
 class UserRedux extends Component {
     constructor(props) {
         super(props);
@@ -21,9 +24,12 @@ class UserRedux extends Component {
     }
 
     componentDidMount() {
-        this.getGender();
-        this.getPosition();
-        this.getRole();
+        // this.getGender();
+        // this.getPosition();
+        // this.getRole();
+
+        // Sau khi khai báo ở mapDispatchToProps thì ta sử dụng props để gọi nó ra (lưu ý: props này là ở thằng redux không liên quan gì tới thằng cha chuyền props lại cho thằng con của React nhé!)
+        this.props.getGenderStart();
     }
 
     getGender = async () => {
@@ -68,8 +74,10 @@ class UserRedux extends Component {
     }
 
     render() {
-        let { genders, positions, roles } = this.state;
-        let language = this.props.language;
+        //let { genders, positions, roles } = this.state;
+        let { language, genderRedux } = this.props;
+
+        //console.log('Check genderRedux from react: ', genderRedux)
 
         return (
             <div className='user-redux-container'>
@@ -103,7 +111,7 @@ class UserRedux extends Component {
                         <div className='gender'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.gender.gender" /></label>
                             <select>
-                                {genders.map((gender) => {
+                                {genderRedux.map((gender) => {
                                     return (
                                         <option value={language === languages.VI ? gender.valueVi : gender.valueEn}>{language === languages.VI ? gender.valueVi : gender.valueEn}</option>
                                     )
@@ -113,21 +121,21 @@ class UserRedux extends Component {
                         <div className='position'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.position" /></label>
                             <select>
-                                {positions.map((position) => {
+                                {/* {positions.map((position) => {
                                     return (
                                         <option value={language === languages.VI ? position.valueVi : position.valueEn}>{language === languages.VI ? position.valueVi : position.valueEn}</option>
                                     )
-                                })}
+                                })} */}
                             </select>
                         </div>
                         <div className='roleid'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.role_id" /></label>
                             <select>
-                                {roles.map((role) => {
+                                {/* {roles.map((role) => {
                                     return (
                                         <option value={language === languages.VI ? role.valueVi : role.valueEn}>{language === languages.VI ? role.valueVi : role.valueEn}</option>
                                     )
-                                })}
+                                })} */}
                             </select>
                         </div>
                         <div className='image'>
@@ -146,12 +154,14 @@ class UserRedux extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        language: state.app.language
+        language: state.app.language, // state.app.language được khai báo từ thằng rootReducer (dùng để lấy các giá trị được lưu trong Redux)
+        genderRedux: state.admin.genders,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getGenderStart: () => dispatch(actions.fetchGenderStart()) // Nó lấy từ adminActions
     };
 };
 

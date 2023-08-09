@@ -5,10 +5,6 @@ const actionTypes = Object.freeze({
 
     CHANGE_LANGUAGE: 'CHANGE_LANGUAGE',
 
-    //admin
-    ADMIN_LOGIN_SUCCESS: 'ADMIN_LOGIN_SUCCESS',
-    ADMIN_LOGIN_FAIL: 'ADMIN_LOGIN_FAIL',
-
     //user
     ADD_USER_SUCCESS: 'ADD_USER_SUCCESS',
 
@@ -16,6 +12,11 @@ const actionTypes = Object.freeze({
     USER_LOGIN_SUCCESS: 'USER_LOGIN_SUCCESS',
     USER_LOGIN_FAIL: 'USER_LOGIN_FAIL',
     PROCESS_LOGOUT: 'PROCESS_LOGOUT',
+
+    // Learning Redux
+    FETCH_GENDER_START: 'FETCH_GENDER_START',
+    FETCH_GENDER_SUCCESS: 'FETCH_GENDER_SUCCESS',
+    FETCH_GENDER_FAILED: 'FETCH_GENDER_FAILED',
 })
 
 export default actionTypes;

@@ -162,7 +162,7 @@ class UserManage extends Component {
                             <th>Address</th>
                             <th>Actions</th>
                         </tr>
-                        {arrayUsers.map((user, i) => {
+                        {arrayUsers.map((user) => {
                             return (
                                 <tr>
                                     <td>{user.email}</td>
