@@ -17,6 +17,12 @@ const actionTypes = Object.freeze({
     FETCH_GENDER_START: 'FETCH_GENDER_START',
     FETCH_GENDER_SUCCESS: 'FETCH_GENDER_SUCCESS',
     FETCH_GENDER_FAILED: 'FETCH_GENDER_FAILED',
+    // Làm speed do lười (và cũng muốn hiểu được cách làm nhanh làm như nào!) ta sẽ bỏ qua bước start và vào thẳng bước lấy thành công và thất bại
+    FETCH_POSITION_SUCCESS: 'FETCH_POSITION_SUCCESS',
+    FETCH_POSITION_FAILED: 'FETCH_POSITION_FAILED',
+    FETCH_ROLE_SUCCESS: 'FETCH_ROLE_SUCCESS',
+    FETCH_ROLE_FAILED: 'FETCH_ROLE_FAILED',
+
 })
 
 export default actionTypes;
