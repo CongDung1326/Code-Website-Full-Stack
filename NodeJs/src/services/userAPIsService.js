@@ -11,7 +11,7 @@ let handleUserLogin = (email, password) => {
             if (isExit) {
                 let user = await db.User.findOne({
                     where: { email: email },
-                    attributes: ['email', 'roleId', 'password'], // Chỉ lấy những cột cần thiết (Lấycột password để đăng nhập vào sau đó xoá nó đi để người call không thấy)
+                    attributes: ['email', 'roleId', 'password', 'firstName', 'lastName'], // Chỉ lấy những cột cần thiết (Lấycột password để đăng nhập vào sau đó xoá nó đi để người call không thấy)
                     raw: true
                 });
 
