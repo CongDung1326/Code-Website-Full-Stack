@@ -1,0 +1,39 @@
+.table-manage-redux {
+    padding: 0 40px;
+    margin: 20px 0;
+
+    table {
+        width: 100%;
+
+        td,
+        th {
+            padding: 8px;
+            border: 1px solid silver;
+        }
+
+        th {
+            background: #04AA6D;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        td button {
+            border: none;
+            outline: none;
+            padding: 10px;
+            color: orange;
+            background: transparent;
+        }
+
+        td button.delete {
+            color: red;
+        }
+    }
+}

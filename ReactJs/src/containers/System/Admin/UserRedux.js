@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
+import { toast } from 'react-toastify';
 
 // SCSS
 import './UserRedux.scss';
@@ -14,6 +15,8 @@ import { languages } from '../../../utils/constant'
 
 // Redux
 import * as actions from '../../../store/actions';
+
+import TableManageUser from './TableManageUser';
 
 class UserRedux extends Component {
     constructor(props) {
@@ -34,6 +37,7 @@ class UserRedux extends Component {
             position: '',
             role: '',
             image: '',
+            isCreateUser: false,
         }
     }
 
@@ -144,7 +148,7 @@ class UserRedux extends Component {
         let isSuccess = true;
         for (let i = 0; i < check.length; i++) {
             if (!coppyState[check[i]]) {
-                alert('Nhập đầy đủ thông tin dùm cái! còn thiếu cái này nè: ' + check[i]);
+                toast.error('❌ Please enter enough information: ' + check[i]);
                 isSuccess = false;
                 break;
             }
@@ -153,7 +157,7 @@ class UserRedux extends Component {
         return isSuccess;
     }
 
-    handleSaveUser = () => {
+    handleSaveUser = async () => {
         if (this.checkValueInput()) {
             let { email, password, lastName, firstName, phoneNumber, address, gender, position, role } = this.state;
             let userInfo = {
@@ -167,94 +171,115 @@ class UserRedux extends Component {
                 positionId: position,
                 roleId: role,
             }
-            this.props.saveUserStart(userInfo);
+            await this.props.saveUserStart(userInfo);
+            await this.props.getUserStart('all');
+
+            // Reset input
+            this.setState({
+                isCreateUser: true
+            })
+            if (this.state.isCreateUser) {
+                this.setState({
+                    email: '',
+                    password: '',
+                    lastName: '',
+                    firstName: '',
+                    phoneNumber: '',
+                    address: ''
+                })
+            }
+
+            toast.success('✔ Create user success!')
         }
     }
 
     render() {
-        let { genders, positions, roles, isOpen } = this.state;
+        let { genders, positions, roles, isOpen, email, password, lastName, firstName, phoneNumber, address } = this.state;
         let { language, isLoadingGender } = this.props;
 
         //console.log('Check props from redux: ', this.props)
 
         return (
-            <div className='user-redux-container'>
-                <div>{isLoadingGender === true ? "Loading gender" : ""}</div>
-                <div className='title'>User redux learning redux Don Vau</div>
-                <div className='user-redux-body'>
-                    <div className='add-new-user'>
-                        <div className='email'>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.email" /></label>
-                            <input type='email' onChange={(e) => this.handleOnChangeInput(e, 'email')} />
-                        </div>
-                        <div className='password'>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.password" /></label>
-                            <input type='password' onChange={(e) => this.handleOnChangeInput(e, 'password')} />
-                        </div>
-                        <div className='first-name'>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.first_name" /></label>
-                            <input type='text' onChange={(e) => this.handleOnChangeInput(e, 'firstName')} />
-                        </div>
-                        <div className='last-name'>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.last_name" /></label>
-                            <input type='text' onChange={(e) => this.handleOnChangeInput(e, 'lastName')} />
-                        </div>
-                        <div className='phone-bumber'>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.phone_number" /></label>
-                            <input type='text' onChange={(e) => this.handleOnChangeInput(e, 'phoneNumber')} />
-                        </div>
-                        <div className='address'>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.address" /></label>
-                            <input type='text' onChange={(e) => this.handleOnChangeInput(e, 'address')} />
-                        </div>
-                        <div className='gender'>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.gender.gender" /></label>
-                            <select onChange={(e) => this.handleOnChangeInput(e, 'gender')}>
-                                {genders.map((gender) => {
-                                    return (
-                                        <option value={gender.key}>{language === languages.VI ? gender.valueVi : gender.valueEn}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
-                        <div className='position' onChange={(e) => this.handleOnChangeInput(e, 'position')}>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.position" /></label>
-                            <select>
-                                {positions.map((position) => {
-                                    return (
-                                        <option value={position.key}>{language === languages.VI ? position.valueVi : position.valueEn}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
-                        <div className='roleid' onChange={(e) => this.handleOnChangeInput(e, 'role')}>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.role_id" /></label>
-                            <select>
-                                {roles.map((role) => {
-                                    return (
-                                        <option value={role.key}>{language === languages.VI ? role.valueVi : role.valueEn}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
-                        <div className='image'>
-                            <label><FormattedMessage id="manage_user.crud_user_redux.image" /></label>
-                            <div className='upload-image'>
-                                <input id='previewImg' type='file' onChange={(e) => this.handleOnChangeImage(e)} hidden />
-                                <label htmlFor='previewImg'>Tải ảnh <i className="fa-solid fa-upload"></i></label>
-                                <div className='preview-image' style={{ backgroundImage: `url(${this.state.previewImageUrl})` }} onClick={() => this.openPreviewImage()} ></div>
+            <>
+                <div className='user-redux-container'>
+                    <div>{isLoadingGender === true ? "Loading gender" : ""}</div>
+                    <div className='title'>User redux learning redux Don Vau</div>
+                    <div className='user-redux-body'>
+                        <div className='add-new-user'>
+                            <div className='email'>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.email" /></label>
+                                <input type='email' value={email} onChange={(e) => this.handleOnChangeInput(e, 'email')} />
                             </div>
-                            {isOpen && (
-                                <Lightbox
-                                    mainSrc={this.state.previewImageUrl}
-                                    onCloseRequest={() => this.setState({ isOpen: false })}
-                                />
-                            )}
+                            <div className='password'>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.password" /></label>
+                                <input type='password' value={password} onChange={(e) => this.handleOnChangeInput(e, 'password')} />
+                            </div>
+                            <div className='first-name'>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.first_name" /></label>
+                                <input type='text' value={firstName} onChange={(e) => this.handleOnChangeInput(e, 'firstName')} />
+                            </div>
+                            <div className='last-name'>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.last_name" /></label>
+                                <input type='text' value={lastName} onChange={(e) => this.handleOnChangeInput(e, 'lastName')} />
+                            </div>
+                            <div className='phone-bumber'>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.phone_number" /></label>
+                                <input type='text' value={phoneNumber} onChange={(e) => this.handleOnChangeInput(e, 'phoneNumber')} />
+                            </div>
+                            <div className='address'>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.address" /></label>
+                                <input type='text' value={address} onChange={(e) => this.handleOnChangeInput(e, 'address')} />
+                            </div>
+                            <div className='gender'>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.gender.gender" /></label>
+                                <select onChange={(e) => this.handleOnChangeInput(e, 'gender')}>
+                                    {genders.map((gender) => {
+                                        return (
+                                            <option value={gender.key}>{language === languages.VI ? gender.valueVi : gender.valueEn}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <div className='position' onChange={(e) => this.handleOnChangeInput(e, 'position')}>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.position" /></label>
+                                <select>
+                                    {positions.map((position) => {
+                                        return (
+                                            <option value={position.key}>{language === languages.VI ? position.valueVi : position.valueEn}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <div className='roleid' onChange={(e) => this.handleOnChangeInput(e, 'role')}>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.role_id" /></label>
+                                <select>
+                                    {roles.map((role) => {
+                                        return (
+                                            <option value={role.key}>{language === languages.VI ? role.valueVi : role.valueEn}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <div className='image'>
+                                <label><FormattedMessage id="manage_user.crud_user_redux.image" /></label>
+                                <div className='upload-image'>
+                                    <input id='previewImg' type='file' onChange={(e) => this.handleOnChangeImage(e)} hidden />
+                                    <label htmlFor='previewImg'>Tải ảnh <i className="fa-solid fa-upload"></i></label>
+                                    <div className='preview-image' style={{ backgroundImage: `url(${this.state.previewImageUrl})` }} onClick={() => this.openPreviewImage()} ></div>
+                                </div>
+                                {isOpen && (
+                                    <Lightbox
+                                        mainSrc={this.state.previewImageUrl}
+                                        onCloseRequest={() => this.setState({ isOpen: false })}
+                                    />
+                                )}
+                            </div>
+                            <button className='save-user' onClick={() => this.handleSaveUser()}><FormattedMessage id="manage_user.crud_user_redux.save" /></button>
                         </div>
-                        <button className='save-user' onClick={() => this.handleSaveUser()}><FormattedMessage id="manage_user.crud_user_redux.save" /></button>
                     </div>
                 </div>
-            </div>
+                <TableManageUser />
+            </>
         )
     }
 
@@ -275,7 +300,8 @@ const mapDispatchToProps = dispatch => {
         getGenderStart: () => dispatch(actions.fetchGenderStart()), // Nó lấy từ adminActions
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
-        saveUserStart: (userInfo) => dispatch(actions.saveUserStart(userInfo))
+        saveUserStart: (userInfo) => dispatch(actions.saveUserStart(userInfo)),
+        getUserStart: (id) => dispatch(actions.getUserStart(id)),
     };
 };
 

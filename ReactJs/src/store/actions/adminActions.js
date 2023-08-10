@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { handleGetAllCode, addNewUser } from '../../services/userServices'
+import { handleGetAllCode, addNewUser, getAllUsers, deleteUser } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -85,7 +85,7 @@ export const saveUserStart = (userInfo) => {
             let res = await addNewUser(userInfo);
             console.log(res);
             if (res && res.data.errCode === 0) {
-                dispatch(saveUserSuccess(res.message.data))
+                dispatch(saveUserSuccess())
             }
             else {
                 dispatch(saveUserFailed())
@@ -95,10 +95,56 @@ export const saveUserStart = (userInfo) => {
         }
     }
 }
-export const saveUserSuccess = (userData) => ({
+export const saveUserSuccess = () => ({
     type: actionTypes.SAVE_USER_SUCCESS,
-    user: userData
 });
 export const saveUserFailed = () => ({
     type: actionTypes.SAVE_USER_FAILED,
+});
+
+// Get user
+export const getUserStart = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllUsers(id);
+            if (res && res.errCode === 0) {
+                dispatch(getUserSuccess(res.users))
+            }
+            else {
+                dispatch(getUserFailed())
+            }
+        } catch (e) {
+            dispatch(getUserFailed());
+        }
+    }
+}
+export const getUserSuccess = (users) => ({
+    type: actionTypes.GET_USER_SUCCESS,
+    users: users
+});
+export const getUserFailed = () => ({
+    type: actionTypes.GET_USER_FAILED,
+});
+
+// Delete user
+export const deleteUserStart = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteUser(id);
+            if (res && res.errCode === 0) {
+                dispatch(deleteUserSuccess())
+            }
+            else {
+                dispatch(deleteUserFailed())
+            }
+        } catch (e) {
+            dispatch(deleteUserFailed());
+        }
+    }
+}
+export const deleteUserSuccess = () => ({
+    type: actionTypes.DELETE_USER_SUCCESS,
+});
+export const deleteUserFailed = () => ({
+    type: actionTypes.DELETE_USER_FAILED,
 });
