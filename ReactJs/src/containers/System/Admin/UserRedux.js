@@ -23,8 +23,17 @@ class UserRedux extends Component {
             positions: [],
             roles: [],
             previewImageUrl: '',
-            photoIndex: 0,
             isOpen: false,
+            email: '',
+            password: '',
+            lastName: '',
+            firstName: '',
+            phoneNumber: '',
+            address: '',
+            gender: '',
+            position: '',
+            role: '',
+            image: '',
         }
     }
 
@@ -48,8 +57,11 @@ class UserRedux extends Component {
         if (prevProps.genderRedux !== genderRedux || prevProps.positionRedux !== positionRedux || prevProps.roleRedux !== roleRedux) {
             this.setState({
                 genders: genderRedux,
+                gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].key : '',
                 positions: positionRedux,
+                position: positionRedux && positionRedux.length > 0 ? positionRedux[0].key : '',
                 roles: roleRedux,
+                role: roleRedux && roleRedux.length > 0 ? roleRedux[0].key : '',
             })
         }
     }
@@ -102,20 +114,65 @@ class UserRedux extends Component {
             // Create url for image
             let objectUrl = URL.createObjectURL(file);
             this.setState({
-                previewImageUrl: objectUrl
+                previewImageUrl: objectUrl,
+                image: file
             })
         }
     }
 
     openPreviewImage = () => {
-        if (!this.state.previewImageUrl) return;
+        let previewImageUrl = this.state.previewImageUrl;
+
+        if (!previewImageUrl) return;
         this.setState({
-            isOpen: true
+            isOpen: true,
         })
     }
 
+    handleOnChangeInput = (e, id) => {
+        let coppyState = this.state;
+        coppyState[id] = e.target.value;
+
+        this.setState({
+            ...coppyState
+        });
+    }
+
+    checkValueInput = () => {
+        let check = ['email', 'password', 'lastName', 'firstName', 'phoneNumber', 'address'];
+        let coppyState = this.state;
+        let isSuccess = true;
+        for (let i = 0; i < check.length; i++) {
+            if (!coppyState[check[i]]) {
+                alert('Nhập đầy đủ thông tin dùm cái! còn thiếu cái này nè: ' + check[i]);
+                isSuccess = false;
+                break;
+            }
+        }
+
+        return isSuccess;
+    }
+
+    handleSaveUser = () => {
+        if (this.checkValueInput()) {
+            let { email, password, lastName, firstName, phoneNumber, address, gender, position, role } = this.state;
+            let userInfo = {
+                email: email,
+                password: password,
+                lastName: lastName,
+                firstName: firstName,
+                phoneNumber: phoneNumber,
+                address: address,
+                gender: gender,
+                positionId: position,
+                roleId: role,
+            }
+            this.props.saveUserStart(userInfo);
+        }
+    }
+
     render() {
-        let { genders, positions, roles, photoIndex, isOpen } = this.state;
+        let { genders, positions, roles, isOpen } = this.state;
         let { language, isLoadingGender } = this.props;
 
         //console.log('Check props from redux: ', this.props)
@@ -128,54 +185,54 @@ class UserRedux extends Component {
                     <div className='add-new-user'>
                         <div className='email'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.email" /></label>
-                            <input type='email' />
+                            <input type='email' onChange={(e) => this.handleOnChangeInput(e, 'email')} />
                         </div>
                         <div className='password'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.password" /></label>
-                            <input type='password' />
+                            <input type='password' onChange={(e) => this.handleOnChangeInput(e, 'password')} />
                         </div>
                         <div className='first-name'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.first_name" /></label>
-                            <input type='text' />
+                            <input type='text' onChange={(e) => this.handleOnChangeInput(e, 'firstName')} />
                         </div>
                         <div className='last-name'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.last_name" /></label>
-                            <input type='text' />
+                            <input type='text' onChange={(e) => this.handleOnChangeInput(e, 'lastName')} />
                         </div>
                         <div className='phone-bumber'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.phone_number" /></label>
-                            <input type='number' />
+                            <input type='text' onChange={(e) => this.handleOnChangeInput(e, 'phoneNumber')} />
                         </div>
                         <div className='address'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.address" /></label>
-                            <input type='text' />
+                            <input type='text' onChange={(e) => this.handleOnChangeInput(e, 'address')} />
                         </div>
                         <div className='gender'>
                             <label><FormattedMessage id="manage_user.crud_user_redux.gender.gender" /></label>
-                            <select>
+                            <select onChange={(e) => this.handleOnChangeInput(e, 'gender')}>
                                 {genders.map((gender) => {
                                     return (
-                                        <option value={language === languages.VI ? gender.valueVi : gender.valueEn}>{language === languages.VI ? gender.valueVi : gender.valueEn}</option>
+                                        <option value={gender.key}>{language === languages.VI ? gender.valueVi : gender.valueEn}</option>
                                     )
                                 })}
                             </select>
                         </div>
-                        <div className='position'>
+                        <div className='position' onChange={(e) => this.handleOnChangeInput(e, 'position')}>
                             <label><FormattedMessage id="manage_user.crud_user_redux.position" /></label>
                             <select>
                                 {positions.map((position) => {
                                     return (
-                                        <option value={language === languages.VI ? position.valueVi : position.valueEn}>{language === languages.VI ? position.valueVi : position.valueEn}</option>
+                                        <option value={position.key}>{language === languages.VI ? position.valueVi : position.valueEn}</option>
                                     )
                                 })}
                             </select>
                         </div>
-                        <div className='roleid'>
+                        <div className='roleid' onChange={(e) => this.handleOnChangeInput(e, 'role')}>
                             <label><FormattedMessage id="manage_user.crud_user_redux.role_id" /></label>
                             <select>
                                 {roles.map((role) => {
                                     return (
-                                        <option value={language === languages.VI ? role.valueVi : role.valueEn}>{language === languages.VI ? role.valueVi : role.valueEn}</option>
+                                        <option value={role.key}>{language === languages.VI ? role.valueVi : role.valueEn}</option>
                                     )
                                 })}
                             </select>
@@ -194,10 +251,10 @@ class UserRedux extends Component {
                                 />
                             )}
                         </div>
-                        <button className='save-user'><FormattedMessage id="manage_user.crud_user_redux.save" /></button>
+                        <button className='save-user' onClick={() => this.handleSaveUser()}><FormattedMessage id="manage_user.crud_user_redux.save" /></button>
                     </div>
                 </div>
-            </div >
+            </div>
         )
     }
 
@@ -218,6 +275,7 @@ const mapDispatchToProps = dispatch => {
         getGenderStart: () => dispatch(actions.fetchGenderStart()), // Nó lấy từ adminActions
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
+        saveUserStart: (userInfo) => dispatch(actions.saveUserStart(userInfo))
     };
 };
 

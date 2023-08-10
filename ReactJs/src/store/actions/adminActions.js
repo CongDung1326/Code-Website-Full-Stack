@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { handleGetAllCode } from '../../services/userServices'
+import { handleGetAllCode, addNewUser } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -76,4 +76,29 @@ export const fetchRoleSuccess = (roleData) => ({
 });
 export const fetchRoleFailed = () => ({
     type: actionTypes.FETCH_ROLE_FAILED,
+});
+
+// Save user
+export const saveUserStart = (userInfo) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await addNewUser(userInfo);
+            console.log(res);
+            if (res && res.data.errCode === 0) {
+                dispatch(saveUserSuccess(res.message.data))
+            }
+            else {
+                dispatch(saveUserFailed())
+            }
+        } catch (e) {
+            dispatch(saveUserFailed());
+        }
+    }
+}
+export const saveUserSuccess = (userData) => ({
+    type: actionTypes.SAVE_USER_SUCCESS,
+    user: userData
+});
+export const saveUserFailed = () => ({
+    type: actionTypes.SAVE_USER_FAILED,
 });

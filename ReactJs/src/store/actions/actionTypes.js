@@ -23,6 +23,10 @@ const actionTypes = Object.freeze({
     FETCH_ROLE_SUCCESS: 'FETCH_ROLE_SUCCESS',
     FETCH_ROLE_FAILED: 'FETCH_ROLE_FAILED',
 
+    // Save user
+    SAVE_USER_SUCCESS: 'SAVE_USER_SUCCESS',
+    SAVE_USER_FAILED: 'SAVE_USER_FAILED',
+
 })
 
 export default actionTypes;

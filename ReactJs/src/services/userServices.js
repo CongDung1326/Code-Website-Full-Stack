@@ -32,7 +32,12 @@ let addNewUser = async (data) => {
             password: data.password,
             firstName: data.firstName,
             lastName: data.lastName,
-            address: data.address
+            address: data.address,
+            phoneNumber: data.phoneNumber,
+            gender: data.gender,
+            positionId: data.positionId,
+            roleId: data.roleId,
+            image: data.image
         })
     }).then(res => res.json());
 }
