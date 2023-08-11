@@ -60,7 +60,11 @@ let EditUser = async (data) => {
             id: data.id,
             firstName: data.firstName,
             lastName: data.lastName,
-            address: data.address
+            address: data.address,
+            phoneNumber: data.phoneNumber,
+            gender: data.gender,
+            roleId: data.roleId,
+            positionId: data.positionId,
         })
     }).then(res => res.json())
 }

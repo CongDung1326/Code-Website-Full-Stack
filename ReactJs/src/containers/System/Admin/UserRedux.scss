@@ -73,7 +73,20 @@
         font-weight: bold;
         border-radius: 10px;
         width: min-content;
-        padding: 5px 10px;
+        padding: 0 10px;
+        margin-left: auto;
+    }
+
+    .edit-user {
+        grid-area: button;
+        outline: none;
+        border: none;
+        background: #ffc107;
+        color: white;
+        font-weight: bold;
+        border-radius: 10px;
+        width: min-content;
+        padding: 0 10px;
         margin-left: auto;
     }
 }

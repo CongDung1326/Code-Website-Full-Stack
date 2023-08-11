@@ -10,8 +10,7 @@ import './UserRedux.scss';
 
 import { handleGetAllCode } from '../../../services/userServices';
 
-// Language
-import { languages } from '../../../utils/constant'
+import { languages, manageActions } from '../../../utils/constant'
 
 // Redux
 import * as actions from '../../../store/actions';
@@ -22,6 +21,7 @@ class UserRedux extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: '',
             genders: [],
             positions: [],
             roles: [],
@@ -38,6 +38,7 @@ class UserRedux extends Component {
             role: '',
             image: '',
             isCreateUser: false,
+            action: '',
         }
     }
 
@@ -56,7 +57,7 @@ class UserRedux extends Component {
         // Thằng componentDidUpdate là nó sẽ so sánh với previous (quá khứ) với hiện tại (this) nếu như có gì thay đổi thì tự động set state
         // [0] [3]
         // [3] [3]
-        let { genderRedux, positionRedux, roleRedux } = this.props
+        let { genderRedux, positionRedux, roleRedux } = this.props;
 
         if (prevProps.genderRedux !== genderRedux || prevProps.positionRedux !== positionRedux || prevProps.roleRedux !== roleRedux) {
             this.setState({
@@ -158,46 +159,101 @@ class UserRedux extends Component {
     }
 
     handleSaveUser = async () => {
-        if (this.checkValueInput()) {
-            let { email, password, lastName, firstName, phoneNumber, address, gender, position, role } = this.state;
-            let userInfo = {
-                email: email,
-                password: password,
-                lastName: lastName,
-                firstName: firstName,
-                phoneNumber: phoneNumber,
-                address: address,
-                gender: gender,
-                positionId: position,
-                roleId: role,
-            }
-            await this.props.saveUserStart(userInfo);
-            await this.props.getUserStart('all');
+        let { action, email, password, lastName, firstName, phoneNumber, address, gender, position, role, id } = this.state;
+        let { genderRedux, positionRedux, roleRedux } = this.props;
+        if (action === manageActions.CREATE) {
+            if (this.checkValueInput()) {
+                let userInfo = {
+                    email: email,
+                    password: password,
+                    lastName: lastName,
+                    firstName: firstName,
+                    phoneNumber: phoneNumber,
+                    address: address,
+                    gender: gender,
+                    positionId: position,
+                    roleId: role,
+                }
+                await this.props.saveUserStart(userInfo);
+                await this.props.getUserStart('all');
 
-            // Reset input
-            this.setState({
-                isCreateUser: true
-            })
-            if (this.state.isCreateUser) {
+                // Reset input
+
+                this.setState({
+                    isCreateUser: true
+                })
+                if (this.state.isCreateUser) {
+                    this.setState({
+                        email: '',
+                        password: '',
+                        lastName: '',
+                        firstName: '',
+                        phoneNumber: '',
+                        address: '',
+                        gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].key : '',
+                        position: positionRedux && positionRedux.length > 0 ? positionRedux[0].key : '',
+                        role: roleRedux && roleRedux.length > 0 ? roleRedux[0].key : '',
+                        isCreateUser: false,
+                        action: manageActions.CREATE
+                    })
+                }
+
+                toast.success('✔ Create user success!')
+            }
+        }
+        if (action === manageActions.EDIT) {
+            if (this.checkValueInput()) {
+                await this.props.updateUserStart({
+                    id: id,
+                    firstName: firstName,
+                    lastName: lastName,
+                    phoneNumber: phoneNumber,
+                    address: address,
+                    gender: gender,
+                    positionId: position,
+                    roleId: role
+                });
+                await this.props.getUserStart('all');
+
+                // Update success
                 this.setState({
                     email: '',
                     password: '',
                     lastName: '',
                     firstName: '',
                     phoneNumber: '',
-                    address: ''
+                    address: '',
+                    gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].key : '',
+                    position: positionRedux && positionRedux.length > 0 ? positionRedux[0].key : '',
+                    role: roleRedux && roleRedux.length > 0 ? roleRedux[0].key : '',
+                    isCreateUser: false,
+                    action: manageActions.CREATE
                 })
+                toast.success('Edit user success!');
             }
-
-            toast.success('✔ Create user success!')
         }
     }
 
-    render() {
-        let { genders, positions, roles, isOpen, email, password, lastName, firstName, phoneNumber, address } = this.state;
-        let { language, isLoadingGender } = this.props;
+    getEditValueInput = (userInfo) => {
+        this.setState({
+            id: userInfo.id,
+            email: userInfo.email,
+            password: 'HASDPASSWORD',
+            firstName: userInfo.firstName,
+            lastName: userInfo.lastName,
+            phoneNumber: userInfo.phoneNumber,
+            address: userInfo.address,
+            role: userInfo.roleId,
+            gender: userInfo.gender,
+            position: userInfo.positionId,
+            action: manageActions.EDIT,
+        })
 
-        //console.log('Check props from redux: ', this.props)
+        console.log(userInfo)
+    }
+    render() {
+        let { genders, positions, roles, isOpen, email, password, lastName, firstName, phoneNumber, address, role, gender, position, action } = this.state;
+        let { language, isLoadingGender } = this.props;
 
         return (
             <>
@@ -208,11 +264,11 @@ class UserRedux extends Component {
                         <div className='add-new-user'>
                             <div className='email'>
                                 <label><FormattedMessage id="manage_user.crud_user_redux.email" /></label>
-                                <input type='email' value={email} onChange={(e) => this.handleOnChangeInput(e, 'email')} />
+                                <input type='email' value={email} onChange={(e) => this.handleOnChangeInput(e, 'email')} disabled={action === manageActions.EDIT ? true : false} />
                             </div>
                             <div className='password'>
                                 <label><FormattedMessage id="manage_user.crud_user_redux.password" /></label>
-                                <input type='password' value={password} onChange={(e) => this.handleOnChangeInput(e, 'password')} />
+                                <input type='password' value={password} onChange={(e) => this.handleOnChangeInput(e, 'password')} disabled={action === manageActions.EDIT ? true : false} />
                             </div>
                             <div className='first-name'>
                                 <label><FormattedMessage id="manage_user.crud_user_redux.first_name" /></label>
@@ -230,32 +286,32 @@ class UserRedux extends Component {
                                 <label><FormattedMessage id="manage_user.crud_user_redux.address" /></label>
                                 <input type='text' value={address} onChange={(e) => this.handleOnChangeInput(e, 'address')} />
                             </div>
-                            <div className='gender'>
+                            <div className='gender' onChange={(e) => this.handleOnChangeInput(e, 'gender')}>
                                 <label><FormattedMessage id="manage_user.crud_user_redux.gender.gender" /></label>
-                                <select onChange={(e) => this.handleOnChangeInput(e, 'gender')}>
-                                    {genders.map((gender) => {
+                                <select value={gender} >
+                                    {genders.map((gender, index) => {
                                         return (
-                                            <option value={gender.key}>{language === languages.VI ? gender.valueVi : gender.valueEn}</option>
+                                            <option key={index} value={gender.key}>{language === languages.VI ? gender.valueVi : gender.valueEn}</option>
                                         )
                                     })}
                                 </select>
                             </div>
                             <div className='position' onChange={(e) => this.handleOnChangeInput(e, 'position')}>
                                 <label><FormattedMessage id="manage_user.crud_user_redux.position" /></label>
-                                <select>
-                                    {positions.map((position) => {
+                                <select value={position}>
+                                    {positions.map((position, index) => {
                                         return (
-                                            <option value={position.key}>{language === languages.VI ? position.valueVi : position.valueEn}</option>
+                                            <option key={index} value={position.key}>{language === languages.VI ? position.valueVi : position.valueEn}</option>
                                         )
                                     })}
                                 </select>
                             </div>
                             <div className='roleid' onChange={(e) => this.handleOnChangeInput(e, 'role')}>
                                 <label><FormattedMessage id="manage_user.crud_user_redux.role_id" /></label>
-                                <select>
-                                    {roles.map((role) => {
+                                <select value={role}>
+                                    {roles.map((role, index) => {
                                         return (
-                                            <option value={role.key}>{language === languages.VI ? role.valueVi : role.valueEn}</option>
+                                            <option key={index} value={role.key}>{language === languages.VI ? role.valueVi : role.valueEn}</option>
                                         )
                                     })}
                                 </select>
@@ -274,11 +330,14 @@ class UserRedux extends Component {
                                     />
                                 )}
                             </div>
-                            <button className='save-user' onClick={() => this.handleSaveUser()}><FormattedMessage id="manage_user.crud_user_redux.save" /></button>
+                            <button className={action === manageActions.EDIT ? 'btn edit-user' : 'btn save-user'} onClick={() => this.handleSaveUser()}><FormattedMessage id="manage_user.crud_user_redux.save" /></button>
                         </div>
                     </div>
                 </div>
-                <TableManageUser />
+                <TableManageUser
+                    dataEditUser={this.getEditValueInput}
+                    action={this.state.action}
+                />
             </>
         )
     }
@@ -302,6 +361,7 @@ const mapDispatchToProps = dispatch => {
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
         saveUserStart: (userInfo) => dispatch(actions.saveUserStart(userInfo)),
         getUserStart: (id) => dispatch(actions.getUserStart(id)),
+        updateUserStart: (dataUser) => dispatch(actions.updateUserStart(dataUser)),
     };
 };
 

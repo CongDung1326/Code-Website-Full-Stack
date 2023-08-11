@@ -40,6 +40,10 @@ class TableManageUser extends Component {
         }
     }
 
+    postDataUser = (dataUser) => {
+        this.props.dataEditUser(dataUser);
+    }
+
     render() {
         let { users } = this.state;
         return (
@@ -55,15 +59,15 @@ class TableManageUser extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map(user => {
+                        {users.map((user, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <td>{user.email}</td>
                                     <td>{user.lastName}</td>
                                     <td>{user.firstName}</td>
                                     <td>{user.address}</td>
                                     <td>
-                                        <button className='edit' ><i className="fa-solid fa-pen-to-square"></i></button>
+                                        <button className='edit' onClick={() => this.postDataUser(user)} ><i className="fa-solid fa-pen-to-square"></i></button>
                                         <button className='delete' onClick={() => this.handleDeleteUser(user.id)}><i className="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
