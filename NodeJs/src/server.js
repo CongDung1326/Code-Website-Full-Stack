@@ -18,9 +18,11 @@ dotenv.config(); // config mới sử dụng được thằng process.env.PORT
 connection_database(); // Kiểm tra xem đã connect tới server sql chưa && nhớ chú ý thứ tự xếp
 
 //config app
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// Limit image upload
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
 viewEngine(app);
 initWebRoutes(app);

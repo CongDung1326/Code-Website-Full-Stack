@@ -109,7 +109,8 @@ let createNewUser = (data) => {
                 })
             }
             else {
-                let hashPasswordFromBcrypt = await hashUserPassword(data.password);
+                let password = data.password.toString();
+                let hashPasswordFromBcrypt = await hashUserPassword(password);
                 await db.User.create({
                     email: data.email,
                     password: hashPasswordFromBcrypt,
@@ -188,6 +189,7 @@ let updateUserData = (data) => {
             user.gender = data.gender;
             user.roleId = data.roleId;
             user.positionId = data.positionId;
+            user.image = data.image;
 
             await user.save();
             resolve({
