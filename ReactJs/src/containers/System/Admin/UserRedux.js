@@ -10,7 +10,7 @@ import './UserRedux.scss';
 
 import { handleGetAllCode } from '../../../services/userServices';
 
-import { languages, manageActions } from '../../../utils/constant'
+import { languages, manageActions, CommonUtils } from '../../../utils'
 
 // Redux
 import * as actions from '../../../store/actions';
@@ -112,16 +112,19 @@ class UserRedux extends Component {
         }
     }
 
-    handleOnChangeImage = (e) => {
+    handleOnChangeImage = async (e) => {
         let data = e.target.files;
         let file = data[0];
         if (file) {
+            let base64 = await CommonUtils.getBase64(file);
             // Create url for image
             let objectUrl = URL.createObjectURL(file);
             this.setState({
                 previewImageUrl: objectUrl,
-                image: file
-            })
+                image: base64
+            });
+
+            console.log(this.state.image);
         }
     }
 
@@ -159,50 +162,10 @@ class UserRedux extends Component {
     }
 
     handleSaveUser = async () => {
-        let { action, email, password, lastName, firstName, phoneNumber, address, gender, position, role, id } = this.state;
+        let { action, email, password, lastName, firstName, phoneNumber, address, gender, position, role, id, image } = this.state;
         let { genderRedux, positionRedux, roleRedux } = this.props;
-        if (action === manageActions.CREATE) {
-            if (this.checkValueInput()) {
-                let userInfo = {
-                    email: email,
-                    password: password,
-                    lastName: lastName,
-                    firstName: firstName,
-                    phoneNumber: phoneNumber,
-                    address: address,
-                    gender: gender,
-                    positionId: position,
-                    roleId: role,
-                }
-                await this.props.saveUserStart(userInfo);
-                await this.props.getUserStart('all');
-
-                // Reset input
-
-                this.setState({
-                    isCreateUser: true
-                })
-                if (this.state.isCreateUser) {
-                    this.setState({
-                        email: '',
-                        password: '',
-                        lastName: '',
-                        firstName: '',
-                        phoneNumber: '',
-                        address: '',
-                        gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].key : '',
-                        position: positionRedux && positionRedux.length > 0 ? positionRedux[0].key : '',
-                        role: roleRedux && roleRedux.length > 0 ? roleRedux[0].key : '',
-                        isCreateUser: false,
-                        action: manageActions.CREATE
-                    })
-                }
-
-                toast.success('✔ Create user success!')
-            }
-        }
-        if (action === manageActions.EDIT) {
-            if (this.checkValueInput()) {
+        if (this.checkValueInput()) {
+            if (action === manageActions.EDIT) {
                 await this.props.updateUserStart({
                     id: id,
                     firstName: firstName,
@@ -211,7 +174,8 @@ class UserRedux extends Component {
                     address: address,
                     gender: gender,
                     positionId: position,
-                    roleId: role
+                    roleId: role,
+                    image: image,
                 });
                 await this.props.getUserStart('all');
 
@@ -227,14 +191,59 @@ class UserRedux extends Component {
                     position: positionRedux && positionRedux.length > 0 ? positionRedux[0].key : '',
                     role: roleRedux && roleRedux.length > 0 ? roleRedux[0].key : '',
                     isCreateUser: false,
-                    action: manageActions.CREATE
+                    action: manageActions.CREATE,
+                    image: '',
+                    previewImageUrl: ''
                 })
                 toast.success('Edit user success!');
+            }
+            else {
+                await this.props.saveUserStart({
+                    email: email,
+                    password: password,
+                    lastName: lastName,
+                    firstName: firstName,
+                    phoneNumber: phoneNumber,
+                    address: address,
+                    gender: gender,
+                    positionId: position,
+                    roleId: role,
+                    image: image
+                });
+                await this.props.getUserStart('all');
+
+                // Create success
+                this.setState({
+                    isCreateUser: true
+                })
+                if (this.state.isCreateUser) {
+                    this.setState({
+                        email: '',
+                        password: '',
+                        lastName: '',
+                        firstName: '',
+                        phoneNumber: '',
+                        address: '',
+                        gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].key : '',
+                        position: positionRedux && positionRedux.length > 0 ? positionRedux[0].key : '',
+                        role: roleRedux && roleRedux.length > 0 ? roleRedux[0].key : '',
+                        isCreateUser: false,
+                        action: manageActions.CREATE,
+                        image: '',
+                        previewImageUrl: '',
+                    })
+                }
+                toast.success('✔ Create user success!')
             }
         }
     }
 
     getEditValueInput = (userInfo) => {
+        let imageBase64 = '';
+        if (userInfo.image) {
+            imageBase64 = new Buffer(userInfo.image, 'base64').toString('binary');
+        }
+
         this.setState({
             id: userInfo.id,
             email: userInfo.email,
@@ -246,10 +255,10 @@ class UserRedux extends Component {
             role: userInfo.roleId,
             gender: userInfo.gender,
             position: userInfo.positionId,
+            image: '',
+            previewImageUrl: imageBase64,
             action: manageActions.EDIT,
         })
-
-        console.log(userInfo)
     }
     render() {
         let { genders, positions, roles, isOpen, email, password, lastName, firstName, phoneNumber, address, role, gender, position, action } = this.state;
@@ -330,7 +339,7 @@ class UserRedux extends Component {
                                     />
                                 )}
                             </div>
-                            <button className={action === manageActions.EDIT ? 'btn edit-user' : 'btn save-user'} onClick={() => this.handleSaveUser()}><FormattedMessage id="manage_user.crud_user_redux.save" /></button>
+                            <button className={action === manageActions.EDIT ? 'btn edit-user' : 'btn save-user'} onClick={() => this.handleSaveUser()}>{action === manageActions.EDIT ? <FormattedMessage id='manage_user.crud_user_redux.save_edit' /> : <FormattedMessage id="manage_user.crud_user_redux.save" />}</button>
                         </div>
                     </div>
                 </div>

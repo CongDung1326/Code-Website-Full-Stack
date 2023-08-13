@@ -71,7 +71,9 @@
             "position": "Chức vụ",
             "role_id": "Vai trò",
             "image": "Ảnh",
-            "save": "Lưu"
+            "save": "Lưu",
+            "actions": "Thực hiện",
+            "save_edit": "Lưu thay đổi"
         }
     }
 }

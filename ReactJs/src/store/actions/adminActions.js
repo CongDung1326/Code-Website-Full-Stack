@@ -83,6 +83,7 @@ export const saveUserStart = (userInfo) => {
     return async (dispatch, getState) => {
         try {
             let res = await addNewUser(userInfo);
+            console.log('check create user: ', res)
             if (res && res.data.errCode === 0) {
                 dispatch(saveUserSuccess())
             }

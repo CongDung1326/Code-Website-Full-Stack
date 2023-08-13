@@ -51,11 +51,11 @@ class TableManageUser extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th>Email</th>
-                            <th>Last name</th>
-                            <th>First name</th>
-                            <th>Address</th>
-                            <th>Actions</th>
+                            <th><FormattedMessage id='manage_user.crud_user_redux.email' /></th>
+                            <th><FormattedMessage id='manage_user.crud_user_redux.last_name' /></th>
+                            <th><FormattedMessage id='manage_user.crud_user_redux.first_name' /></th>
+                            <th><FormattedMessage id='manage_user.crud_user_redux.address' /></th>
+                            <th><FormattedMessage id='manage_user.crud_user_redux.actions' /></th>
                         </tr>
                     </thead>
                     <tbody>
