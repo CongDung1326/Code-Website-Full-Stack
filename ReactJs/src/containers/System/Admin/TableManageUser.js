@@ -8,6 +8,23 @@ import { toast } from 'react-toastify';
 // scss
 import './TableManageUser.scss'
 
+// Markdown Edit
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+// import style manually
+import 'react-markdown-editor-lite/lib/index.css';
+
+// Register plugins if required
+// MdEditor.use(YOUR_PLUGINS_HERE);
+
+// Initialize a markdown parser
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
+// Finish!
+function handleEditorChange({ html, text }) {
+    console.log('handleEditorChange', html, text);
+}
+
 class TableManageUser extends Component {
     constructor(props) {
         super(props);
@@ -47,35 +64,38 @@ class TableManageUser extends Component {
     render() {
         let { users } = this.state;
         return (
-            <div className='table-manage-redux' >
-                <table>
-                    <thead>
-                        <tr>
-                            <th><FormattedMessage id='manage_user.crud_user_redux.email' /></th>
-                            <th><FormattedMessage id='manage_user.crud_user_redux.last_name' /></th>
-                            <th><FormattedMessage id='manage_user.crud_user_redux.first_name' /></th>
-                            <th><FormattedMessage id='manage_user.crud_user_redux.address' /></th>
-                            <th><FormattedMessage id='manage_user.crud_user_redux.actions' /></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{user.email}</td>
-                                    <td>{user.lastName}</td>
-                                    <td>{user.firstName}</td>
-                                    <td>{user.address}</td>
-                                    <td>
-                                        <button className='edit' onClick={() => this.postDataUser(user)} ><i className="fa-solid fa-pen-to-square"></i></button>
-                                        <button className='delete' onClick={() => this.handleDeleteUser(user.id)}><i className="fa-solid fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-            </div>
+            <>
+                <div className='table-manage-redux' >
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><FormattedMessage id='manage_user.crud_user_redux.email' /></th>
+                                <th><FormattedMessage id='manage_user.crud_user_redux.last_name' /></th>
+                                <th><FormattedMessage id='manage_user.crud_user_redux.first_name' /></th>
+                                <th><FormattedMessage id='manage_user.crud_user_redux.address' /></th>
+                                <th><FormattedMessage id='manage_user.crud_user_redux.actions' /></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {users.map((user, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{user.email}</td>
+                                        <td>{user.lastName}</td>
+                                        <td>{user.firstName}</td>
+                                        <td>{user.address}</td>
+                                        <td>
+                                            <button className='edit' onClick={() => this.postDataUser(user)} ><i className="fa-solid fa-pen-to-square"></i></button>
+                                            <button className='delete' onClick={() => this.handleDeleteUser(user.id)}><i className="fa-solid fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+                <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
+            </>
         );
     }
 

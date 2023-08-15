@@ -139,6 +139,10 @@
     &.section-handbook {
         background: white;
 
+        .slick-disabled::before {
+            display: none !important;
+        }
+
         .slick-prev::before,
         .slick-next::before {
             color: silver;
