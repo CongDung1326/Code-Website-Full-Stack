@@ -1,5 +1,6 @@
 const express = require("express");
 const userAPIsControllers = require('../controllers/userAPIsControllers.js');
+const doctorAPIsControllers = require('../controllers/doctorAPIsControllers.js');
 
 let router = express.Router();
 
@@ -16,6 +17,8 @@ let initAPIRoutes = (app) => {
     router.put('/edit-user', userAPIsControllers.handleEditUser);
 
     router.get('/all-codes', userAPIsControllers.getAllCodes);
+
+    router.get('/get-doctor-home', doctorAPIsControllers.handleGetDoctorHome);
 
     router.get('/test', userAPIsControllers.test);
 
