@@ -38,6 +38,10 @@ const actionTypes = Object.freeze({
     // Update user
     UPDATE_USER_SUCCESS: 'UPDATE_USER_SUCCESS',
     UPDATE_USER_FAILED: 'UPDATE_USER_FAILED',
+
+    // Get data doctor home
+    GET_DOCTOR_HOME_SUCCESS: 'GET_DOCTOR_HOME_SUCCESS',
+    GET_DOCTOR_HOME_FAILED: 'GET_DOCTOR_HOME_FAILED',
 })
 
 export default actionTypes;

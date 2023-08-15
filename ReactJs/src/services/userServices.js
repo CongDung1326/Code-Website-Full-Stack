@@ -76,4 +76,10 @@ let handleGetAllCode = async (inputData) => {
     }).then(res => res.json())
 }
 
-export { handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode }
+let handleGetDoctorHome = async (limit) => {
+    return await fetch(`http://localhost:8080/api/get-doctor-home?type=${limit}`, {
+        method: 'GET'
+    }).then(res => res.json())
+}
+
+export { handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome }

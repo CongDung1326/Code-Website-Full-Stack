@@ -62,11 +62,11 @@ class UserRedux extends Component {
         if (prevProps.genderRedux !== genderRedux || prevProps.positionRedux !== positionRedux || prevProps.roleRedux !== roleRedux) {
             this.setState({
                 genders: genderRedux,
-                gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].key : '',
+                gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].keyMap : '',
                 positions: positionRedux,
-                position: positionRedux && positionRedux.length > 0 ? positionRedux[0].key : '',
+                position: positionRedux && positionRedux.length > 0 ? positionRedux[0].keyMap : '',
                 roles: roleRedux,
-                role: roleRedux && roleRedux.length > 0 ? roleRedux[0].key : '',
+                role: roleRedux && roleRedux.length > 0 ? roleRedux[0].keyMap : '',
             })
         }
     }
@@ -187,13 +187,13 @@ class UserRedux extends Component {
                     firstName: '',
                     phoneNumber: '',
                     address: '',
-                    gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].key : '',
-                    position: positionRedux && positionRedux.length > 0 ? positionRedux[0].key : '',
-                    role: roleRedux && roleRedux.length > 0 ? roleRedux[0].key : '',
+                    gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].keyMap : '',
+                    position: positionRedux && positionRedux.length > 0 ? positionRedux[0].keyMap : '',
+                    role: roleRedux && roleRedux.length > 0 ? roleRedux[0].keyMap : '',
                     isCreateUser: false,
                     action: manageActions.CREATE,
                     image: '',
-                    previewImageUrl: ''
+                    previewImageUrl: '',
                 })
                 toast.success('Edit user success!');
             }
@@ -224,9 +224,9 @@ class UserRedux extends Component {
                         firstName: '',
                         phoneNumber: '',
                         address: '',
-                        gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].key : '',
-                        position: positionRedux && positionRedux.length > 0 ? positionRedux[0].key : '',
-                        role: roleRedux && roleRedux.length > 0 ? roleRedux[0].key : '',
+                        gender: genderRedux && genderRedux.length > 0 ? genderRedux[0].keyMap : '',
+                        position: positionRedux && positionRedux.length > 0 ? positionRedux[0].keyMap : '',
+                        role: roleRedux && roleRedux.length > 0 ? roleRedux[0].keyMap : '',
                         isCreateUser: false,
                         action: manageActions.CREATE,
                         image: '',
@@ -300,7 +300,7 @@ class UserRedux extends Component {
                                 <select value={gender} >
                                     {genders.map((gender, index) => {
                                         return (
-                                            <option key={index} value={gender.key}>{language === languages.VI ? gender.valueVi : gender.valueEn}</option>
+                                            <option key={index} value={gender.keyMap}>{language === languages.VI ? gender.valueVi : gender.valueEn}</option>
                                         )
                                     })}
                                 </select>
@@ -310,7 +310,7 @@ class UserRedux extends Component {
                                 <select value={position}>
                                     {positions.map((position, index) => {
                                         return (
-                                            <option key={index} value={position.key}>{language === languages.VI ? position.valueVi : position.valueEn}</option>
+                                            <option key={index} value={position.keyMap}>{language === languages.VI ? position.valueVi : position.valueEn}</option>
                                         )
                                     })}
                                 </select>
@@ -320,7 +320,7 @@ class UserRedux extends Component {
                                 <select value={role}>
                                     {roles.map((role, index) => {
                                         return (
-                                            <option key={index} value={role.key}>{language === languages.VI ? role.valueVi : role.valueEn}</option>
+                                            <option key={index} value={role.keyMap}>{language === languages.VI ? role.valueVi : role.valueEn}</option>
                                         )
                                     })}
                                 </select>
