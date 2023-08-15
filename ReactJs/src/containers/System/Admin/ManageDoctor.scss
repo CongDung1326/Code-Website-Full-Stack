@@ -1,0 +1,47 @@
+.manage-doctor-container {
+    .save-content-doctor {
+        float: right;
+        margin: 10px 10px 0 0;
+        border: none;
+        outline: none;
+        padding: 7px;
+        border-radius: 10px;
+        background: #05cc37;
+        color: white;
+        font-weight: bold;
+        opacity: 0.8;
+
+        &:hover {
+            opacity: 1.0;
+        }
+    }
+
+    .manage-doctor-editor {
+        width: 100%;
+        float: left;
+    }
+
+    .more-info {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+
+        .content-left {
+            float: left;
+            width: 50%;
+        }
+
+        .content-right {
+            float: right;
+            width: 50%;
+
+            textarea {
+                width: 100%;
+            }
+
+            label {
+                font-weight: bold;
+            }
+        }
+    }
+}
