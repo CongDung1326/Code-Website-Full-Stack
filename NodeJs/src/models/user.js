@@ -10,8 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' });
-      User.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' });
+      // Chuyển dữ liệu từ (B) -> (A) (Allcode) -> (User)
+      User.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' }); // Dựa theo positionId chủ yếu lấy tại keyMap(Allcode) với tên là positionData(Đặt tên để tránh bị trùng)
+      User.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' }); // Dựa theo gender chủ yếu lấy tại keyMap(Allcode) với tên là positionData(Đặt tên để tránh bị trùng)
+      User.hasOne(models.Markdown, { foreignKey: 'doctorId' }) // Tham chiếu thằng Markdown (giống như thằng User gửi thư)
     }
   };
   User.init({

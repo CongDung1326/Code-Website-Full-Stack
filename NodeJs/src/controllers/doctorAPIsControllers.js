@@ -16,6 +16,53 @@ let handleGetDoctorHome = async (req, res) => {
     }
 }
 
+let handleGetAllDoctor = async (req, res) => {
+    try {
+        let doctors = await doctorAPIsService.getAllDoctor();
+
+        return res.status(200).json(doctors);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...'
+        })
+    }
+}
+
+let handleCreateInfoDoctor = async (req, res) => {
+    try {
+        let data = req.body;
+        let info = await doctorAPIsService.postCreateInfoDoctor(data);
+
+        return res.status(200).json(info);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...',
+        })
+    }
+}
+
+let handleGetDetailDoctor = async (req, res) => {
+    try {
+        let id = req.query.id;
+        let detail = await doctorAPIsService.getDetailDoctor(id);
+
+        return res.status(200).json(detail);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...'
+        })
+    }
+}
+
 module.exports = {
-    handleGetDoctorHome: handleGetDoctorHome
+    handleGetDoctorHome: handleGetDoctorHome,
+    handleGetAllDoctor: handleGetAllDoctor,
+    handleCreateInfoDoctor: handleCreateInfoDoctor,
+    handleGetDetailDoctor: handleGetDetailDoctor
 }

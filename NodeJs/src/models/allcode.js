@@ -10,8 +10,9 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            Allcode.hasMany(models.User, { foreignKey: 'positionId', as: 'positionData' });
-            Allcode.hasMany(models.User, { foreignKey: 'gender', as: 'genderData' });
+            // Đang truyền dữ liệu (A) -> (B) (Allcode -> User)
+            Allcode.hasMany(models.User, { foreignKey: 'positionId', as: 'positionData' }); // Lấy theo giá trị positionId của thằng User với đặt tên là positionData(Đặt tên để tránh bị trùng(Không cần đặt cũng được tại không có column nào tên như vậy))
+            Allcode.hasMany(models.User, { foreignKey: 'gender', as: 'genderData' }); // Lấy theo giá trị gender của thằng User với đặt tên là genderData(Đặt tên để tránh bị trùng (Không cần đặt cũng được tại không có column nào tên như vậy))
         }
     };
     Allcode.init({
