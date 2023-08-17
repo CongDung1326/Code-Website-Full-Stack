@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor } from '../../services/userServices'
+import { handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -242,4 +242,28 @@ export const postSaveInfoDoctorSuccess = () => ({
 });
 export const postSaveInfoDoctorFailed = () => ({
     type: actionTypes.GET_ALL_DOCTOR_FAILED,
+});
+
+// Get detail doctor
+export const getDetailDoctorStart = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getDetailDoctor(id);
+            if (res && res.errCode === 0) {
+                dispatch(getDetailDoctorSuccess(res.data))
+            }
+            else {
+                dispatch(getDetailDoctorFailed())
+            }
+        } catch (e) {
+            dispatch(getDetailDoctorFailed());
+        }
+    }
+}
+export const getDetailDoctorSuccess = (detailDoctor) => ({
+    type: actionTypes.GET_DETAIL_DOCTOR_SUCCESS,
+    detailDoctor: detailDoctor
+});
+export const getDetailDoctorFailed = () => ({
+    type: actionTypes.GET_DETAIL_DOCTOR_FAILED,
 });

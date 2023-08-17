@@ -50,6 +50,10 @@ const actionTypes = Object.freeze({
     // Save info doctor
     POST_SAVE_INFO_DOCTOR_SUCCESS: 'POST_SAVE_INFO_DOCTOR_SUCCESS',
     POST_SAVE_INFO_DOCTOR_FAILED: 'POST_SAVE_INFO_DOCTOR_FAILED',
+
+    // Detail doctor
+    GET_DETAIL_DOCTOR_SUCCESS: 'GET_DETAIL_DOCTOR_SUCCESS',
+    GET_DETAIL_DOCTOR_FAILED: 'GET_DETAIL_DOCTOR_FAILED',
 })
 
 export default actionTypes;

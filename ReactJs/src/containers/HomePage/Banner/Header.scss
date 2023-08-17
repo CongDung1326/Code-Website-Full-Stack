@@ -52,6 +52,7 @@
         .header-logo img {
             width: 160px;
             height: 100%;
+            cursor: pointer;
 
             @media screen and (max-width:555px) {
                 width: 120px;

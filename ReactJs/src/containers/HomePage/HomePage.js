@@ -32,7 +32,7 @@ class HomePage extends Component {
 
         return (
             <div>
-                <Header />
+                <Header getBanner={true} />
                 <Specialty settings={settings} />
                 <MedicalFacility settings={settings} />
                 <FeaturedDoctor settings={settings} />

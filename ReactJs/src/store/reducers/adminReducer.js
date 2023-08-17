@@ -8,6 +8,7 @@ const initialState = {
     users: [],
     dataDoctor: [],
     dataAllDoctor: [],
+    detailDoctor: null,
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -88,6 +89,18 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.GET_ALL_DOCTOR_FAILED:
             state.dataAllDoctor = [];
+            return {
+                ...state,
+            }
+
+        // Get detail doctor
+        case actionTypes.GET_DETAIL_DOCTOR_SUCCESS:
+            state.detailDoctor = action.detailDoctor;
+            return {
+                ...state,
+            }
+        case actionTypes.GET_DETAIL_DOCTOR_FAILED:
+            state.detailDoctor = {};
             return {
                 ...state,
             }

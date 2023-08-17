@@ -1,0 +1,35 @@
+.detail-doctor-container {
+    width: 100%;
+    padding: 0 80px;
+    margin-top: 80px;
+
+    .intro-doctor {
+        width: 80%;
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+
+        .left {
+            img {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            .m-title {
+                .introduce {
+                    font-weight: bold;
+                }
+
+                .description {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .detail-info-doctor {
+        background: rgb(216, 216, 216);
+    }
+}

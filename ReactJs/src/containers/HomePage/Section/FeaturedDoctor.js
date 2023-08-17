@@ -6,6 +6,8 @@ import { languages } from '../../../utils';
 
 import Slider from 'react-slick';
 
+import { withRouter } from 'react-router';
+
 class FeaturedDoctor extends Component {
     constructor(props) {
         super(props);
@@ -28,12 +30,15 @@ class FeaturedDoctor extends Component {
         }
     }
 
+    handleDetailDoctor = (doctor) => {
+        this.props.history.push(`/detail-doctor/${doctor.id}`);
+    }
+
     render() {
         let { settings, language } = this.props;
         let { doctors } = this.state;
         doctors = doctors.concat(doctors).concat(doctors);
 
-        console.log('Check doctor: ', doctors)
         return (
             <>
                 <div className='section-share section-featured-doctor'>
@@ -50,7 +55,7 @@ class FeaturedDoctor extends Component {
                                         imageBase64 = new Buffer(doctor.image, 'base64').toString('binary');
                                     }
                                     return (
-                                        <div className='section-img' key={index}>
+                                        <div className='section-img' key={index} onClick={() => this.handleDetailDoctor(doctor)}>
                                             <div className='container-border'>
                                                 <div className='avatar'>
                                                     <img src={imageBase64} alt='' />
@@ -85,4 +90,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeaturedDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FeaturedDoctor));

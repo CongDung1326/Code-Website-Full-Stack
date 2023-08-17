@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router';
 
 // Languages
 import { languages } from '../../../utils'; // Do thằng index nên không cần phải vào thẳng file
@@ -20,9 +21,8 @@ class Header extends Component {
         this.props.changeLanguageAppRedux(language); // nên nhớ props này là của thằng redux không liên quan gì tới thằng cha truyền thằng con nhé!
     }
 
-    // test
-    handleAppMobile = (operatingSystem) => {
-        this.props.operatingSystemAppRedex(operatingSystem);
+    handleChangeHomePage = () => {
+        this.props.history.push(`/home`);
     }
 
     render() {
@@ -39,7 +39,7 @@ class Header extends Component {
                         <div className='left'>
                             <ul>
                                 <li className='bars'><i className="fa-solid fa-bars"></i></li>
-                                <li className='header-logo'><img src={Logo} alt='logo' /></li>
+                                <li className='header-logo'><img src={Logo} alt='logo' onClick={() => this.handleChangeHomePage()} /></li>
                             </ul>
                         </div>
                         <div className='m-center'>
@@ -75,7 +75,7 @@ class Header extends Component {
                         </div>
                     </nav>
                     {/* Banner */}
-                    <div className='m-header-banner-container'>
+                    {this.props.getBanner === true && <div className='m-header-banner-container'>
                         <div className='m-header-banner-wrapper'>
                             <div className='m-header-banner-bg'>
                                 <div className='m-find'>
@@ -119,6 +119,7 @@ class Header extends Component {
                             </div>
                         </div>
                     </div>
+                    }
                 </div>
             </>
         );
@@ -139,4 +140,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
