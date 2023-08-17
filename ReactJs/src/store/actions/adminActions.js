@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor } from '../../services/userServices'
+import { handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -83,7 +83,6 @@ export const saveUserStart = (userInfo) => {
     return async (dispatch, getState) => {
         try {
             let res = await addNewUser(userInfo);
-            console.log('check create user: ', res)
             if (res && res.data.errCode === 0) {
                 dispatch(saveUserSuccess())
             }
@@ -225,7 +224,6 @@ export const postSaveInfoDoctorStart = (dataSave) => {
     return async (dispatch, getState) => {
         try {
             let res = await handlePostSaveInfoDoctor(dataSave);
-            console.log('Check res: ', res);
             if (res && res.errCode === 0) {
                 dispatch(postSaveInfoDoctorSuccess())
             }
@@ -266,4 +264,27 @@ export const getDetailDoctorSuccess = (detailDoctor) => ({
 });
 export const getDetailDoctorFailed = () => ({
     type: actionTypes.GET_DETAIL_DOCTOR_FAILED,
+});
+
+// Save detail doctor
+export const saveDetailDoctorStart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveDetailDoctor(data);
+            if (res && res.errCode === 0) {
+                dispatch(saveDetailDoctorSuccess())
+            }
+            else {
+                dispatch(saveDetailDoctorFailed())
+            }
+        } catch (e) {
+            dispatch(saveDetailDoctorFailed());
+        }
+    }
+}
+export const saveDetailDoctorSuccess = () => ({
+    type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+});
+export const saveDetailDoctorFailed = () => ({
+    type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
 });

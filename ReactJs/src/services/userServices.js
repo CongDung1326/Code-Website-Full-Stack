@@ -107,4 +107,17 @@ let getDetailDoctor = async (id) => {
     }).then(res => res.json());
 }
 
-export { handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor }
+let saveDetailDoctor = async (data) => {
+    return await fetch(`http://localhost:8080/api/save-detail-doctor`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            id: data.id,
+            contentHTML: data.contentHTML,
+            contentMarkdown: data.contentMarkdown,
+            description: data.description,
+        })
+    }).then(res => res.json())
+}
+
+export { handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
