@@ -23,6 +23,7 @@ let initAPIRoutes = (app) => {
     router.get('/get-all-doctor', doctorAPIsControllers.handleGetAllDoctor)
     router.post('/save-info-doctor', doctorAPIsControllers.handleCreateInfoDoctor)
     router.get('/get-detail-doctor-by-id', doctorAPIsControllers.handleGetDetailDoctor)
+    router.put('/save-detail-doctor', doctorAPIsControllers.handleSaveDetailDoctor)
 
     router.get('/test', userAPIsControllers.test);
 

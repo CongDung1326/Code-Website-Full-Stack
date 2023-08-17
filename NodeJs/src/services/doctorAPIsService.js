@@ -105,9 +105,44 @@ let getDetailDoctor = (id) => {
     })
 }
 
+let putSaveDetailDoctor = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.id || !data.contentHTML || !data.contentMarkdown)
+                resolve({
+                    errCode: 1,
+                    message: 'Missing parameter!'
+                })
+            else {
+                let markdown = await db.Markdown.findOne({ where: { doctorId: data.id } });
+                if (markdown) {
+                    markdown.contentHTML = data.contentHTML;
+                    markdown.contentMarkdown = data.contentMarkdown;
+                    markdown.description = data.description;
+
+                    await markdown.save();
+
+                    resolve({
+                        errCode: 0,
+                        message: 'Save success!'
+                    })
+                }
+                else
+                    resolve({
+                        errCode: 2,
+                        message: "This doctor doesn't exist",
+                    })
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     getDoctorHome: getDoctorHome,
     getAllDoctor: getAllDoctor,
     postCreateInfoDoctor: postCreateInfoDoctor,
     getDetailDoctor: getDetailDoctor,
+    putSaveDetailDoctor: putSaveDetailDoctor,
 }
