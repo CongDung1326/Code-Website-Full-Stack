@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome } from '../../services/userServices'
+import { handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -194,4 +194,52 @@ export const getDoctorHomeSuccess = (dataDoctor) => ({
 });
 export const getDoctorHomeFailed = () => ({
     type: actionTypes.GET_DOCTOR_HOME_FAILED,
+});
+
+// Get all data doctor
+export const getAllDoctorStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await handleGetAllDoctor();
+            if (res && res.errCode === 0) {
+                dispatch(getAllDoctorSuccess(res.data))
+            }
+            else {
+                dispatch(getAllDoctorFailed())
+            }
+        } catch (e) {
+            dispatch(getAllDoctorFailed());
+        }
+    }
+}
+export const getAllDoctorSuccess = (dataAllDoctor) => ({
+    type: actionTypes.GET_ALL_DOCTOR_SUCCESS,
+    dataAllDoctor: dataAllDoctor
+});
+export const getAllDoctorFailed = () => ({
+    type: actionTypes.GET_ALL_DOCTOR_FAILED,
+});
+
+// Post info doctor
+export const postSaveInfoDoctorStart = (dataSave) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await handlePostSaveInfoDoctor(dataSave);
+            console.log('Check res: ', res);
+            if (res && res.errCode === 0) {
+                dispatch(postSaveInfoDoctorSuccess())
+            }
+            else {
+                dispatch(postSaveInfoDoctorFailed())
+            }
+        } catch (e) {
+            dispatch(postSaveInfoDoctorFailed());
+        }
+    }
+}
+export const postSaveInfoDoctorSuccess = () => ({
+    type: actionTypes.POST_SAVE_INFO_DOCTOR_SUCCESS
+});
+export const postSaveInfoDoctorFailed = () => ({
+    type: actionTypes.GET_ALL_DOCTOR_FAILED,
 });

@@ -42,6 +42,14 @@ const actionTypes = Object.freeze({
     // Get data doctor home
     GET_DOCTOR_HOME_SUCCESS: 'GET_DOCTOR_HOME_SUCCESS',
     GET_DOCTOR_HOME_FAILED: 'GET_DOCTOR_HOME_FAILED',
+
+    // Get all doctor
+    GET_ALL_DOCTOR_SUCCESS: 'GET_ALL_DOCTOR_SUCCESS',
+    GET_ALL_DOCTOR_FAILED: 'GET_ALL_DOCTOR_FAILED',
+
+    // Save info doctor
+    POST_SAVE_INFO_DOCTOR_SUCCESS: 'POST_SAVE_INFO_DOCTOR_SUCCESS',
+    POST_SAVE_INFO_DOCTOR_FAILED: 'POST_SAVE_INFO_DOCTOR_FAILED',
 })
 
 export default actionTypes;
