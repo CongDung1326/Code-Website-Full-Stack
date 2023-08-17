@@ -83,9 +83,10 @@ let getDetailDoctor = (id) => {
                 let detail = await db.User.findOne({
                     where: { id: id, roleId: 'R2' },
                     attributes: {
-                        exclude: ['password', 'image']
+                        exclude: ['password']
                     },
                     include: [
+                        // Do chưa đặt tên nên phải lấy theo tên của db
                         { model: db.Markdown, as: 'Markdown', attributes: ['contentHTML', 'contentMarkdown', 'description'] },
                         { model: db.Allcode, as: 'positionData', attributes: ['valueEn', 'valueVi'] },
                     ],
