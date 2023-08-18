@@ -53,6 +53,10 @@
             "specialty": "Chuyên khoa",
             "manage_handbook": "Quản lý cẩm nang",
             "handbook": "Cẩm nang"
+        },
+        "doctor": {
+            "manage_schedule": "Quản lý kế hoạch khám bệnh",
+            "schedule": ""
         }
     },
     "manage_user": {

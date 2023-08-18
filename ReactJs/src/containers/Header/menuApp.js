@@ -16,8 +16,8 @@ export const adminMenu = [
                 // ]
             },
             {
-                name: 'menu.admin.manage_admin', link: "/system/user-admin",
-            },
+                name: 'menu.doctor.manage_schedule', link: "/doctor/manage-schedule"
+            }
         ]
     },
     { //Quản lý Phòng khám
@@ -42,6 +42,14 @@ export const adminMenu = [
             {
                 name: 'menu.admin.manage_handbook', link: "/system/manage-handbook",
             },
+        ]
+    },
+];
+export const doctorMenu = [
+    { //Quản lý người dùng
+        name: 'menu.admin.manage_user',
+        menus: [
+            { name: 'menu.doctor.manage_schedule', link: "/doctor/manage-schedule" }
         ]
     },
 ];

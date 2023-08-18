@@ -4,13 +4,40 @@ import { connect } from 'react-redux';
 
 import * as actions from "../../store/actions"; // Do ta đã khai báo actions của redux rồi nên cũng không cần gọi thẳng chỉ cần actions rồi nó tự ra thôi
 import Navigator from '../../components/Navigator';
-import { adminMenu } from './menuApp';
+import { adminMenu, doctorMenu } from './menuApp';
 import './Header.scss';
 
 // Redux
-import { languages } from '../../utils/constant'
+import { languages, userRole } from '../../utils/constant'
+import _ from 'lodash';
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            menuApp: [],
+        }
+    }
+
+    componentDidMount() {
+        let { userInfo } = this.props;
+        let menu = [];
+
+        if (userInfo && !_.isEmpty(userInfo)) {
+            let role = userInfo.roleId;
+            if (role === userRole.ADMIN) {
+                menu = adminMenu;
+            }
+            if (role === userRole.DOCTOR) {
+                menu = doctorMenu;
+            }
+        }
+
+        this.setState({
+            menuApp: menu,
+        })
+    }
 
     handleChangeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language);
@@ -24,7 +51,7 @@ class Header extends Component {
             <div className="header-container">
                 {/* thanh navigator */}
                 <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+                    <Navigator menus={this.state.menuApp} />
                 </div>
 
                 {/* nút logout */}
