@@ -1,0 +1,63 @@
+.manage-schedule-container {
+    padding: 20px;
+
+    .schedule-book-tickets {
+        width: 100%;
+
+        .choice {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            .choice-doctor {
+                width: 50%;
+            }
+
+            .choice-date {
+                width: 50%;
+
+                label {
+                    display: block;
+                }
+
+                input {
+                    width: 100%;
+                    border: 1px solid silver;
+                    outline: none;
+                    border-radius: 4px;
+                    height: 36px;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+
+    .book-ticket-time {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        margin: 20px 0 10px;
+
+        div {
+            padding: 10px;
+            background: #eabd37;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    }
+
+    .save-book-ticket {
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        color: white;
+        background: #06e53e;
+        padding: 5px;
+        float: right;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}

@@ -68,6 +68,12 @@ class Login extends Component {
         })
     }
 
+    handleEnterToLogin = (e) => {
+        if (e.code === "Enter" || e.code === "NumpadEnter") {
+            this.handleLogin();
+        }
+    }
+
     render() {
         return (
             <div className='login-background'>
@@ -80,7 +86,7 @@ class Login extends Component {
                     <div className='password-container'>
                         <label>Password:</label>
                         <div className='password'>
-                            <input type={this.state.showOfHidden ? 'password' : 'text'} placeholder='Enter your password' onChange={(event) => this.handleOnChangeInput(event, 'password')} />
+                            <input onKeyDown={(e) => this.handleEnterToLogin(e)} type={this.state.showOfHidden ? 'password' : 'text'} placeholder='Enter your password' onChange={(event) => this.handleOnChangeInput(event, 'password')} />
                             <i className={this.state.showOfHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'} onClick={() => this.handlePassword()}></i>
                         </div>
                     </div>

@@ -55,8 +55,7 @@
             "handbook": "Cẩm nang"
         },
         "doctor": {
-            "manage_schedule": "Quản lý kế hoạch khám bệnh",
-            "schedule": ""
+            "manage_schedule": "Quản lý kế hoạch khám bệnh"
         }
     },
     "manage_user": {
@@ -79,5 +78,11 @@
             "actions": "Thực hiện",
             "save_edit": "Lưu thay đổi"
         }
+    },
+    "manage_schedule": {
+        "manage_doctor_examination_plan": "Quản lý kế hoạch khám của bác sĩ",
+        "save_book_ticket": "Lưu thông tin",
+        "choice_doctor": "Chọn bác sĩ",
+        "choice_date": "Chọn ngày"
     }
 }

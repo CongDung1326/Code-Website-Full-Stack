@@ -55,8 +55,7 @@
             "handbook": "Handbook"
         },
         "doctor": {
-            "manage_schedule": "Manage doctor schedule",
-            "schedule": ""
+            "manage_schedule": "Manage doctor schedule"
         }
     },
     "manage_user": {
@@ -79,5 +78,11 @@
             "actions": "Actions",
             "save_edit": "Save edit"
         }
+    },
+    "manage_schedule": {
+        "manage_doctor_examination_plan": "Manage doctor's examination plan",
+        "save_book_ticket": "Save info",
+        "choice_doctor": "Choice doctor",
+        "choice_date": "Choice date"
     }
 }

@@ -288,3 +288,27 @@ export const saveDetailDoctorSuccess = () => ({
 export const saveDetailDoctorFailed = () => ({
     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
 });
+
+// Get hour schedule doctor
+export const getHourScheduleDoctorStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await handleGetAllCode('time');
+            if (res && res.data.errCode === 0) {
+                dispatch(getHourScheduleDoctorSuccess(res.data.data))
+            }
+            else {
+                dispatch(getHourScheduleDoctorFailed())
+            }
+        } catch (e) {
+            dispatch(getHourScheduleDoctorFailed());
+        }
+    }
+}
+export const getHourScheduleDoctorSuccess = (hourScheduleDoctor) => ({
+    type: actionTypes.GET_HOUR_SCHEDULE_DOCTOR_SUCCESS,
+    hourScheduleDoctor: hourScheduleDoctor,
+});
+export const getHourScheduleDoctorFailed = () => ({
+    type: actionTypes.GET_HOUR_SCHEDULE_DOCTOR_FAILED,
+});
