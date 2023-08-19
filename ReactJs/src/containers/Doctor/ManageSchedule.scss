@@ -39,13 +39,17 @@
         justify-content: space-between;
         margin: 20px 0 10px;
 
-        div {
+        button {
             padding: 10px;
-            background: #eabd37;
-            color: white;
+            color: black;
             font-weight: bold;
             border-radius: 10px;
+            border: 1px solid silver;
             cursor: pointer;
+
+            &.active {
+                background: #eabd37;
+            }
         }
     }
 

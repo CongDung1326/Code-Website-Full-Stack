@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import * as actions from '../../store/actions';
-import { languages } from '../../utils/constant';
+import { dateFormat, languages } from '../../utils/constant';
 // Select
 import Select from 'react-select';
 
@@ -10,6 +10,9 @@ import DatePicker from '../../components/Input/DatePicker';
 
 // SCSS
 import './ManageSchedule.scss'
+import { toast } from 'react-toastify';
+import _ from 'lodash';
+import moment from 'moment';
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -41,13 +44,17 @@ class ManageSchedule extends Component {
             let dataSelect = this.buildDataInputSelect(this.props.dataAllDoctorRedux);
             this.setState({
                 dataAllDoctor: dataSelect,
-            })
+            });
         }
 
         if (prevProps.hourScheduleDoctorRedux !== hourScheduleDoctorRedux) {
+            if (hourScheduleDoctorRedux && hourScheduleDoctorRedux.length > 0) {
+                hourScheduleDoctorRedux = hourScheduleDoctorRedux.map(item => ({ ...item, isClick: false }))
+            }
+
             this.setState({
                 hourScheduleDoctor: hourScheduleDoctorRedux
-            })
+            });
         }
     }
 
@@ -70,9 +77,9 @@ class ManageSchedule extends Component {
         return result;
     }
 
-    handleChange = async (selectedDoctor) => {
+    handleChange = async (select) => {
         this.setState({
-            selectedDoctor: selectedDoctor
+            selectedDoctor: select
         });
     }
 
@@ -80,6 +87,57 @@ class ManageSchedule extends Component {
         this.setState({
             currentDate: value[0]
         })
+    }
+
+    handleOnClickButton = (value) => {
+        let { hourScheduleDoctor } = this.state;
+        if (hourScheduleDoctor && hourScheduleDoctor.length > 0) {
+            hourScheduleDoctor = hourScheduleDoctor.map(item => {
+                if (item.id === value.id) {
+                    item.isClick = !item.isClick;
+                }
+                this.setState({
+                    hourScheduleDoctor: hourScheduleDoctor
+                })
+                return item;
+            })
+        }
+    }
+
+    handleSaveInfo = () => {
+        let { currentDate, hourScheduleDoctor, selectedDoctor } = this.state;
+        let result = null;
+
+        if (!selectedDoctor) {
+            toast.error('Invilid select doctor!');
+            return;
+        }
+
+        if (!currentDate) {
+            toast.error('Invilid date!')
+            return;
+        }
+
+        let formattedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+        if (hourScheduleDoctor && hourScheduleDoctor.length > 0) {
+            let selectTime = hourScheduleDoctor.filter(item => item.isClick === true);
+
+            if (selectTime && selectTime.length > 0) {
+                let object = {
+                    doctorId: selectedDoctor,
+                    date: formattedDate,
+                    time: selectTime,
+                };
+
+                result = object
+            }
+            else {
+                toast.error('Invilid time!')
+                return;
+            }
+        }
+
+        console.log('Result on click: ', result);
     }
 
     render() {
@@ -107,11 +165,11 @@ class ManageSchedule extends Component {
                     <div className='book-ticket-time'>
                         {hourScheduleDoctor.map((value, index) => {
                             return (
-                                <div key={index}>{language === languages.VI ? value.valueVi : value.valueEn}</div>
+                                <button className={value.isClick === true ? 'active' : ''} onClick={() => this.handleOnClickButton(value)} key={index}>{language === languages.VI ? value.valueVi : value.valueEn}</button>
                             )
                         })}
                     </div>
-                    <button className='save-book-ticket'><FormattedMessage id="manage_schedule.save_book_ticket" /></button>
+                    <button onClick={() => this.handleSaveInfo()} className='save-book-ticket'><FormattedMessage id="manage_schedule.save_book_ticket" /></button>
                 </div>
             </div>
         );
