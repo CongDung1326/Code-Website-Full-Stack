@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import * as actions from '../../store/actions';
 import { dateFormat, languages } from '../../utils/constant';
+import { bulkCreateSchedule } from '../../services/userServices';
 // Select
 import Select from 'react-select';
 
@@ -104,9 +105,9 @@ class ManageSchedule extends Component {
         }
     }
 
-    handleSaveInfo = () => {
+    handleSaveInfo = async () => {
         let { currentDate, hourScheduleDoctor, selectedDoctor } = this.state;
-        let result = null;
+        let result = [];
 
         if (!selectedDoctor) {
             toast.error('Invilid select doctor!');
@@ -118,18 +119,21 @@ class ManageSchedule extends Component {
             return;
         }
 
-        let formattedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+        //let formattedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+        let formattedDate = new Date(currentDate).getTime();
         if (hourScheduleDoctor && hourScheduleDoctor.length > 0) {
             let selectTime = hourScheduleDoctor.filter(item => item.isClick === true);
 
             if (selectTime && selectTime.length > 0) {
-                let object = {
-                    doctorId: selectedDoctor,
-                    date: formattedDate,
-                    time: selectTime,
-                };
+                selectTime.map(item => {
+                    let object = {
+                        doctorId: selectedDoctor.value,
+                        date: formattedDate,
+                        timeType: item.keyMap,
+                    }
 
-                result = object
+                    result.push(object);
+                })
             }
             else {
                 toast.error('Invilid time!')
@@ -137,7 +141,11 @@ class ManageSchedule extends Component {
             }
         }
 
-        console.log('Result on click: ', result);
+        await bulkCreateSchedule({
+            arrSchedule: result,
+            date: formattedDate,
+            doctorId: selectedDoctor.value,
+        })
     }
 
     render() {

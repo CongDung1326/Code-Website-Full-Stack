@@ -1,4 +1,5 @@
 // import axios from "../axios";
+import axios from 'axios'
 import qs from 'querystring' // Thằng này có thể biến chuỗi của ta thành 1 query string (để cho website có thể hiểu)
 
 let handleLogin = async (username, password) => {
@@ -120,4 +121,8 @@ let saveDetailDoctor = async (data) => {
     }).then(res => res.json())
 }
 
-export { handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let bulkCreateSchedule = async (data) => {
+    return axios.post(`http://localhost:8080/api/bulk-create-schedule`, data)
+}
+
+export { bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
