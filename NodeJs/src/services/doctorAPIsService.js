@@ -1,4 +1,8 @@
 const db = require('../models/index.js') // Lấy dữ liệu database
+const _ = require('lodash');
+require('dotenv').config();
+
+const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 
 let getDoctorHome = (limit) => {
     return new Promise(async (resolve, reject) => {
@@ -139,10 +143,58 @@ let putSaveDetailDoctor = (data) => {
     })
 }
 
+let postBulkCreateSchedule = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.arrSchedule || !data.date || !data.doctorId) {
+                resolve({
+                    errCode: 1,
+                    message: 'Missing parameter!',
+                })
+            }
+            else {
+                let schedule = data.arrSchedule;
+                if (schedule && schedule.length > 0) {
+                    schedule = schedule.map(item => ({ ...item, maxNumber: MAX_NUMBER_SCHEDULE }))
+                }
+
+                let existing = await db.Schedule.findAll({
+                    where: { doctorId: data.doctorId, date: data.date },
+                    raw: true,
+                })
+                if (existing && existing.length > 0) {
+                    existing = existing.map(item => {
+                        item.date = new Date(item.date).getTime();
+                        return item;
+                    })
+                }
+
+                let toCreate = _.differenceWith(schedule, existing, (a, b) => {
+                    return a.timeType === b.timeType && a.date === b.date;
+                });
+
+                console.log('===========================');
+                console.log('Check schedule: ', toCreate)
+                console.log('===========================');
+                if (toCreate && toCreate.length > 0) {
+                    await db.Schedule.bulkCreate(toCreate);
+                }
+                resolve({
+                    errCode: 0,
+                    message: 'OK',
+                });
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     getDoctorHome: getDoctorHome,
     getAllDoctor: getAllDoctor,
     postCreateInfoDoctor: postCreateInfoDoctor,
     getDetailDoctor: getDetailDoctor,
     putSaveDetailDoctor: putSaveDetailDoctor,
+    postBulkCreateSchedule: postBulkCreateSchedule,
 }
