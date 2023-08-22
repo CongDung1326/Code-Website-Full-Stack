@@ -125,4 +125,10 @@ let bulkCreateSchedule = async (data) => {
     return axios.post(`http://localhost:8080/api/bulk-create-schedule`, data)
 }
 
-export { bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let getScheduleByDate = async (id, date) => {
+    return await fetch(`http://localhost:8080/api/get-schedule-doctor-by-date?id=${id}&date=${date}`, {
+        method: 'GET'
+    }).then(res => res.json());
+}
+
+export { getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }

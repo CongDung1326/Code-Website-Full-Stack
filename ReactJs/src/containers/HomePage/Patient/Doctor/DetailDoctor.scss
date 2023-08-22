@@ -32,4 +32,22 @@
     .detail-info-doctor {
         background: rgb(216, 216, 216);
     }
+
+    .schedule-doctor {
+        height: 400px;
+        width: 100%;
+        border: 1px solid red;
+        display: flex;
+        padding: 10px;
+
+        .content-left {
+            width: 50%;
+            float: left;
+        }
+
+        .content-right {
+            width: 50%;
+            float: right;
+        }
+    }
 }

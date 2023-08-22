@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Header from '../../Banner/Header';
 import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
+import DoctorSchedule from './DoctorSchedule';
 
 import './DetailDoctor.scss'
 
@@ -59,7 +60,12 @@ class DetailDoctor extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className='schedule-doctor'></div>
+                    <div className='schedule-doctor'>
+                        <div className='content-left'>
+                            <DoctorSchedule doctorId={(detailDoctor && detailDoctor.id ? detailDoctor.id : null)} />
+                        </div>
+                        <div className='content-right'></div>
+                    </div>
                     <div className='detail-info-doctor'>
                         {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && <div dangerouslySetInnerHTML={{ __html: detailDoctor.Markdown.contentHTML }}></div>}
                     </div>
