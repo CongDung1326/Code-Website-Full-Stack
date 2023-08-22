@@ -155,27 +155,23 @@ let postBulkCreateSchedule = (data) => {
             else {
                 let schedule = data.arrSchedule;
                 if (schedule && schedule.length > 0) {
-                    schedule = schedule.map(item => ({ ...item, maxNumber: MAX_NUMBER_SCHEDULE }))
+                    schedule = schedule.map(item => ({ ...item, maxNumber: MAX_NUMBER_SCHEDULE, date: item.date.toString() }))
                 }
 
                 let existing = await db.Schedule.findAll({
                     where: { doctorId: data.doctorId, date: data.date },
                     raw: true,
                 })
-                if (existing && existing.length > 0) {
-                    existing = existing.map(item => {
-                        item.date = new Date(item.date).getTime();
-                        return item;
-                    })
-                }
+                // if (existing && existing.length > 0) {
+                //     existing = existing.map(item => {
+                //         item.date = new Date(item.date).getTime();
+                //         return item;
+                //     })
+                // }
 
                 let toCreate = _.differenceWith(schedule, existing, (a, b) => {
                     return a.timeType === b.timeType && a.date === b.date;
                 });
-
-                console.log('===========================');
-                console.log('Check schedule: ', toCreate)
-                console.log('===========================');
                 if (toCreate && toCreate.length > 0) {
                     await db.Schedule.bulkCreate(toCreate);
                 }
@@ -190,6 +186,30 @@ let postBulkCreateSchedule = (data) => {
     })
 }
 
+let getScheduleByDate = (id, date) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!id || !date) {
+                resolve({
+                    errCode: 1,
+                    message: 'Missing parameter!'
+                })
+            }
+            else {
+                let schedule = await db.Schedule.findAll({ where: { doctorId: id, date: date } });
+                if (!schedule) schedule = [];
+
+                resolve({
+                    errCode: 0,
+                    data: schedule,
+                })
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     getDoctorHome: getDoctorHome,
     getAllDoctor: getAllDoctor,
@@ -197,4 +217,5 @@ module.exports = {
     getDetailDoctor: getDetailDoctor,
     putSaveDetailDoctor: putSaveDetailDoctor,
     postBulkCreateSchedule: postBulkCreateSchedule,
+    getScheduleByDate: getScheduleByDate,
 }

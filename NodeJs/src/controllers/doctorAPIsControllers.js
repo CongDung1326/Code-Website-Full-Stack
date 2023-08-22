@@ -90,6 +90,21 @@ let handleBulkCreateSchedule = async (req, res) => {
     }
 }
 
+let handleGetScheduleByDate = async (req, res) => {
+    try {
+        let { id, date } = req.query;
+        let infor = await doctorAPIsService.getScheduleByDate(id, date);
+
+        return res.status(200).json(infor);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server!'
+        })
+    }
+}
+
 module.exports = {
     handleGetDoctorHome: handleGetDoctorHome,
     handleGetAllDoctor: handleGetAllDoctor,
@@ -97,4 +112,5 @@ module.exports = {
     handleGetDetailDoctor: handleGetDetailDoctor,
     handleSaveDetailDoctor: handleSaveDetailDoctor,
     handleBulkCreateSchedule: handleBulkCreateSchedule,
+    handleGetScheduleByDate: handleGetScheduleByDate,
 }
