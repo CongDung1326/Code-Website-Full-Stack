@@ -196,7 +196,13 @@ let getScheduleByDate = (id, date) => {
                 })
             }
             else {
-                let schedule = await db.Schedule.findAll({ where: { doctorId: id, date: date } });
+                let schedule = await db.Schedule.findAll(
+                    {
+                        where: { doctorId: id, date: date },
+                        include: [
+                            { model: db.Allcode, as: 'timeData', attributes: ['valueEn', 'valueVi'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                        ],
+                    });
                 if (!schedule) schedule = [];
 
                 resolve({
