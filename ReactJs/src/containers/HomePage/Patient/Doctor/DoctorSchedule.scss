@@ -31,11 +31,22 @@
                 background: #ffd200;
                 border-radius: 5px;
                 transition: 0.25s linear;
+                margin: 5px 0 15px;
 
                 &:hover {
                     background: #37bdea;
                 }
             }
+
+            div {
+                grid-column: 1/5;
+                margin: 5px 0 15px;
+            }
+        }
+
+        .choice {
+            font-weight: bold;
+            margin: 10px 0 0;
         }
     }
 }

@@ -87,6 +87,7 @@
     },
     "doctor_schedule": {
         "examination_schedule": "Lịch khám",
-        "is_not_schedule": "Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!"
+        "is_not_schedule": "Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
+        "choice": "Chọn 👆 và đặt (miễn phí)"
     }
 }

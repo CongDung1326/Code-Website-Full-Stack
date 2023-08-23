@@ -146,11 +146,14 @@ class ManageSchedule extends Component {
             date: formattedDate,
             doctorId: selectedDoctor.value,
         })
+
+        toast.success('Create schedule success!')
     }
 
     render() {
         const { selectedDoctor, hourScheduleDoctor } = this.state;
         const { language } = this.props;
+        let yesterday = new Date().setDate(new Date().getDate() - 1);
 
         return (
             <div className='manage-schedule-container'>
@@ -167,7 +170,7 @@ class ManageSchedule extends Component {
                         </div>
                         <div className='choice-date'>
                             <label><FormattedMessage id="manage_schedule.choice_date" /></label>
-                            <DatePicker onChange={this.handleOnChangeDatePicker} minDate={new Date()} value={this.state.currentDate} />
+                            <DatePicker onChange={this.handleOnChangeDatePicker} minDate={yesterday} value={this.state.currentDate} />
                         </div>
                     </div>
                     <div className='book-ticket-time'>

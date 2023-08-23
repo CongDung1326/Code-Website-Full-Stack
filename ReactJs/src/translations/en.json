@@ -87,6 +87,7 @@
     },
     "doctor_schedule": {
         "examination_schedule": "Examination schedule",
-        "is_not_schedule": "No appointments during this time, please choose another time!"
+        "is_not_schedule": "No appointments during this time, please choose another time!",
+        "choice": "Choice 👆 and place (free)"
     }
 }
