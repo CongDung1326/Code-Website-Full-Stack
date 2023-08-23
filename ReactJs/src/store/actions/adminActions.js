@@ -312,3 +312,36 @@ export const getHourScheduleDoctorSuccess = (hourScheduleDoctor) => ({
 export const getHourScheduleDoctorFailed = () => ({
     type: actionTypes.GET_HOUR_SCHEDULE_DOCTOR_FAILED,
 });
+
+// Get select more info doctor
+export const getSelectMoreInfoDoctorStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let price = await handleGetAllCode('price');
+            let payment = await handleGetAllCode('payment');
+            let province = await handleGetAllCode('province');
+
+            if (price && price.data.errCode === 0 &&
+                payment && payment.data.errCode === 0 &&
+                province && province.data.errCode === 0) {
+                dispatch(getSelectMoreInfoDoctorSuccess({
+                    price: price.data.data,
+                    payment: payment.data.data,
+                    province: province.data.data,
+                }))
+            }
+            else {
+                dispatch(getSelectMoreInfoDoctorFailed())
+            }
+        } catch (e) {
+            dispatch(getSelectMoreInfoDoctorFailed());
+        }
+    }
+}
+export const getSelectMoreInfoDoctorSuccess = (data) => ({
+    type: actionTypes.GET_SELECT_MORE_INFO_DOCTOR_SUCCESS,
+    allMethodInfoDoctor: data,
+});
+export const getSelectMoreInfoDoctorFailed = () => ({
+    type: actionTypes.GET_SELECT_MORE_INFO_DOCTOR_FAILED,
+});

@@ -89,5 +89,13 @@
         "examination_schedule": "Lịch khám",
         "is_not_schedule": "Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
         "choice": "Chọn 👆 và đặt (miễn phí)"
+    },
+    "manage_doctor": {
+        "choose_price": "Chọn giá",
+        "choose_pay": "Chọn phương thức thanh toán",
+        "choose_province": "Chọn tỉnh thành",
+        "name_clinic": "Tên phòng khám",
+        "address_clinic": "Địa chỉ phòng khám",
+        "note": "Ghi chú"
     }
 }

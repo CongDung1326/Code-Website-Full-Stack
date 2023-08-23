@@ -89,5 +89,13 @@
         "examination_schedule": "Examination schedule",
         "is_not_schedule": "No appointments during this time, please choose another time!",
         "choice": "Choice 👆 and place (free)"
+    },
+    "manage_doctor": {
+        "choose_price": "Choose price",
+        "choose_pay": "Choose pay",
+        "choose_province": "Choose province",
+        "name_clinic": "Name clinic",
+        "address_clinic": "Address clinic",
+        "note": "Note"
     }
 }
