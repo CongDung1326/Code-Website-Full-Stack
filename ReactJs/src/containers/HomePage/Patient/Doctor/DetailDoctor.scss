@@ -34,15 +34,14 @@
     }
 
     .schedule-doctor {
-        height: 400px;
         width: 100%;
-        border: 1px solid red;
         display: flex;
         padding: 10px;
 
         .content-left {
             width: 50%;
             float: left;
+            border-right: 1px solid green;
         }
 
         .content-right {

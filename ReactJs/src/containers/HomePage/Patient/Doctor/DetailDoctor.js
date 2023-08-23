@@ -44,7 +44,6 @@ class DetailDoctor extends Component {
             introduceVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
             introduceEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
         }
-
         return (
             <>
                 <Header getBanner={false} />

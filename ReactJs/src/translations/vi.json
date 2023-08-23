@@ -84,5 +84,9 @@
         "save_book_ticket": "Lưu thông tin",
         "choice_doctor": "Chọn bác sĩ",
         "choice_date": "Chọn ngày"
+    },
+    "doctor_schedule": {
+        "examination_schedule": "Lịch khám",
+        "is_not_schedule": "Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!"
     }
 }

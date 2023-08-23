@@ -4,6 +4,7 @@ import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
 import localization from 'moment/locale/vi';
 import { getScheduleByDate } from '../../../../services/userServices';
+import { FormattedMessage } from 'react-intl';
 
 import './DoctorSchedule.scss'
 import moment from 'moment';
@@ -14,6 +15,7 @@ class DoctorSchedule extends Component {
 
         this.state = {
             allDays: [],
+            dataTimeSchedule: [],
         }
     }
 
@@ -37,8 +39,9 @@ class DoctorSchedule extends Component {
         });
     }
 
-    componentDidUpdate(prevProps) {
+    async componentDidUpdate(prevProps, prevState) {
         let { language } = this.props;
+
         if (prevProps.language !== language) {
             let arrDate = []
             for (let i = 0; i < 7; i++) {
@@ -64,13 +67,17 @@ class DoctorSchedule extends Component {
             let date = e.target.value;
             let res = await getScheduleByDate(doctorId, date)
 
-            console.log('Check res: ', res)
+            if (res && res.errCode === 0) {
+                this.setState({
+                    dataTimeSchedule: res.data,
+                })
+            }
         }
-
     }
 
     render() {
-        let { allDays } = this.state;
+        let { language } = this.props;
+        let { allDays, dataTimeSchedule } = this.state;
 
         return (
             <div className='doctor-schedule-container'>
@@ -82,6 +89,16 @@ class DoctorSchedule extends Component {
                             )
                         })}
                     </select>
+                </div>
+                <div className='examination-schedule'>
+                    <h4><i className="fa-solid fa-calendar-days"></i> <FormattedMessage id="doctor_schedule.examination_schedule" /></h4>
+                    <div className='time-schedule'>
+                        {(dataTimeSchedule && dataTimeSchedule.length > 0) ? dataTimeSchedule.map((item, index) => {
+                            return (
+                                <button key={index}>{language === languages.VI ? item.timeData.valueVi : item.timeData.valueEn}</button>
+                            )
+                        }) : <FormattedMessage id="doctor_schedule.is_not_schedule" />}
+                    </div>
                 </div>
             </div>
         );

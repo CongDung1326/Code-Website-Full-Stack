@@ -84,5 +84,9 @@
         "save_book_ticket": "Save info",
         "choice_doctor": "Choice doctor",
         "choice_date": "Choice date"
+    },
+    "doctor_schedule": {
+        "examination_schedule": "Examination schedule",
+        "is_not_schedule": "No appointments during this time, please choose another time!"
     }
 }
