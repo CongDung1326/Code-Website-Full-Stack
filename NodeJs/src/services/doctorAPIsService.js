@@ -216,6 +216,92 @@ let getScheduleByDate = (id, date) => {
     })
 }
 
+let postMoreInfoDoctor = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.doctorId || !data.priceId || !data.provinceId || !data.paymentId || !data.addressClinic || !data.nameClinic) resolve({ errCode: 1, message: 'Missing parameter!' });
+            else {
+                await db.Doctor_Info.create({
+                    doctorId: data.doctorId,
+                    priceId: data.priceId,
+                    provinceId: data.provinceId,
+                    paymentId: data.paymentId,
+                    addressClinic: data.addressClinic,
+                    nameClinic: data.nameClinic,
+                    note: data.note,
+                });
+
+                resolve({
+                    errCode: 0,
+                    message: 'OK',
+                })
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+let putMoreInfoDoctor = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.doctorId || !data.priceId || !data.provinceId || !data.paymentId || !data.addressClinic || !data.nameClinic) resolve({ errCode: 1, message: 'Missing parameter!' });
+            else {
+                let doctorInfo = await db.Doctor_Info.findOne({ where: { doctorId: data.doctorId } });
+                if (!doctorInfo) resolve({ errCode: 0, message: "Can't find info doctor!" })
+                else {
+                    doctorInfo.priceId = data.priceId;
+                    doctorInfo.provinceId = data.provinceId;
+                    doctorInfo.paymentId = data.paymentId;
+                    doctorInfo.addressClinic = data.addressClinic;
+                    doctorInfo.nameClinic = data.nameClinic;
+                    doctorInfo.note = data.note;
+
+                    await doctorInfo.save();
+
+                    resolve({
+                        errCode: 0,
+                        message: 'OK',
+                    })
+                }
+
+
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+let getMoreInfoDoctor = (doctorId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!doctorId) resolve({ errCode: 1, message: 'Missing parameter!' });
+            else {
+                let doctorInfo = await db.Doctor_Info.findOne({
+                    where: { doctorId: doctorId },
+                    include: [
+                        { model: db.Allcode, as: 'priceData', attributes: ['valueEn', 'valueVi'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                        { model: db.Allcode, as: 'paymentData', attributes: ['valueEn', 'valueVi'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                        { model: db.Allcode, as: 'provinceData', attributes: ['valueEn', 'valueVi'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                    ],
+                });
+                if (!doctorInfo) resolve({ errCode: 0, message: "Can't find info doctor!" })
+                else {
+                    resolve({
+                        errCode: 0,
+                        doctorInfo: doctorInfo,
+                    })
+                }
+
+
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     getDoctorHome: getDoctorHome,
     getAllDoctor: getAllDoctor,
@@ -224,4 +310,7 @@ module.exports = {
     putSaveDetailDoctor: putSaveDetailDoctor,
     postBulkCreateSchedule: postBulkCreateSchedule,
     getScheduleByDate: getScheduleByDate,
+    postMoreInfoDoctor: postMoreInfoDoctor,
+    putMoreInfoDoctor: putMoreInfoDoctor,
+    getMoreInfoDoctor: getMoreInfoDoctor,
 }

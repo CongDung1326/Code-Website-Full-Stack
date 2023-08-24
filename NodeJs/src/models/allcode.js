@@ -13,7 +13,10 @@ module.exports = (sequelize, DataTypes) => {
             // Đang truyền dữ liệu (A) -> (B) (Allcode -> User)
             Allcode.hasMany(models.User, { foreignKey: 'positionId', as: 'positionData' }); // Lấy theo giá trị positionId của thằng User với đặt tên là positionData(Đặt tên để tránh bị trùng(Không cần đặt cũng được tại không có column nào tên như vậy))
             Allcode.hasMany(models.User, { foreignKey: 'gender', as: 'genderData' }); // Lấy theo giá trị gender của thằng User với đặt tên là genderData(Đặt tên để tránh bị trùng (Không cần đặt cũng được tại không có column nào tên như vậy))
-            Allcode.hasMany(models.Schedule, { foreignKey: 'timeType', as: 'timeData' })
+            Allcode.hasMany(models.Schedule, { foreignKey: 'timeType', as: 'timeData' });
+            Allcode.hasMany(models.Doctor_Info, { foreignKey: 'priceId', as: 'priceData' });
+            Allcode.hasMany(models.Doctor_Info, { foreignKey: 'provinceId', as: 'provinceData' });
+            Allcode.hasMany(models.Doctor_Info, { foreignKey: 'paymentId', as: 'paymentData' });
         }
     };
     Allcode.init({
