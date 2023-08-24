@@ -97,5 +97,13 @@
         "name_clinic": "Name clinic",
         "address_clinic": "Address clinic",
         "note": "Note"
+    },
+    "doctor_info": {
+        "address_clinic": "ADDRESS CLINIC",
+        "medical_examination_price": "Medical examination price",
+        "show_more": "Show more",
+        "hidden": "Hidden",
+        "title1": "Get priority medical examination before booking through bookingcare, the price of medical examination for foreigners is",
+        "title2": "The patient can pay the cost in the form of"
     }
 }

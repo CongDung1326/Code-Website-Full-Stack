@@ -1,0 +1,37 @@
+.doctor-info-container {
+    padding: 10px;
+
+    .address-clinic-container {
+        p {
+            margin: 3px 0;
+            font-weight: bold;
+        }
+    }
+
+    button {
+        outline: none;
+        border: none;
+        background: transparent;
+        color: #66a6ff;
+        margin: 10px 0px;
+    }
+
+    .more-price {
+        .top {
+            padding: 10px;
+            border: 1px solid silver;
+            background: #e5e5e5;
+
+            .top-price {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .bottom {
+            background: #cfcfcf;
+            border: 1px solid silver;
+            padding: 10px;
+        }
+    }
+}

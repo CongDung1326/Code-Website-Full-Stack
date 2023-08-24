@@ -10,7 +10,10 @@ const initialState = {
     dataAllDoctor: [],
     detailDoctor: null,
     hourScheduleDoctor: [],
-    allMethodInfoDoctor: {},
+    priceData: [],
+    paymentData: [],
+    provinceData: [],
+    doctorInfo: null,
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -121,12 +124,26 @@ const adminReducer = (state = initialState, action) => {
 
         // Get select more info doctor
         case actionTypes.GET_SELECT_MORE_INFO_DOCTOR_SUCCESS:
-            state.allMethodInfoDoctor = action.allMethodInfoDoctor;
+            state.priceData = action.priceData;
+            state.paymentData = action.paymentData;
+            state.provinceData = action.provinceData;
             return {
                 ...state,
             }
         case actionTypes.GET_SELECT_MORE_INFO_DOCTOR_FAILED:
-            state.allMethodInfoDoctor = {};
+            state.allMethodInfoDoctor = null;
+            return {
+                ...state,
+            }
+
+        // Get more info doctor
+        case actionTypes.GET_MORE_INFO_DOCTOR_SUCCESS:
+            state.doctorInfo = action.doctorInfo;
+            return {
+                ...state,
+            }
+        case actionTypes.GET_MORE_INFO_DOCTOR_FAILED:
+            state.doctorInfo = null;
             return {
                 ...state,
             }

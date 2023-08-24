@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor } from '../../services/userServices'
+import { getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -340,8 +340,84 @@ export const getSelectMoreInfoDoctorStart = () => {
 }
 export const getSelectMoreInfoDoctorSuccess = (data) => ({
     type: actionTypes.GET_SELECT_MORE_INFO_DOCTOR_SUCCESS,
-    allMethodInfoDoctor: data,
+    priceData: data.price,
+    paymentData: data.payment,
+    provinceData: data.province,
 });
 export const getSelectMoreInfoDoctorFailed = () => ({
     type: actionTypes.GET_SELECT_MORE_INFO_DOCTOR_FAILED,
+});
+
+// Create more info doctor
+export const createMoreInfoDoctorStart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await postMoreInfoDoctor(data);
+
+            if (res && res.errCode === 0) {
+                dispatch(getSelectMoreInfoDoctorSuccess())
+            }
+            else {
+                dispatch(getSelectMoreInfoDoctorFailed())
+            }
+        } catch (e) {
+            dispatch(getSelectMoreInfoDoctorFailed());
+        }
+    }
+}
+export const createMoreInfoDoctorSuccess = () => ({
+    type: actionTypes.CREATE_MORE_INFO_DOCTOR_SUCCESS,
+});
+export const createMoreInfoDoctorFailed = () => ({
+    type: actionTypes.CREATE_MORE_INFO_DOCTOR_FAILED,
+});
+
+// Edit more info doctor
+export const putMoreInfoDoctorStart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await putMoreInfoDoctor(data);
+
+            console.log('Check res: ', res);
+            if (res && res.errCode === 0) {
+                dispatch(putMoreInfoDoctorSuccess())
+            }
+            else {
+                dispatch(putMoreInfoDoctorFailed())
+            }
+        } catch (e) {
+            dispatch(putMoreInfoDoctorFailed());
+        }
+    }
+}
+export const putMoreInfoDoctorSuccess = () => ({
+    type: actionTypes.PUT_MORE_INFO_DOCTOR_SUCCESS,
+});
+export const putMoreInfoDoctorFailed = () => ({
+    type: actionTypes.PUT_MORE_INFO_DOCTOR_FAILED,
+});
+
+// Get more info doctor
+export const getMoreInfoDoctorStart = (doctorId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getMoreInfoDoctor(doctorId);
+
+            if (res && res.errCode === 0) {
+                dispatch(getMoreInfoDoctorSuccess(res.doctorInfo))
+            }
+            else {
+                dispatch(getMoreInfoDoctorFailed())
+            }
+        } catch (e) {
+            dispatch(getMoreInfoDoctorFailed());
+        }
+    }
+}
+export const getMoreInfoDoctorSuccess = (doctorInfo) => ({
+    type: actionTypes.GET_MORE_INFO_DOCTOR_SUCCESS,
+    doctorInfo: doctorInfo,
+});
+export const getMoreInfoDoctorFailed = () => ({
+    type: actionTypes.GET_MORE_INFO_DOCTOR_FAILED,
 });

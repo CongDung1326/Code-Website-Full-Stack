@@ -131,4 +131,42 @@ let getScheduleByDate = async (id, date) => {
     }).then(res => res.json());
 }
 
-export { getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let postMoreInfoDoctor = async (data) => {
+    return await fetch(`http://localhost:8080/api/create-more-info-doctor`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            doctorId: data.doctorId,
+            priceId: data.priceId,
+            provinceId: data.provinceId,
+            paymentId: data.paymentId,
+            addressClinic: data.addressClinic,
+            nameClinic: data.nameClinic,
+            note: data.note,
+        })
+    }).then(res => res.json())
+}
+
+let putMoreInfoDoctor = async (data) => {
+    return await fetch(`http://localhost:8080/api/edit-more-info-doctor`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            doctorId: data.doctorId,
+            priceId: data.priceId,
+            provinceId: data.provinceId,
+            paymentId: data.paymentId,
+            addressClinic: data.addressClinic,
+            nameClinic: data.nameClinic,
+            note: data.note,
+        })
+    }).then(res => res.json())
+}
+
+let getMoreInfoDoctor = async (id) => {
+    return await fetch(`http://localhost:8080/api/get-more-info-doctor?doctorId=${id}`, {
+        method: "GET",
+    }).then(res => res.json())
+}
+
+export { getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }

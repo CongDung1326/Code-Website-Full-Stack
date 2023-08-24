@@ -97,5 +97,13 @@
         "name_clinic": "Tên phòng khám",
         "address_clinic": "Địa chỉ phòng khám",
         "note": "Ghi chú"
+    },
+    "doctor_info": {
+        "address_clinic": "ĐỊA CHỈ KHÁM",
+        "medical_examination_price": "Giá khám",
+        "show_more": "Hiển thị thêm",
+        "hidden": "Ẩn bảng giá",
+        "title1": "Được ưu tiên khám trước khi mà đặt qua bookingcare giá khám cho người nước ngoài là",
+        "title2": "Người bệnh có thể thanh toán chi phí bằng hình thức"
     }
 }

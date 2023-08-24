@@ -4,6 +4,7 @@ import Header from '../../Banner/Header';
 import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
 import DoctorSchedule from './DoctorSchedule';
+import DoctorInfo from './DoctorInfo';
 
 import './DetailDoctor.scss'
 
@@ -44,6 +45,7 @@ class DetailDoctor extends Component {
             introduceVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
             introduceEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
         }
+
         return (
             <>
                 <Header getBanner={false} />
@@ -63,7 +65,9 @@ class DetailDoctor extends Component {
                         <div className='content-left'>
                             <DoctorSchedule doctorId={(detailDoctor && detailDoctor.id ? detailDoctor.id : null)} />
                         </div>
-                        <div className='content-right'></div>
+                        <div className='content-right'>
+                            <DoctorInfo doctorId={(detailDoctor && detailDoctor.id ? detailDoctor.id : null)} />
+                        </div>
                     </div>
                     <div className='detail-info-doctor'>
                         {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && <div dangerouslySetInnerHTML={{ __html: detailDoctor.Markdown.contentHTML }}></div>}
