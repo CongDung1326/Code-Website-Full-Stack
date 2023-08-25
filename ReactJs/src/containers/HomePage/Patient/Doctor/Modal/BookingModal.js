@@ -28,7 +28,7 @@ class BookingModal extends Component {
             <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} className={this.props.className} size='lg' centered={true}>
                 <ModalHeader toggle={this.props.toggle}><FormattedMessage id="booking_modal.add_schedule" /></ModalHeader>
                 <ModalBody>
-                    <div className='doctor-info'><ProfileDoctor doctorId={this.props.doctorId} /></div>
+                    <div className='doctor-info'><ProfileDoctor isShowDescript={false} dataTime={this.props.dataScheduleTime} doctorId={this.props.doctorId} /></div>
                     <div className='container-schedule-modal'>
                         <div className='first-and-last-name'>
                             <label><FormattedMessage id="booking_modal.first_and_last_name" /></label>

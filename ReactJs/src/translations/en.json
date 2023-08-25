@@ -117,6 +117,7 @@
         "complete": "Complete",
         "cancel": "Cancel",
         "add_schedule": "Place schedule",
-        "examination_price": "Examination price"
+        "examination_price": "Examination price",
+        "time": "Time"
     }
 }

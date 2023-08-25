@@ -117,6 +117,7 @@
         "complete": "Xác nhận",
         "cancel": "Huỷ",
         "add_schedule": "Đặt lịch khám",
-        "examination_price": "Giá khám"
+        "examination_price": "Giá khám",
+        "time": "Thời gian"
     }
 }

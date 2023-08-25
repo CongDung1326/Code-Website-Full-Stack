@@ -5,6 +5,7 @@ import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
 
 import './ProfileDoctor.scss'
+import moment from 'moment/moment';
 
 class ProfileDoctor extends Component {
     constructor(props) {
@@ -48,17 +49,35 @@ class ProfileDoctor extends Component {
         return new Intl.NumberFormat("de-DE").format(number);
     }
 
+    handleShowTime = () => {
+        let { dataTime, language } = this.props;
+
+        if (dataTime && dataTime.timeData) {
+            let time = (language === languages.VI) ? dataTime.timeData.valueVi : dataTime.timeData.valueEn;
+            let date = (language === languages.VI) ?
+                moment(+dataTime.date).format('dddd - DD/MM/YYYY') :
+                moment(+dataTime.date).locale('en').format('ddd - MM/DD/YYYY')
+
+            console.log('Check props: ', dataTime)
+            return (
+                <div className='time'>{date} <FormattedMessage id="booking_modal.time" /> {time}</div>
+            )
+        }
+
+    }
+
     render() {
         let { profileDoctor } = this.state;
-        let { language } = this.props;
+        let { language, isShowDescript } = this.props;
 
         return (
             <div className='profile-doctor-container'>
                 <div className='profile-doctor'>
-                    <div className='preview-image' style={{ backgroundImage: `url(${profileDoctor.image})` }}></div>
+                    <div className='preview-image'><div className='image' style={{ backgroundImage: `url(${profileDoctor.image})` }}></div></div>
                     <div className='info-doctor'>
                         <div className='name'>{this.changeNameDoctorIfChangeLanguage()}</div>
-                        <div className='description'>{profileDoctor && profileDoctor.Markdown ? profileDoctor.Markdown.description : ''}</div>
+                        {isShowDescript && <div className='description'>{profileDoctor && profileDoctor.Markdown ? profileDoctor.Markdown.description : ''}</div>}
+                        <div className='show-time'>{this.handleShowTime()}</div>
                     </div>
                 </div>
                 {profileDoctor && profileDoctor.DoctorInfo && profileDoctor.DoctorInfo.priceData && <div className='price'><FormattedMessage id="booking_modal.examination_price" />: {language === languages.VI ? this.handleFormatNumber(profileDoctor.DoctorInfo.priceData.valueVi) + 'đ' : this.handleFormatNumber(profileDoctor.DoctorInfo.priceData.valueEn) + 'USD'}</div>}
