@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' }); // Dựa theo positionId chủ yếu lấy tại keyMap(Allcode) với tên là positionData(Đặt tên để tránh bị trùng)
       User.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' }); // Dựa theo gender chủ yếu lấy tại keyMap(Allcode) với tên là positionData(Đặt tên để tránh bị trùng)
       User.hasOne(models.Markdown, { foreignKey: 'doctorId' }) // Tham chiếu thằng Markdown (giống như thằng User gửi thư)
+      User.hasOne(models.Doctor_Info, { foreignKey: 'doctorId', as: 'DoctorInfo' })
     }
   };
   User.init({

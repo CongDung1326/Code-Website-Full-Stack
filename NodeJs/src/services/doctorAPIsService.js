@@ -112,7 +112,7 @@ let getDetailDoctor = (id) => {
 let putSaveDetailDoctor = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.id || !data.contentHTML || !data.contentMarkdown)
+            if (!data.id || !data.contentMarkdown)
                 resolve({
                     errCode: 1,
                     message: 'Missing parameter!'
@@ -302,6 +302,49 @@ let getMoreInfoDoctor = (doctorId) => {
     })
 }
 
+let getProfileDoctorById = (doctorId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!doctorId) resolve({ errCode: 1, message: 'Missing parameter!' });
+            else {
+                let doctorInfo = await db.User.findOne({
+                    where: { id: doctorId },
+                    attributes: {
+                        exclude: ['password']
+                    },
+                    include: [
+                        { model: db.Allcode, as: 'positionData', attributes: ['valueVi', 'valueEn'] },
+                        {
+                            model: db.Doctor_Info, as: 'DoctorInfo',
+                            attributes: {
+                                exclude: ['id', 'doctorId']
+                            },
+                            include: [
+                                { model: db.Allcode, as: 'priceData', attributes: ['valueEn', 'valueVi'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                                { model: db.Allcode, as: 'paymentData', attributes: ['valueEn', 'valueVi'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                                { model: db.Allcode, as: 'provinceData', attributes: ['valueEn', 'valueVi'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                            ]
+                        },
+                        { model: db.Markdown, as: 'Markdown', attributes: ['description', 'contentHTML', 'contentMarkdown'] },
+                    ],
+                    nest: true,
+                });
+                if (!doctorInfo) doctorInfo = {}
+                else if (doctorInfo && doctorInfo.image) {
+                    doctorInfo.image = new Buffer.from(doctorInfo.image, 'base64').toString('binary');
+                }
+
+                resolve({
+                    errCode: 0,
+                    profileDoctor: doctorInfo,
+                })
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     getDoctorHome: getDoctorHome,
     getAllDoctor: getAllDoctor,
@@ -313,4 +356,5 @@ module.exports = {
     postMoreInfoDoctor: postMoreInfoDoctor,
     putMoreInfoDoctor: putMoreInfoDoctor,
     getMoreInfoDoctor: getMoreInfoDoctor,
+    getProfileDoctorById: getProfileDoctorById,
 }

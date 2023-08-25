@@ -128,7 +128,10 @@ let handleEditMoreInfoDoctor = async (req, res) => {
         return res.status(200).json(info);
     } catch (e) {
         console.log(e);
-        reject(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server!'
+        })
     }
 }
 
@@ -140,7 +143,25 @@ let handleGetMoreInfoDoctor = async (req, res) => {
         return res.status(200).json(info);
     } catch (e) {
         console.log(e);
-        reject(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server!'
+        })
+    }
+}
+
+let handleGetProfileDoctorById = async (req, res) => {
+    try {
+        let id = req.query.id;
+        let info = await doctorAPIsService.getProfileDoctorById(id);
+
+        return res.status(200).json(info);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server!'
+        })
     }
 }
 
@@ -155,4 +176,5 @@ module.exports = {
     handleCreateMoreInfoDoctor: handleCreateMoreInfoDoctor,
     handleEditMoreInfoDoctor: handleEditMoreInfoDoctor,
     handleGetMoreInfoDoctor: handleGetMoreInfoDoctor,
+    handleGetProfileDoctorById: handleGetProfileDoctorById,
 }
