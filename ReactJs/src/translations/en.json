@@ -105,5 +105,18 @@
         "hidden": "Hidden",
         "title1": "Get priority medical examination before booking through bookingcare, the price of medical examination for foreigners is",
         "title2": "The patient can pay the cost in the form of"
+    },
+    "booking_modal": {
+        "email": "Email",
+        "phone_number": "Phone number",
+        "address": "Address",
+        "first_and_last_name": "First and last name",
+        "reason_for_examination": "Reason for examination",
+        "place_for": "Place for",
+        "gender": "Gender",
+        "complete": "Complete",
+        "cancel": "Cancel",
+        "add_schedule": "Place schedule",
+        "examination_price": "Examination price"
     }
 }

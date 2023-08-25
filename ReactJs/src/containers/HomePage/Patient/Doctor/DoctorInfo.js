@@ -52,22 +52,23 @@ class DoctorInfo extends Component {
             <div className='doctor-info-container'>
                 <h4><FormattedMessage id="doctor_info.address_clinic" /></h4>
                 <div className='address-clinic-container'>
-                    <p className='name-clinic'>{doctorInfo.nameClinic}</p>
+                    {doctorInfo && <p className='name-clinic'>{doctorInfo.nameClinic}</p>}
                     {doctorInfo && doctorInfo.provinceData && <p className='address-clinic'>{doctorInfo.addressClinic}, {language === languages.VI ? doctorInfo.provinceData.valueVi : doctorInfo.provinceData.valueEn}</p>}
                 </div>
                 <div className='price-clinic-container'>
                     {doctorInfo && doctorInfo.priceData && <div className='price'><FormattedMessage id="doctor_info.medical_examination_price" />: {!isClickShowPrice ? language === languages.VI ? this.handleFormatNumber(doctorInfo.priceData.valueVi) + 'đ' : this.handleFormatNumber(doctorInfo.priceData.valueEn) + ' USD' : ''} {!isClickShowPrice && <button onClick={() => this.handleOnClickShowMore()}>Xem chi tiết.</button>}</div>}
-                    {doctorInfo && doctorInfo.priceData && isClickShowPrice && <div className='more-price'>
-                        <div className='top'>
-                            <div className='top-price'>
-                                <p><FormattedMessage id="doctor_info.medical_examination_price" /></p>
-                                <p>{language === languages.VI ? this.handleFormatNumber(doctorInfo.priceData.valueVi) + 'đ' : this.handleFormatNumber(doctorInfo.priceData.valueEn) + ' USD'}</p>
+                    {doctorInfo && doctorInfo.priceData && isClickShowPrice &&
+                        <div className='more-price'>
+                            <div className='top'>
+                                <div className='top-price'>
+                                    <p><FormattedMessage id="doctor_info.medical_examination_price" /></p>
+                                    <p>{language === languages.VI ? this.handleFormatNumber(doctorInfo.priceData.valueVi) + 'đ' : this.handleFormatNumber(doctorInfo.priceData.valueEn) + ' USD'}</p>
+                                </div>
+                                <div className='prioritize'>{doctorInfo.note}</div>
                             </div>
-                            <div className='prioritize'>{doctorInfo.note}</div>
-                        </div>
-                        {doctorInfo && doctorInfo.paymentData && <div className='bottom'><FormattedMessage id="doctor_info.title2" />: {language === languages.VI ? doctorInfo.paymentData.valueVi : doctorInfo.paymentData.valueEn}</div>}
-                        <button onClick={() => this.handleOnClickShowMore()}><FormattedMessage id="doctor_info.show_more" /></button>
-                    </div>}
+                            {doctorInfo && doctorInfo.paymentData && <div className='bottom'><FormattedMessage id="doctor_info.title2" />: {language === languages.VI ? doctorInfo.paymentData.valueVi : doctorInfo.paymentData.valueEn}</div>}
+                            <button onClick={() => this.handleOnClickShowMore()}><FormattedMessage id="doctor_info.show_more" /></button>
+                        </div>}
                 </div>
             </div>
         );

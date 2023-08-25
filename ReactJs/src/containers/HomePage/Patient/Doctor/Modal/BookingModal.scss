@@ -1,0 +1,39 @@
+.modal-shedule-container {
+    .modal-content {
+        border-radius: none;
+
+        .modal-header {
+            background-color: transparent !important;
+            color: black !important;
+            height: 50px !important;
+
+            .modal-title {
+                font-weight: bold !important;
+            }
+        }
+    }
+
+    .container-schedule-modal {
+        display: grid;
+        gap: 10px 20px;
+        grid-template-areas:
+            '. .'
+            '. .'
+            'reason reason'
+            '. .'
+        ;
+
+        input {
+            width: 100%;
+            outline: none;
+            border: 1px solid silver;
+            border-radius: 5px;
+            height: 35px;
+            padding: 10px;
+        }
+
+        .reason-for-examination {
+            grid-area: reason;
+        }
+    }
+}

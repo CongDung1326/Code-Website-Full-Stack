@@ -5,9 +5,10 @@ import { languages } from '../../../../utils';
 import localization from 'moment/locale/vi';
 import { getScheduleByDate } from '../../../../services/userServices';
 import { FormattedMessage } from 'react-intl';
+import BookingModal from './Modal/BookingModal';
+import moment from 'moment';
 
 import './DoctorSchedule.scss'
-import moment from 'moment';
 
 class DoctorSchedule extends Component {
     constructor(props) {
@@ -16,6 +17,8 @@ class DoctorSchedule extends Component {
         this.state = {
             allDays: [],
             dataTimeSchedule: [],
+            isOpenScheduleTime: false,
+            dataScheduleTime: {},
         }
     }
 
@@ -92,33 +95,46 @@ class DoctorSchedule extends Component {
         }
     }
 
+    toggleBookingModal = (item) => {
+        let toggle = this.state.isOpenScheduleTime;
+
+        this.setState({
+            isOpenScheduleTime: !toggle,
+            dataScheduleTime: item,
+        });
+    }
+
     render() {
         let { language } = this.props;
         let { allDays, dataTimeSchedule } = this.state;
 
         return (
-            <div className='doctor-schedule-container'>
-                <div className='day-schedule'>
-                    <select onChange={(e) => this.handleChangeDate(e)}>
-                        {allDays && allDays.length > 0 && allDays.map((item, index) => {
-                            return (
-                                <option value={item.value} key={index}>{item.label}</option>
-                            )
-                        })}
-                    </select>
-                </div>
-                <div className='examination-schedule'>
-                    <h4><i className="fa-solid fa-calendar-days"></i> <FormattedMessage id="doctor_schedule.examination_schedule" /></h4>
-                    <div className='time-schedule'>
-                        {(dataTimeSchedule && dataTimeSchedule.length > 0) ? dataTimeSchedule.map((item, index) => {
-                            return (
-                                <button key={index}>{language === languages.VI ? item.timeData.valueVi : item.timeData.valueEn}</button>
-                            )
-                        }) : <div><FormattedMessage id="doctor_schedule.is_not_schedule" /></div>}
+            <>
+                <div className='doctor-schedule-container'>
+                    <div className='day-schedule'>
+                        <select onChange={(e) => this.handleChangeDate(e)}>
+                            {allDays && allDays.length > 0 && allDays.map((item, index) => {
+                                return (
+                                    <option value={item.value} key={index}>{item.label}</option>
+                                )
+                            })}
+                        </select>
                     </div>
-                    <div className='choice'>{(dataTimeSchedule && dataTimeSchedule.length > 0) ? <FormattedMessage id="doctor_schedule.choice" /> : ''}</div>
+                    <div className='examination-schedule'>
+                        <h4><i className="fa-solid fa-calendar-days"></i> <FormattedMessage id="doctor_schedule.examination_schedule" /></h4>
+                        <div className='time-schedule'>
+                            {(dataTimeSchedule && dataTimeSchedule.length > 0) ? dataTimeSchedule.map((item, index) => {
+                                return (
+                                    <button onClick={() => this.toggleBookingModal(item)} key={index}>{language === languages.VI ? item.timeData.valueVi : item.timeData.valueEn}</button>
+                                )
+                            }) : <div><FormattedMessage id="doctor_schedule.is_not_schedule" /></div>}
+                        </div>
+                        <div className='choice'>{(dataTimeSchedule && dataTimeSchedule.length > 0) ? <FormattedMessage id="doctor_schedule.choice" /> : ''}</div>
+                    </div>
                 </div>
-            </div>
+
+                <BookingModal dataScheduleTime={this.state.dataScheduleTime} isOpen={this.state.isOpenScheduleTime} toggle={this.toggleBookingModal} className="modal-shedule-container" />
+            </>
         );
     }
 }

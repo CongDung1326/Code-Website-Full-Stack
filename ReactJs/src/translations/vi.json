@@ -105,5 +105,18 @@
         "hidden": "Ẩn bảng giá",
         "title1": "Được ưu tiên khám trước khi mà đặt qua bookingcare giá khám cho người nước ngoài là",
         "title2": "Người bệnh có thể thanh toán chi phí bằng hình thức"
+    },
+    "booking_modal": {
+        "email": "Địa chỉ email",
+        "phone_number": "Số điện thoại",
+        "address": "Địa chỉ",
+        "first_and_last_name": "Họ và tên",
+        "reason_for_examination": "Lý do khám",
+        "place_for": "Đặt cho ai",
+        "gender": "Giới tính",
+        "complete": "Xác nhận",
+        "cancel": "Huỷ",
+        "add_schedule": "Đặt lịch khám",
+        "examination_price": "Giá khám"
     }
 }
