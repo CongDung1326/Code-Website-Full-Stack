@@ -133,7 +133,7 @@ class DoctorSchedule extends Component {
                     </div>
                 </div>
 
-                <BookingModal dataScheduleTime={this.state.dataScheduleTime} isOpen={this.state.isOpenScheduleTime} toggle={this.toggleBookingModal} className="modal-shedule-container" />
+                <BookingModal doctorId={this.props.doctorId} dataScheduleTime={this.state.dataScheduleTime} isOpen={this.state.isOpenScheduleTime} toggle={this.toggleBookingModal} className="modal-shedule-container" />
             </>
         );
     }

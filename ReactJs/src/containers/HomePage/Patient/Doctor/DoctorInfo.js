@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
 import { getMoreInfoDoctor } from '../../../../services/userServices';
+import { FormattedMessage } from 'react-intl';
 
 import './DoctorInfo.scss'
-import { FormattedMessage } from 'react-intl';
 
 class DoctorInfo extends Component {
     constructor(props) {
@@ -32,16 +32,16 @@ class DoctorInfo extends Component {
         }
     }
 
+    handleFormatNumber = (number) => {
+        return new Intl.NumberFormat("de-DE").format(number);
+    }
+
     handleOnClickShowMore = () => {
         let { isClickShowPrice } = this.state;
 
         this.setState({
             isClickShowPrice: !isClickShowPrice
         })
-    }
-
-    handleFormatNumber = (number) => {
-        return new Intl.NumberFormat("de-DE").format(number);
     }
 
     render() {

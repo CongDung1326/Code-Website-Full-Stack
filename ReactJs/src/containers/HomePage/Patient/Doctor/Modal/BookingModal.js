@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FormattedMessage } from 'react-intl';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import ProfileDoctor from '../ProfileDoctor';
 
 // SCSS
 import './BookingModal.scss'
@@ -23,12 +24,11 @@ class BookingModal extends Component {
     }
 
     render() {
-
         return (
             <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} className={this.props.className} size='lg' centered={true}>
                 <ModalHeader toggle={this.props.toggle}><FormattedMessage id="booking_modal.add_schedule" /></ModalHeader>
                 <ModalBody>
-                    <div className='price'><FormattedMessage id="booking_modal.examination_price" />: 500.000VND</div>
+                    <div className='doctor-info'><ProfileDoctor doctorId={this.props.doctorId} /></div>
                     <div className='container-schedule-modal'>
                         <div className='first-and-last-name'>
                             <label><FormattedMessage id="booking_modal.first_and_last_name" /></label>

@@ -14,6 +14,7 @@ const initialState = {
     paymentData: [],
     provinceData: [],
     doctorInfo: null,
+    profileDoctor: {},
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -144,6 +145,18 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.GET_MORE_INFO_DOCTOR_FAILED:
             state.doctorInfo = null;
+            return {
+                ...state,
+            }
+
+        // Get profile doctor by id
+        case actionTypes.GET_PROFILE_DOCTOR_BY_ID_SUCCESS:
+            state.profileDoctor = action.profileDoctor;
+            return {
+                ...state,
+            }
+        case actionTypes.GET_PROFILE_DOCTOR_BY_ID_FAILED:
+            state.profileDoctor = {};
             return {
                 ...state,
             }

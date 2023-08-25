@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor } from '../../services/userServices'
+import { getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -420,4 +420,29 @@ export const getMoreInfoDoctorSuccess = (doctorInfo) => ({
 });
 export const getMoreInfoDoctorFailed = () => ({
     type: actionTypes.GET_MORE_INFO_DOCTOR_FAILED,
+});
+
+// Get profile doctor by id
+export const getProfileDoctorByIdStart = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getProfileDoctorById(id);
+
+            if (res && res.errCode === 0) {
+                dispatch(getProfileDoctorByIdSuccess(res.profileDoctor))
+            }
+            else {
+                dispatch(getProfileDoctorByIdFailed())
+            }
+        } catch (e) {
+            dispatch(getProfileDoctorByIdFailed());
+        }
+    }
+}
+export const getProfileDoctorByIdSuccess = (profileDoctor) => ({
+    type: actionTypes.GET_PROFILE_DOCTOR_BY_ID_SUCCESS,
+    profileDoctor: profileDoctor,
+});
+export const getProfileDoctorByIdFailed = () => ({
+    type: actionTypes.GET_PROFILE_DOCTOR_BY_ID_FAILED,
 });

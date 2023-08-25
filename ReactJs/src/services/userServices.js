@@ -169,4 +169,10 @@ let getMoreInfoDoctor = async (id) => {
     }).then(res => res.json())
 }
 
-export { getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let getProfileDoctorById = async (id) => {
+    return await fetch(`http://localhost:8080/api/get-profile-doctor-by-id?id=${id}`, {
+        method: "GET",
+    }).then(res => res.json())
+}
+
+export { getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }

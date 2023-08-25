@@ -1,0 +1,20 @@
+.profile-doctor-container {
+    width: 100%;
+
+    .profile-doctor {
+        display: flex;
+        gap: 10px;
+
+        .preview-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+
+            background: center/contain no-repeat;
+        }
+
+        .name {
+            font-weight: bold;
+        }
+    }
+}

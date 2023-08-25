@@ -78,6 +78,10 @@ const actionTypes = Object.freeze({
     // Get more info doctor
     GET_MORE_INFO_DOCTOR_SUCCESS: "GET_MORE_INFO_DOCTOR_SUCCESS",
     GET_MORE_INFO_DOCTOR_FAILED: 'GET_MORE_INFO_DOCTOR_FAILED',
+
+    // Get profile doctor by id
+    GET_PROFILE_DOCTOR_BY_ID_SUCCESS: "GET_PROFILE_DOCTOR_BY_ID_SUCCESS",
+    GET_PROFILE_DOCTOR_BY_ID_FAILED: 'GET_PROFILE_DOCTOR_BY_ID_FAILED',
 })
 
 export default actionTypes;
