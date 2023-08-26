@@ -4,20 +4,24 @@ require('dotenv').config();
 let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.email) resolve({ errCode: 1, message: 'Missing parameter!' })
+            if (!data.email || !data.doctorId || !data.timeType || !data.date) resolve({ errCode: 1, message: 'Missing parameter!' })
             else {
                 let [user, isCreate] = await db.User.findOrCreate({
                     where: { email: data.email },
                     defaults: {
                         email: data.email,
                         roleId: 'R3',
+                        lastName: data.fullName,
+                        phoneNumber: data.phoneNumber,
+                        address: data.address,
+                        gender: data.gender,
                     },
                     raw: true,
                 })
 
                 if (user) {
-                    await db.Booking.findOrCreate({
-                        where: { patientId: user.id },
+                    let [booking, isCreate] = await db.Booking.findOrCreate({
+                        where: { patientId: user.id, timeType: data.timeType, date: data.date },
                         defaults: {
                             statusId: 'S1',
                             patientId: user.id,
@@ -26,12 +30,20 @@ let postBookAppointment = (data) => {
                             doctorId: data.doctorId,
                         }
                     })
-                }
 
-                resolve({
-                    errCode: 0,
-                    message: 'Save schedule succesed!'
-                })
+                    if (isCreate === true) {
+                        resolve({
+                            errCode: 0,
+                            message: 'Save schedule succesed!'
+                        })
+                    }
+                    else {
+                        resolve({
+                            errCode: 0,
+                            message: 'Schedule is exist!'
+                        })
+                    }
+                }
             }
         } catch (e) {
             reject(e);
