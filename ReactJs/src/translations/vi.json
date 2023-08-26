@@ -112,7 +112,7 @@
         "address": "Địa chỉ",
         "first_and_last_name": "Họ và tên",
         "reason_for_examination": "Lý do khám",
-        "place_for": "Đặt cho ai",
+        "date": "Ngày tháng năm sinh",
         "gender": "Giới tính",
         "complete": "Xác nhận",
         "cancel": "Huỷ",

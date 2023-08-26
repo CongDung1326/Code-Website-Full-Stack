@@ -58,7 +58,6 @@ class ProfileDoctor extends Component {
                 moment(+dataTime.date).format('dddd - DD/MM/YYYY') :
                 moment(+dataTime.date).locale('en').format('ddd - MM/DD/YYYY')
 
-            console.log('Check props: ', dataTime)
             return (
                 <div className='time'>{date} <FormattedMessage id="booking_modal.time" /> {time}</div>
             )
@@ -73,7 +72,7 @@ class ProfileDoctor extends Component {
         return (
             <div className='profile-doctor-container'>
                 <div className='profile-doctor'>
-                    <div className='preview-image'><div className='image' style={{ backgroundImage: `url(${profileDoctor.image})` }}></div></div>
+                    <div className='preview-image'><img src={profileDoctor.image} alt='' /></div>
                     <div className='info-doctor'>
                         <div className='name'>{this.changeNameDoctorIfChangeLanguage()}</div>
                         {isShowDescript && <div className='description'>{profileDoctor && profileDoctor.Markdown ? profileDoctor.Markdown.description : ''}</div>}

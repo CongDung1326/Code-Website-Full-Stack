@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor } from '../../services/userServices'
+import { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -11,6 +11,7 @@ export const fetchGenderStart = () => {
             })
 
             let res = await handleGetAllCode('gender');
+
             if (res && res.data.errCode === 0) {
                 dispatch(fetchGenderSuccess(res.data.data))
             }
@@ -445,4 +446,29 @@ export const getProfileDoctorByIdSuccess = (profileDoctor) => ({
 });
 export const getProfileDoctorByIdFailed = () => ({
     type: actionTypes.GET_PROFILE_DOCTOR_BY_ID_FAILED,
+});
+
+// Post book appointment
+export const postBookingAppointmentStart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await postBookAppointment(data);
+
+            console.log('Check res: ', res);
+            if (res && res.errCode === 0) {
+                dispatch(postBookingAppointmentSuccess())
+            }
+            else {
+                dispatch(postBookingAppointmentFailed())
+            }
+        } catch (e) {
+            dispatch(postBookingAppointmentFailed());
+        }
+    }
+}
+export const postBookingAppointmentSuccess = () => ({
+    type: actionTypes.POST_BOOKING_APPOINTMENT_SUCCESS,
+});
+export const postBookingAppointmentFailed = () => ({
+    type: actionTypes.POST_BOOKING_APPOINTMENT_FAILED,
 });

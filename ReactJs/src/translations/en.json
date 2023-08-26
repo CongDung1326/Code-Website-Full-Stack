@@ -112,7 +112,7 @@
         "address": "Address",
         "first_and_last_name": "First and last name",
         "reason_for_examination": "Reason for examination",
-        "place_for": "Place for",
+        "date": "Date of birth",
         "gender": "Gender",
         "complete": "Complete",
         "cancel": "Cancel",

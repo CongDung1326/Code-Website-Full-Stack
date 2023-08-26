@@ -175,4 +175,22 @@ let getProfileDoctorById = async (id) => {
     }).then(res => res.json())
 }
 
-export { getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let postBookAppointment = async (data) => {
+    return await fetch(`http://localhost:8080/api/patient-book-appointment`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            doctorId: data.doctorId,
+            email: data.email,
+            date: data.date,
+            timeType: data.timeType,
+            fullName: data.fullName,
+            phoneNumber: data.phoneNumber,
+            address: data.address,
+            reasonForExamination: data.reasonForExamination,
+            gender: data.gender,
+        })
+    }).then(res => res.json())
+}
+
+export { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
