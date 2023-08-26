@@ -74,21 +74,32 @@ class BookingModal extends Component {
 
     handleSaveScheduleBooking = () => {
         let { dataScheduleTime } = this.props;
-        let { firstAndLastName, phoneNumber, email, address, reasonForExamination, date, selectGender } = this.state;
-        let formatDate = new Date(this.state.date).getTime();
+        let { firstAndLastName, phoneNumber, email, address, reasonForExamination, selectGender } = this.state;
 
-        if (dataScheduleTime && dataScheduleTime.doctorId && dataScheduleTime.timeType) {
+        if (dataScheduleTime && dataScheduleTime.doctorId && dataScheduleTime.timeType && dataScheduleTime.date) {
             this.props.postBookingAppointmentStart({
                 fullName: firstAndLastName,
                 phoneNumber: phoneNumber,
                 email: email,
                 address: address,
                 reasonForExamination: reasonForExamination,
-                date: formatDate,
+                date: dataScheduleTime.date,
                 gender: selectGender.value,
                 doctorId: dataScheduleTime.doctorId,
                 timeType: dataScheduleTime.timeType,
             })
+
+            this.setState({
+                firstAndLastName: '',
+                phoneNumber: '',
+                email: '',
+                address: '',
+                reasonForExamination: '',
+                date: '',
+                selectGender: '',
+            })
+
+            this.props.toggle();
         }
     }
 
