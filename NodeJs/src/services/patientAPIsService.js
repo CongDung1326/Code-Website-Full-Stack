@@ -1,4 +1,5 @@
 const db = require('../models/index.js') // Lấy dữ liệu database
+const emailService = require('./emailService.js');
 require('dotenv').config();
 
 let postBookAppointment = (data) => {
@@ -32,6 +33,15 @@ let postBookAppointment = (data) => {
                     })
 
                     if (isCreate === true) {
+                        await emailService.sendSimpleEmail({
+                            receiverEmail: data.email,
+                            fullName: data.fullName,
+                            timePlace: '9:00 - 10:00',
+                            datePlace: 'Chủ nhật',
+                            nameDoctor: 'Hoàng Công Dũng',
+                            redirectLink: 'https://www.facebook.com/CdungDepTry'
+                        })
+
                         resolve({
                             errCode: 0,
                             message: 'Save schedule succesed!'
