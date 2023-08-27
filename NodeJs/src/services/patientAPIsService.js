@@ -5,7 +5,7 @@ require('dotenv').config();
 let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.email || !data.doctorId || !data.timeType || !data.date) resolve({ errCode: 1, message: 'Missing parameter!' })
+            if (!data.language || !data.email || !data.doctorId || !data.timeType || !data.date) resolve({ errCode: 1, message: 'Missing parameter!' })
             else {
                 let [user, isCreate] = await db.User.findOrCreate({
                     where: { email: data.email },
@@ -36,10 +36,11 @@ let postBookAppointment = (data) => {
                         await emailService.sendSimpleEmail({
                             receiverEmail: data.email,
                             fullName: data.fullName,
-                            timePlace: '9:00 - 10:00',
-                            datePlace: 'Chủ nhật',
-                            nameDoctor: 'Hoàng Công Dũng',
-                            redirectLink: 'https://www.facebook.com/CdungDepTry'
+                            timePlace: data.timePlace,
+                            datePlace: data.datePlace,
+                            nameDoctor: data.nameDoctor,
+                            redirectLink: 'https://www.facebook.com/CdungDepTry',
+                            language: data.language,
                         })
 
                         resolve({

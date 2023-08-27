@@ -201,6 +201,7 @@ let getScheduleByDate = (id, date) => {
                         where: { doctorId: id, date: date },
                         include: [
                             { model: db.Allcode, as: 'timeData', attributes: ['valueEn', 'valueVi'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                            { model: db.User, as: 'doctorData', attributes: ['firstName', 'lastName'] }
                         ],
                     });
                 if (!schedule) schedule = [];
