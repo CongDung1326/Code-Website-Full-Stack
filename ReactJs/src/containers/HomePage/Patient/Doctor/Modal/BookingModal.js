@@ -10,6 +10,7 @@ import DatePicker from '../../../../../components/Input/DatePicker';
 import Select from 'react-select';
 // SCSS
 import './BookingModal.scss'
+import moment from 'moment';
 
 
 class BookingModal extends Component {
@@ -73,10 +74,18 @@ class BookingModal extends Component {
     }
 
     handleSaveScheduleBooking = () => {
-        let { dataScheduleTime } = this.props;
+        let { dataScheduleTime, language } = this.props;
         let { firstAndLastName, phoneNumber, email, address, reasonForExamination, selectGender } = this.state;
 
-        if (dataScheduleTime && dataScheduleTime.doctorId && dataScheduleTime.timeType && dataScheduleTime.date) {
+        if (dataScheduleTime && dataScheduleTime.timeData && dataScheduleTime.doctorData && dataScheduleTime.doctorId && dataScheduleTime.timeType && dataScheduleTime.date) {
+            let time = (language === languages.VI) ? dataScheduleTime.timeData.valueVi : dataScheduleTime.timeData.valueEn;
+            let date = (language === languages.VI) ?
+                moment(+dataScheduleTime.date).format('dddd - DD/MM/YYYY') :
+                moment(+dataScheduleTime.date).locale('en').format('ddd - MM/DD/YYYY');
+            let nameDoctor = (language === languages.VI) ?
+                `${dataScheduleTime.doctorData.firstName} ${dataScheduleTime.doctorData.lastName}` :
+                `${dataScheduleTime.doctorData.lastName} ${dataScheduleTime.doctorData.firstName}`
+
             this.props.postBookingAppointmentStart({
                 fullName: firstAndLastName,
                 phoneNumber: phoneNumber,
@@ -87,6 +96,10 @@ class BookingModal extends Component {
                 gender: selectGender.value,
                 doctorId: dataScheduleTime.doctorId,
                 timeType: dataScheduleTime.timeType,
+                timePlace: time,
+                datePlace: date,
+                nameDoctor: nameDoctor,
+                language: language,
             })
 
             this.setState({
@@ -103,7 +116,7 @@ class BookingModal extends Component {
         }
     }
 
-    handleChangeDate = (selectGender) => {
+    handleChangeGender = (selectGender) => {
         this.setState({
             selectGender: selectGender,
         });
@@ -151,7 +164,7 @@ class BookingModal extends Component {
                             <label><FormattedMessage id="booking_modal.gender" /></label>
                             <Select
                                 value={this.state.selectGender}
-                                onChange={this.handleChangeDate}
+                                onChange={this.handleChangeGender}
                                 options={this.state.detailGenders}
                                 placeholder=''
                                 className='select-gender'

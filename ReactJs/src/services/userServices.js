@@ -189,6 +189,10 @@ let postBookAppointment = async (data) => {
             address: data.address,
             reasonForExamination: data.reasonForExamination,
             gender: data.gender,
+            datePlace: data.datePlace,
+            timePlace: data.timePlace,
+            nameDoctor: data.nameDoctor,
+            language: data.language,
         })
     }).then(res => res.json())
 }
