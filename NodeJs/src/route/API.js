@@ -2,6 +2,7 @@ const express = require("express");
 const userAPIsControllers = require('../controllers/userAPIsControllers.js');
 const doctorAPIsControllers = require('../controllers/doctorAPIsControllers.js');
 const patientAPIsControllers = require('../controllers/patientAPIsControllers.js');
+const specialtyAPIsControllers = require('../controllers/specialtyAPIsControllers.js');
 
 let router = express.Router();
 
@@ -34,6 +35,8 @@ let initAPIRoutes = (app) => {
 
     router.post('/patient-book-appointment', patientAPIsControllers.handlePostBookAppointment);
     router.post('/verify-booking', patientAPIsControllers.handlePostVerifyBookAppointment);
+
+    router.post('/create-new-specialty', specialtyAPIsControllers.handleCreateNewSpecialty);
 
     router.get('/test', userAPIsControllers.test);
 

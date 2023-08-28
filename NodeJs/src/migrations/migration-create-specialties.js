@@ -2,7 +2,7 @@
 module.exports = {
     up: async (queryInterface, Sequelize) => {
         // Muốn add table thì đọc thêm ở query sequelize
-        await queryInterface.createTable('specialtys', {
+        await queryInterface.createTable('specialties', {
             // Ở user.js khai báo gì thì ở đây khái báo tương tự vậy
             id: {
                 allowNull: false,
@@ -13,11 +13,14 @@ module.exports = {
             name: {
                 type: Sequelize.STRING
             },
-            description: {
-                type: Sequelize.TEXT
+            descriptionHTML: {
+                type: Sequelize.TEXT('long')
+            },
+            descriptionMarkdown: {
+                type: Sequelize.TEXT('long')
             },
             image: {
-                type: Sequelize.STRING
+                type: Sequelize.BLOB('long')
             },
             createdAt: {
                 allowNull: false,
@@ -30,6 +33,6 @@ module.exports = {
         });
     },
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.dropTable('specialtys');
+        await queryInterface.dropTable('specialties');
     }
 };
