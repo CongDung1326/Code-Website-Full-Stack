@@ -1,6 +1,12 @@
 const db = require('../models/index.js') // Lấy dữ liệu database
 const emailService = require('./emailService.js');
+const uuid = require('uuid');
 require('dotenv').config();
+
+let buildUrlEmail = (token, doctorId) => {
+    let result = `${process.env.URL_REACT}/verify-booking?token=${token}&doctorId=${doctorId}`;
+    return result;
+}
 
 let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
@@ -21,6 +27,8 @@ let postBookAppointment = (data) => {
                 })
 
                 if (user) {
+                    let token = uuid.v4(); // '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+
                     let [booking, isCreate] = await db.Booking.findOrCreate({
                         where: { patientId: user.id, timeType: data.timeType, date: data.date },
                         defaults: {
@@ -29,6 +37,7 @@ let postBookAppointment = (data) => {
                             date: data.date,
                             timeType: data.timeType,
                             doctorId: data.doctorId,
+                            token: token,
                         }
                     })
 
@@ -39,7 +48,7 @@ let postBookAppointment = (data) => {
                             timePlace: data.timePlace,
                             datePlace: data.datePlace,
                             nameDoctor: data.nameDoctor,
-                            redirectLink: 'https://www.facebook.com/CdungDepTry',
+                            redirectLink: buildUrlEmail(token, data.doctorId),
                             language: data.language,
                         })
 
@@ -62,6 +71,42 @@ let postBookAppointment = (data) => {
     })
 }
 
+let postVerifyBookAppointment = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (data.doctorId && data.token) {
+                let booking = await db.Booking.findOne({
+                    where: { doctorId: data.doctorId, token: data.token, statusId: 'S1' },
+                })
+                if (booking) {
+                    booking.statusId = 'S2'
+
+                    await booking.save();
+                    resolve({
+                        errCode: 0,
+                        message: 'Update the appointment succesed!',
+                    })
+                }
+                else {
+                    resolve({
+                        errCode: 0,
+                        message: 'Appointment has been activated or does not exist!',
+                    })
+                }
+            }
+            else {
+                resolve({
+                    errCode: 1,
+                    message: 'Missing parameter!'
+                })
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     postBookAppointment: postBookAppointment,
+    postVerifyBookAppointment: postVerifyBookAppointment,
 }
