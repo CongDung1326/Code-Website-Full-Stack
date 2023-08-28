@@ -89,7 +89,7 @@ let postVerifyBookAppointment = (data) => {
                 }
                 else {
                     resolve({
-                        errCode: 0,
+                        errCode: 2,
                         message: 'Appointment has been activated or does not exist!',
                     })
                 }
