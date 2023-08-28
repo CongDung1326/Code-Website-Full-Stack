@@ -43,7 +43,7 @@ class VerifyEmail extends Component {
         return (
             <>
                 <Header getBanner={false} />
-                <div className='m-title'><h2>{isCreate === true ? <FormattedMessage id="verify_email.isSuccess" /> : <FormattedMessage id="verify_email.isFailed" />}</h2></div>
+                <div className='m-title-verify-email'><h2>{isCreate === true ? <FormattedMessage id="verify_email.isSuccess" /> : <FormattedMessage id="verify_email.isFailed" />}</h2></div>
             </>
         );
     }

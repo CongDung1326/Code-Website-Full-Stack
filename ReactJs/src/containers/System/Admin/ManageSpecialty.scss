@@ -1,0 +1,51 @@
+.manage-specialty-container {
+    padding: 10px;
+
+    .specialty {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 15px;
+
+        label {
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid silver;
+            height: 35px;
+            padding: 10px;
+        }
+
+        .specialty-name {
+            width: 50%;
+            float: left;
+        }
+
+        .specialty-image {
+            width: 50%;
+            float: right;
+
+            .upload-image {
+                padding: 7px;
+                background: #03a9f4;
+                display: inline-block;
+                border-radius: 10px;
+                cursor: pointer;
+                color: white;
+            }
+        }
+    }
+
+    .save-manage-specialty {
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        padding: 10px 15px;
+        background: orange;
+        margin: 10px 0;
+        float: right;
+    }
+}

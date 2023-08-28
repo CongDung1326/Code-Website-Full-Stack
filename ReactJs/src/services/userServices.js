@@ -208,4 +208,17 @@ let postVerifyBookAppointment = async (data) => {
     }).then(res => res.json())
 }
 
-export { postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let createNewSpecialty = async (data) => {
+    return await fetch(`http://localhost:8080/api/create-new-specialty`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            name: data.name,
+            descriptionHTML: data.descriptionHTML,
+            descriptionMarkdown: data.descriptionMarkdown,
+            image: data.image,
+        })
+    }).then(res => res.json())
+}
+
+export { createNewSpecialty, postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }

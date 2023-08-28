@@ -123,5 +123,8 @@
     "verify_email": {
         "isSuccess": "Xác nhận lịch hẹn thành công!",
         "isFailed": "Lịch hẹn không tồn tại hoặc đã được xác nhận!"
+    },
+    "manage_specialty": {
+        "title": "Quản lý chuyên khoa"
     }
 }

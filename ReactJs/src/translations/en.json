@@ -123,5 +123,8 @@
     "verify_email": {
         "isSuccess": "Appointment confirmed successfully!",
         "isFailed": "Appointment does not exist or has been confirmed!"
+    },
+    "manage_specialty": {
+        "title": "Manage specialty"
     }
 }
