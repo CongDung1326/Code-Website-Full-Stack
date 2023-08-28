@@ -6,12 +6,12 @@ import ProfileDoctor from '../ProfileDoctor';
 import * as actions from '../../../../../store/actions';
 import { languages } from '../../../../../utils';
 import DatePicker from '../../../../../components/Input/DatePicker';
+import moment from 'moment';
+import { toast } from 'react-toastify';
 // Select
 import Select from 'react-select';
 // SCSS
 import './BookingModal.scss'
-import moment from 'moment';
-
 
 class BookingModal extends Component {
     constructor(props) {
@@ -112,6 +112,7 @@ class BookingModal extends Component {
                 selectGender: '',
             })
 
+            toast.success('Create booking schedule success!');
             this.props.toggle();
         }
     }

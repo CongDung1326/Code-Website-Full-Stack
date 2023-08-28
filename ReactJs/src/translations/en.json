@@ -119,5 +119,9 @@
         "add_schedule": "Place schedule",
         "examination_price": "Examination price",
         "time": "Time"
+    },
+    "verify_email": {
+        "isSuccess": "Appointment confirmed successfully!",
+        "isFailed": "Appointment does not exist or has been confirmed!"
     }
 }

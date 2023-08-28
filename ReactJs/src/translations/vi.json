@@ -119,5 +119,9 @@
         "add_schedule": "Đặt lịch khám",
         "examination_price": "Giá khám",
         "time": "Thời gian"
+    },
+    "verify_email": {
+        "isSuccess": "Xác nhận lịch hẹn thành công!",
+        "isFailed": "Lịch hẹn không tồn tại hoặc đã được xác nhận!"
     }
 }

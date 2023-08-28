@@ -197,4 +197,15 @@ let postBookAppointment = async (data) => {
     }).then(res => res.json())
 }
 
-export { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let postVerifyBookAppointment = async (data) => {
+    return await fetch(`http://localhost:8080/api/verify-booking`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            doctorId: data.doctorId,
+            token: data.token,
+        })
+    }).then(res => res.json())
+}
+
+export { postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }

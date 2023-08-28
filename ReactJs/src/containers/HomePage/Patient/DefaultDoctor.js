@@ -21,8 +21,7 @@ class DefaultDoctor extends Component {
     render() {
 
         return (
-            <div className='default-doctor-container'>
-            </div>
+            <div></div>
         );
     }
 }
