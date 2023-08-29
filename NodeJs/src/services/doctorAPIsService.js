@@ -224,6 +224,7 @@ let postMoreInfoDoctor = (data) => {
             else {
                 await db.Doctor_Info.create({
                     doctorId: data.doctorId,
+                    specialtyId: data.specialtyId,
                     priceId: data.priceId,
                     provinceId: data.provinceId,
                     paymentId: data.paymentId,
@@ -257,6 +258,7 @@ let putMoreInfoDoctor = (data) => {
                     doctorInfo.addressClinic = data.addressClinic;
                     doctorInfo.nameClinic = data.nameClinic;
                     doctorInfo.note = data.note;
+                    doctorInfo.specialtyId = data.specialtyId;
 
                     await doctorInfo.save();
 

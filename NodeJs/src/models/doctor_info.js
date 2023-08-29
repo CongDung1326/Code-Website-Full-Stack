@@ -19,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     Doctor_Info.init({
         // Coi kiểu dữ liệu ở sequelize datatypes
         doctorId: DataTypes.INTEGER,
+        specialtyId: DataTypes.INTEGER,
+        clinicId: DataTypes.INTEGER,
         priceId: DataTypes.STRING,
         provinceId: DataTypes.STRING,
         paymentId: DataTypes.STRING,
