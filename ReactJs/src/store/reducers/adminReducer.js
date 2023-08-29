@@ -16,6 +16,7 @@ const initialState = {
     doctorInfo: null,
     profileDoctor: {},
     specialties: [],
+    provinces: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -170,6 +171,18 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.GET_ALL_SPECIALTY_FAILED:
             state.specialties = [];
+            return {
+                ...state,
+            }
+
+        // Get all province
+        case actionTypes.GET_ALL_PROVINCE_SUCCESS:
+            state.provinces = action.provinces;
+            return {
+                ...state,
+            }
+        case actionTypes.GET_ALL_PROVINCE_FAILED:
+            state.provinces = [];
             return {
                 ...state,
             }

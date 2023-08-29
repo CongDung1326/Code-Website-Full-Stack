@@ -50,7 +50,7 @@ class ManageDoctor extends Component {
     async componentDidMount() {
         await this.props.getAllDoctorStart();
         await this.props.getSelectMoreInfoDoctorStart();
-        await this.props.getAllSpecialtyStart();
+        await this.props.getAllSpecialtyStart('ALL', 'ALL');
     }
 
     async componentDidUpdate(prevProps) {
@@ -429,7 +429,7 @@ const mapDispatchToProps = dispatch => {
         createMoreInfoDoctorStart: (data) => dispatch(actions.createMoreInfoDoctorStart(data)),
         putMoreInfoDoctorStart: (data) => dispatch(actions.putMoreInfoDoctorStart(data)),
         getMoreInfoDoctorStart: (doctorId) => dispatch(actions.getMoreInfoDoctorStart(doctorId)),
-        getAllSpecialtyStart: () => dispatch(actions.getAllSpecialtyStart()),
+        getAllSpecialtyStart: (id, location) => dispatch(actions.getAllSpecialtyStart(id, location)),
     };
 };
 

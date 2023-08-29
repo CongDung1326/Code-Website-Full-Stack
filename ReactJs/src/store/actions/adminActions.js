@@ -474,10 +474,10 @@ export const postBookingAppointmentFailed = () => ({
 });
 
 // Get all specialty
-export const getAllSpecialtyStart = () => {
+export const getAllSpecialtyStart = (id, location) => {
     return async (dispatch, getState) => {
         try {
-            let res = await getAllSpecialty();
+            let res = await getAllSpecialty(id, location);
 
             if (res && res.errCode === 0) {
                 dispatch(getAllSpecialtySuccess(res.specialties))
@@ -496,4 +496,29 @@ export const getAllSpecialtySuccess = (specialties) => ({
 });
 export const getAllSpecialtyFailed = () => ({
     type: actionTypes.GET_ALL_SPECIALTY_FAILED,
+});
+
+// Get all province
+export const getAllProvinceStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await handleGetAllCode('PROVINCE');
+
+            if (res && res.data.errCode === 0) {
+                dispatch(getAllProvinceSuccess(res.data.data))
+            }
+            else {
+                dispatch(getAllProvinceFailed())
+            }
+        } catch (e) {
+            dispatch(getAllProvinceFailed());
+        }
+    }
+}
+export const getAllProvinceSuccess = (provinces) => ({
+    type: actionTypes.GET_ALL_PROVINCE_SUCCESS,
+    provinces: provinces,
+});
+export const getAllProvinceFailed = () => ({
+    type: actionTypes.GET_ALL_PROVINCE_FAILED,
 });

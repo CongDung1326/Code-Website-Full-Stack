@@ -17,7 +17,7 @@ class Specialty extends Component {
     }
 
     async componentDidMount() {
-        await this.props.getAllSpecialtyStart();
+        await this.props.getAllSpecialtyStart('ALL', 'ALL');
     }
 
     componentDidUpdate(prevProps) {
@@ -78,7 +78,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getAllSpecialtyStart: () => dispatch(actions.getAllSpecialtyStart()),
+        getAllSpecialtyStart: (id) => dispatch(actions.getAllSpecialtyStart(id)),
     };
 };
 

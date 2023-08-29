@@ -2,22 +2,24 @@
     margin-top: 70px;
     padding: 0 40px;
 
-    .doctor {
-        width: 100%;
-        display: flex;
-        gap: 20px;
-        padding: 40px;
-        box-shadow: 0 0 10px silver;
-        margin: 40px 0;
+    .doctor-info {
+        .doctor {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            padding: 40px;
+            box-shadow: 0 0 10px silver;
+            margin: 40px 0;
 
-        .left {
-            width: 50%;
-            float: left;
-        }
+            .left {
+                width: 50%;
+                float: left;
+            }
 
-        .right {
-            width: 50%;
-            float: right;
+            .right {
+                width: 50%;
+                float: right;
+            }
         }
     }
 }

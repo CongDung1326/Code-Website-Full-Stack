@@ -90,6 +90,10 @@ const actionTypes = Object.freeze({
     // Get all specialty
     GET_ALL_SPECIALTY_SUCCESS: "GET_ALL_SPECIALTY_SUCCESS",
     GET_ALL_SPECIALTY_FAILED: 'GET_ALL_SPECIALTY_FAILED',
+
+    // Get all province
+    GET_ALL_PROVINCE_SUCCESS: "GET_ALL_PROVINCE_SUCCESS",
+    GET_ALL_PROVINCE_FAILED: 'GET_ALL_PROVINCE_FAILED',
 })
 
 export default actionTypes;

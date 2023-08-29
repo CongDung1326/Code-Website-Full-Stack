@@ -223,8 +223,8 @@ let createNewSpecialty = async (data) => {
     }).then(res => res.json())
 }
 
-let getAllSpecialty = async () => {
-    return await fetch(`http://localhost:8080/api/get-all-specialty`, {
+let getAllSpecialty = async (id, location) => {
+    return await fetch(`http://localhost:8080/api/get-all-specialty?id=${id}&location=${location}`, {
         method: "GET",
     }).then(res => res.json())
 }
