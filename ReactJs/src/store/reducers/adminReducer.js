@@ -15,6 +15,7 @@ const initialState = {
     provinceData: [],
     doctorInfo: null,
     profileDoctor: {},
+    specialties: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -157,6 +158,18 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.GET_PROFILE_DOCTOR_BY_ID_FAILED:
             state.profileDoctor = {};
+            return {
+                ...state,
+            }
+
+        // Get all specialty
+        case actionTypes.GET_ALL_SPECIALTY_SUCCESS:
+            state.specialties = action.specialties;
+            return {
+                ...state,
+            }
+        case actionTypes.GET_ALL_SPECIALTY_FAILED:
+            state.specialties = [];
             return {
                 ...state,
             }

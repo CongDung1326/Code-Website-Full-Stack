@@ -72,10 +72,10 @@ class ManageSpecialty extends Component {
             })
 
             this.setState({
-                descriptionHTML: '',
-                descriptionMarkdown: '',
-                image: '',
-                name: '',
+                contentHTML: '',
+                contentMarkdown: '',
+                imageSpecialty: '',
+                nameSpecialty: '',
             })
             toast.success('Create specialty success!');
         }

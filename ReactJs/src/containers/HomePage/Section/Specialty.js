@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import * as actions from '../../../store/actions';
 
 import Slider from 'react-slick';
 
 class Specialty extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            specialties: [],
+        }
+    }
+
+    async componentDidMount() {
+        await this.props.getAllSpecialtyStart();
+    }
+
+    componentDidUpdate(prevProps) {
+        let { specialtiesRedux } = this.props;
+
+        if (prevProps.specialtiesRedux !== specialtiesRedux) {
+            this.setState({
+                specialties: specialtiesRedux,
+            })
+        }
+    }
+
     render() {
+        let { specialties } = this.state;
         let settings = this.props.settings;
+        specialties = specialties.concat(specialties).concat(specialties).concat(specialties);
 
         return (
             <>
@@ -19,54 +44,15 @@ class Specialty extends Component {
                                 <button className='see-more'><FormattedMessage id="slick.see_more" /></button>
                             </div>
                             <Slider {...settings}>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
-                                <div className='section-img'>
-                                    <img src="http://placekitten.com/g/400/200" alt="" />
-                                </div>
+                                {(specialties && specialties.length > 0) ?
+                                    specialties.map((item, index) => {
+                                        return (
+                                            <div className='section-img' key={index}>
+                                                <img src={item.image} alt="" />
+                                            </div>
+                                        )
+                                    }) : ''
+                                }
                             </Slider>
                         </div>
                     </div>
@@ -80,11 +66,13 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn, // Các biến từ redux
         language: state.app.language, // state.app.language là ta lấy từ file appReducer.js
+        specialtiesRedux: state.admin.specialties,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getAllSpecialtyStart: () => dispatch(actions.getAllSpecialtyStart()),
     };
 };
 

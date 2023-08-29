@@ -221,4 +221,10 @@ let createNewSpecialty = async (data) => {
     }).then(res => res.json())
 }
 
-export { createNewSpecialty, postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let getAllSpecialty = async () => {
+    return await fetch(`http://localhost:8080/api/get-all-specialty`, {
+        method: "GET",
+    }).then(res => res.json())
+}
+
+export { getAllSpecialty, createNewSpecialty, postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }

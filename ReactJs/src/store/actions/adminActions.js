@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor } from '../../services/userServices'
+import { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor, getAllSpecialty } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -471,4 +471,29 @@ export const postBookingAppointmentSuccess = () => ({
 });
 export const postBookingAppointmentFailed = () => ({
     type: actionTypes.POST_BOOKING_APPOINTMENT_FAILED,
+});
+
+// Get all specialty
+export const getAllSpecialtyStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllSpecialty();
+
+            if (res && res.errCode === 0) {
+                dispatch(getAllSpecialtySuccess(res.specialties))
+            }
+            else {
+                dispatch(getAllSpecialtyFailed())
+            }
+        } catch (e) {
+            dispatch(getAllSpecialtyFailed());
+        }
+    }
+}
+export const getAllSpecialtySuccess = (specialties) => ({
+    type: actionTypes.GET_ALL_SPECIALTY_SUCCESS,
+    specialties: specialties,
+});
+export const getAllSpecialtyFailed = () => ({
+    type: actionTypes.GET_ALL_SPECIALTY_FAILED,
 });
