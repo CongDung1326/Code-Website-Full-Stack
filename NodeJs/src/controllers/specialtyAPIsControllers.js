@@ -17,7 +17,8 @@ let handleCreateNewSpecialty = async (req, res) => {
 
 let handleGetAllSpecialty = async (req, res) => {
     try {
-        let infor = await specialtyAPIsService.getAllSpecialty();
+        let { id, location } = req.query;
+        let infor = await specialtyAPIsService.getAllSpecialty(id, location);
 
         return res.status(200).json(infor);
     } catch (e) {

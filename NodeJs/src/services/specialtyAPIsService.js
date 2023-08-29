@@ -23,20 +23,62 @@ let createNewSpecialty = (data) => {
     })
 }
 
-let getAllSpecialty = () => {
+let getAllSpecialty = (id, location) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let specialty = await db.Specialty.findAll()
-            if (specialty && specialty.length > 0) {
-                specialty.map(item => {
-                    item.image = new Buffer.from(item.image, 'base64').toString('binary');
-                })
-            }
+            if (!id || !location) resolve({ errCode: 1, message: 'Missing parameter' })
+            else {
+                if (id === 'ALL' || id === 'all') {
+                    let specialty = await db.Specialty.findAll()
+                    if (specialty && specialty.length > 0) {
+                        specialty.map(item => {
+                            item.image = new Buffer.from(item.image, 'base64').toString('binary');
+                        })
+                    }
 
-            resolve({
-                errCode: 0,
-                specialties: specialty,
-            })
+                    resolve({
+                        errCode: 0,
+                        specialties: specialty,
+                    })
+                }
+                else {
+                    let specialty = await db.Specialty.findOne({
+                        where: { id: id },
+                        attributes: ['name', 'descriptionHTML', 'descriptionMarkdown'],
+                        raw: true
+                    })
+
+                    if (specialty) {
+                        if (location === 'ALL' || location === 'all') {
+                            let doctorInfo = await db.Doctor_Info.findAll({
+                                where: { specialtyId: id },
+                                attributes: ['doctorId', 'provinceId'],
+                                include: [
+                                    { model: db.User, as: 'DoctorInfo', attributes: ['id'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                                ]
+                            })
+
+                            specialty.doctorInfo = doctorInfo
+                        }
+                        else {
+                            let doctorInfo = await db.Doctor_Info.findAll({
+                                where: { specialtyId: id, provinceId: location },
+                                attributes: ['doctorId', 'provinceId'],
+                                include: [
+                                    { model: db.User, as: 'DoctorInfo', attributes: ['id'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
+                                ]
+                            })
+
+                            specialty.doctorInfo = doctorInfo
+                        }
+                        resolve({
+                            errCode: 0,
+                            specialties: specialty,
+                        })
+                    }
+                    else resolve({ errCode: 0, specialties: `Can't find specialty!` })
+                }
+            }
 
         } catch (e) {
             reject(e);
