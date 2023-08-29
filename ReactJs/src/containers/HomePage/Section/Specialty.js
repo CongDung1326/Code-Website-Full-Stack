@@ -49,6 +49,7 @@ class Specialty extends Component {
                                         return (
                                             <div className='section-img' key={index}>
                                                 <img src={item.image} alt="" />
+                                                <label>{item.name}</label>
                                             </div>
                                         )
                                     }) : ''
