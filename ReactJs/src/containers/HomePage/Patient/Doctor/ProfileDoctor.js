@@ -6,6 +6,7 @@ import { languages } from '../../../../utils';
 
 import './ProfileDoctor.scss'
 import moment from 'moment/moment';
+import { getProfileDoctorById } from '../../../../services/userServices';
 
 class ProfileDoctor extends Component {
     constructor(props) {
@@ -19,16 +20,28 @@ class ProfileDoctor extends Component {
     async componentDidMount() {
         let doctorId = this.props.doctorId;
 
-        this.props.getProfileDoctorByIdStart(doctorId);
+        if (doctorId) {
+            let res = await getProfileDoctorById(doctorId)
+
+            if (res && res.errCode === 0) {
+                this.setState({
+                    profileDoctor: res.profileDoctor
+                })
+            }
+        }
     }
 
     async componentDidUpdate(prevProps) {
-        let { profileDoctorRedux, language } = this.props;
+        let { doctorId, language } = this.props;
 
-        if (prevProps.profileDoctorRedux !== profileDoctorRedux) {
-            this.setState({
-                profileDoctor: profileDoctorRedux,
-            })
+        if (prevProps.doctorId !== doctorId) {
+            let res = await getProfileDoctorById(doctorId)
+
+            if (res && res.errCode === 0) {
+                this.setState({
+                    profileDoctor: res.data
+                })
+            }
         }
     }
 
@@ -88,13 +101,11 @@ class ProfileDoctor extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        profileDoctorRedux: state.admin.profileDoctor,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getProfileDoctorByIdStart: (id) => dispatch(actions.getProfileDoctorByIdStart(id))
     };
 };
 
