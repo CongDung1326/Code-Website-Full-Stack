@@ -20,6 +20,7 @@ import VerifyEmail from './HomePage/Patient/VerifyEmail';
 
 // Custom
 import CustomScrollbars from '../components/CustomScrollbars';
+import DetailSpecialty from './HomePage/Patient/Specialty/DetailSpecialty';
 
 class App extends Component {
 
@@ -55,6 +56,7 @@ class App extends Component {
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                                    <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
                                 </Switch>
                             </CustomScrollbars>

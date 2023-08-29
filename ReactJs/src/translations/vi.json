@@ -96,7 +96,9 @@
         "choose_province": "Chọn tỉnh thành",
         "name_clinic": "Tên phòng khám",
         "address_clinic": "Địa chỉ phòng khám",
-        "note": "Ghi chú"
+        "note": "Ghi chú",
+        "choose_specialty": "Chọn chuyên khoa",
+        "choose_clinic": "Chọn phòng khám"
     },
     "doctor_info": {
         "address_clinic": "ĐỊA CHỈ KHÁM",

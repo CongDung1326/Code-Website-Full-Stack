@@ -96,7 +96,9 @@
         "choose_province": "Choose province",
         "name_clinic": "Name clinic",
         "address_clinic": "Address clinic",
-        "note": "Note"
+        "note": "Note",
+        "choose_specialty": "Choose specialty",
+        "choose_clinic": "Choose clinic"
     },
     "doctor_info": {
         "address_clinic": "ADDRESS CLINIC",

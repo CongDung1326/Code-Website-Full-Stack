@@ -137,6 +137,7 @@ let postMoreInfoDoctor = async (data) => {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
             doctorId: data.doctorId,
+            specialtyId: data.specialtyId,
             priceId: data.priceId,
             provinceId: data.provinceId,
             paymentId: data.paymentId,
@@ -153,6 +154,7 @@ let putMoreInfoDoctor = async (data) => {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
             doctorId: data.doctorId,
+            specialtyId: data.specialtyId,
             priceId: data.priceId,
             provinceId: data.provinceId,
             paymentId: data.paymentId,
