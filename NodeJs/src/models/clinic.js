@@ -17,8 +17,9 @@ module.exports = (sequelize, DataTypes) => {
         // Coi kiểu dữ liệu ở sequelize datatypes
         name: DataTypes.STRING,
         address: DataTypes.STRING,
-        description: DataTypes.TEXT,
-        image: DataTypes.STRING
+        image: DataTypes.BLOB('long'),
+        descriptionHTML: DataTypes.TEXT('long'),
+        descriptionMarkdown: DataTypes.TEXT('long'),
     }, {
         sequelize,
         modelName: 'Clinic',

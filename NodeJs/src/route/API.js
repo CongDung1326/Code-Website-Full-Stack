@@ -3,6 +3,7 @@ const userAPIsControllers = require('../controllers/userAPIsControllers.js');
 const doctorAPIsControllers = require('../controllers/doctorAPIsControllers.js');
 const patientAPIsControllers = require('../controllers/patientAPIsControllers.js');
 const specialtyAPIsControllers = require('../controllers/specialtyAPIsControllers.js');
+const clinicAPIsControllers = require('../controllers/clinicAPIsControllers.js');
 
 let router = express.Router();
 
@@ -38,6 +39,8 @@ let initAPIRoutes = (app) => {
 
     router.post('/create-new-specialty', specialtyAPIsControllers.handleCreateNewSpecialty);
     router.get('/get-all-specialty', specialtyAPIsControllers.handleGetAllSpecialty);
+
+    router.post('/create-new-clinic', clinicAPIsControllers.handleCreateNewClinic)
 
     router.get('/test', userAPIsControllers.test);
 

@@ -16,11 +16,14 @@ module.exports = {
             address: {
                 type: Sequelize.STRING
             },
-            description: {
-                type: Sequelize.TEXT
-            },
             image: {
-                type: Sequelize.STRING
+                type: Sequelize.BLOB('long')
+            },
+            descriptionHTML: {
+                type: Sequelize.TEXT('long'),
+            },
+            descriptionMarkdown: {
+                type: Sequelize.TEXT('long'),
             },
             createdAt: {
                 allowNull: false,
