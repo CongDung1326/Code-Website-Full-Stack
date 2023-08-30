@@ -53,9 +53,6 @@ let getAllSpecialty = (id, location) => {
                             let doctorInfo = await db.Doctor_Info.findAll({
                                 where: { specialtyId: id },
                                 attributes: ['doctorId', 'provinceId'],
-                                include: [
-                                    { model: db.User, as: 'DoctorInfo', attributes: ['id'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
-                                ]
                             })
 
                             specialty.doctorInfo = doctorInfo
@@ -64,9 +61,6 @@ let getAllSpecialty = (id, location) => {
                             let doctorInfo = await db.Doctor_Info.findAll({
                                 where: { specialtyId: id, provinceId: location },
                                 attributes: ['doctorId', 'provinceId'],
-                                include: [
-                                    { model: db.User, as: 'DoctorInfo', attributes: ['id'] }, // Xuất thêm giá trị tại allCode có giá trị tên là (positionData) xuất giá trị valueEn và valueVi
-                                ]
                             })
 
                             specialty.doctorInfo = doctorInfo
