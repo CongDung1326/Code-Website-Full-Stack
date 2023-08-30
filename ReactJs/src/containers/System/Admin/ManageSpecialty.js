@@ -91,17 +91,17 @@ class ManageSpecialty extends Component {
                 <div className='title'><FormattedMessage id="manage_specialty.title" /></div>
                 <div className='specialty'>
                     <div className='specialty-name'>
-                        <label>Tên chuyên khoa</label>
+                        <label><FormattedMessage id="manage_specialty.specialty_name" /></label>
                         <input type='text' onChange={(e) => this.handleOnChangeValueInput(e, 'nameSpecialty')} value={this.state.nameSpecialty} />
                     </div>
                     <div className='specialty-image'>
-                        <label className='m-title'>Ảnh chuyên khoa</label>
-                        <label className='upload-image' htmlFor='specialty-id'>Tải ảnh <i className="fa-solid fa-upload"></i></label>
+                        <label className='m-title'><FormattedMessage id="manage_specialty.specialty_image" /></label>
+                        <label className='upload-image' htmlFor='specialty-id'><FormattedMessage id="manage_specialty.upload" /> <i className="fa-solid fa-upload"></i></label>
                         <input id="specialty-id" type='file' onChange={(e) => this.handleOnChangeImage(e)} hidden />
                     </div>
                 </div>
                 <div className='manage-specialty-edit'><div className='manage-doctor-editor'><MdEditor value={this.state.contentMarkdown} style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={this.handleEditorChange} /></div></div>
-                <button className='save-manage-specialty' onClick={() => this.handleOnClickSaveSpecialty()}>Save</button>
+                <button className='save-manage-specialty' onClick={() => this.handleOnClickSaveSpecialty()}><FormattedMessage id="manage_specialty.save" /></button>
             </div>
         );
     }

@@ -127,6 +127,18 @@
         "isFailed": "Appointment does not exist or has been confirmed!"
     },
     "manage_specialty": {
-        "title": "Manage specialty"
+        "title": "Manage specialty",
+        "specialty_name": "Specialty name",
+        "specialty_image": "Specialty image",
+        "upload": "Upload image",
+        "save": "Save"
+    },
+    "manage_clinic": {
+        "title": "Manage clinic",
+        "clinic_name": "Clinic name",
+        "clinic_image": "Clinic image",
+        "clinic_address": "Clinic address",
+        "upload": "Upload image",
+        "save": "Save"
     }
 }

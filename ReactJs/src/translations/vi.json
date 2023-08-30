@@ -127,6 +127,18 @@
         "isFailed": "Lịch hẹn không tồn tại hoặc đã được xác nhận!"
     },
     "manage_specialty": {
-        "title": "Quản lý chuyên khoa"
+        "title": "Quản lý chuyên khoa",
+        "specialty_name": "Tên chuyên khoa",
+        "specialty_image": "Ảnh chuyên khoa",
+        "upload": "Tải ảnh",
+        "save": "Lưu"
+    },
+    "manage_clinic": {
+        "title": "Quản lý phòng khám",
+        "clinic_name": "Tên phòng khám",
+        "clinic_image": "Ảnh phòng khám",
+        "clinic_address": "Địa chỉ phòng khám",
+        "upload": "Tải ảnh",
+        "save": "Lưu"
     }
 }
