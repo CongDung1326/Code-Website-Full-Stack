@@ -6,9 +6,10 @@ import DoctorSchedule from '../Doctor/DoctorSchedule';
 import DoctorInfo from '../Doctor/DoctorInfo';
 import ProfileDoctor from '../Doctor/ProfileDoctor';
 import * as actions from '../../../../store/actions';
+import { languages } from '../../../../utils';
 // SCSS
 import './DetailSpecialty.scss'
-import { languages } from '../../../../utils';
+import { getAllSpecialty } from '../../../../services/userServices';
 
 class DetailSpecialty extends Component {
     constructor(props) {
@@ -17,38 +18,83 @@ class DetailSpecialty extends Component {
         this.state = {
             specialties: null,
             provinces: [],
+            isShowMore: false,
+            arrDoctorId: [],
         }
     }
 
     async componentDidMount() {
-        let { id } = this.props.match.params;
+        if (this.props && this.props.match && this.props.match.params) {
+            let { id } = this.props.match.params;
+            if (this.props && this.props.match && this.props.match.params) {
+                let { id } = this.props.match.params;
+                let res = await getAllSpecialty(id, 'ALL');
 
-        if (id) {
-            await this.props.getAllSpecialtyStart(id, 'ALL');
+                this.setState({
+                    specialties: res.specialties ? res.specialties : null,
+                    arrDoctorId: res.specialties.doctorInfo ? res.specialties.doctorInfo : null,
+                })
+            }
+            await this.props.getAllProvinceStart();
         }
-        await this.props.getAllProvinceStart();
     }
 
-    componentDidUpdate(prevProps) {
+    async componentDidUpdate(prevProps, prevState) {
         let { specialtiesRedux, provincesRedux } = this.props;
+
         if (prevProps.specialtiesRedux !== specialtiesRedux) {
             this.setState({
                 specialties: specialtiesRedux,
+                arrDoctorId: specialtiesRedux.doctorInfo ? specialtiesRedux.doctorInfo : null,
             })
         }
 
         if (prevProps.provincesRedux !== provincesRedux) {
+            let result = provincesRedux;
+            if (result && result.length > 0) {
+                result.unshift({
+                    createAt: null,
+                    updateAt: null,
+                    valueEn: 'Nationwide',
+                    valueVi: "Toàn quốc",
+                    keyMap: 'ALL',
+                    type: "PROVINCE",
+                })
+            }
+
             this.setState({
-                provinces: provincesRedux,
+                provinces: result,
+            })
+        }
+    }
+
+    handleOnChangeShowMore = () => {
+        let { isShowMore } = this.state;
+
+        this.setState({
+            isShowMore: !isShowMore,
+        })
+    }
+
+    handleOnChangeGetProvince = async (event) => {
+        let value = event.target.value;
+
+        if (this.props && this.props.match && this.props.match.params) {
+            let { id } = this.props.match.params;
+            let res = await getAllSpecialty(id, value);
+
+            this.setState({
+                specialties: res.specialties ? res.specialties : null,
+                arrDoctorId: res.specialties.doctorInfo ? res.specialties.doctorInfo : null,
             })
         }
     }
 
     render() {
         let { language } = this.props;
-        let { specialties, provinces } = this.state;
-        let arrDoctorId = (specialties && specialties.doctorInfo) ? specialties.doctorInfo : null;
+        let { specialties, provinces, isShowMore, arrDoctorId } = this.state;
 
+        //console.log('Check arrDoctorId: ', arrDoctorId);
         return (
             <>
                 <Header />
@@ -57,12 +103,13 @@ class DetailSpecialty extends Component {
                         <div className='specialty-name'>
                             {specialties && <h3>{specialties.name}</h3>}
                         </div>
-                        <div className='specialty-description'>
+                        <div className='specialty-description' style={(isShowMore === true ? { height: "auto" } : { height: "100px" })}>
                             {specialties && <div dangerouslySetInnerHTML={{ __html: specialties.descriptionHTML }}></div>}
                         </div>
+                        <div className='read-more' onClick={() => this.handleOnChangeShowMore()}>{isShowMore ? <FormattedMessage id="doctor_info.hidden" /> : <FormattedMessage id="doctor_info.show_more" />}</div>
                     </div>
                     <div className='provinces'>
-                        <select className='province-select'>
+                        <select className='province-select' onChange={(e) => this.handleOnChangeGetProvince(e)}>
                             {provinces && provinces.length > 0 &&
                                 provinces.map((item, index) => {
                                     return (
@@ -78,11 +125,11 @@ class DetailSpecialty extends Component {
                                 return (
                                     <div className='doctor' key={index}>
                                         <div className='left'>
-                                            <ProfileDoctor doctorId={item.DoctorInfo.id} isShowDescript={false} />
+                                            <ProfileDoctor doctorId={item.doctorId} isShowDescript={true} />
                                         </div>
                                         <div className='right'>
-                                            <DoctorSchedule doctorId={item.DoctorInfo.id} />
-                                            <DoctorInfo doctorId={item.DoctorInfo.id} />
+                                            <DoctorSchedule doctorId={item.doctorId} />
+                                            <DoctorInfo doctorId={item.doctorId} />
                                         </div>
                                     </div>
                                 )

@@ -21,7 +21,7 @@ class ProfileDoctor extends Component {
         let doctorId = this.props.doctorId;
 
         if (doctorId) {
-            let res = await getProfileDoctorById(doctorId)
+            let res = await getProfileDoctorById(doctorId);
 
             if (res && res.errCode === 0) {
                 this.setState({
@@ -32,14 +32,14 @@ class ProfileDoctor extends Component {
     }
 
     async componentDidUpdate(prevProps) {
-        let { doctorId, language } = this.props;
+        let { doctorId } = this.props;
 
         if (prevProps.doctorId !== doctorId) {
-            let res = await getProfileDoctorById(doctorId)
+            let res = await getProfileDoctorById(doctorId);
 
             if (res && res.errCode === 0) {
                 this.setState({
-                    profileDoctor: res.data
+                    profileDoctor: res.profileDoctor
                 })
             }
         }
@@ -85,7 +85,7 @@ class ProfileDoctor extends Component {
         return (
             <div className='profile-doctor-container'>
                 <div className='profile-doctor'>
-                    <div className='preview-image'><img src={profileDoctor.image} alt='' /></div>
+                    <div className='preview-image'><img src={(profileDoctor && profileDoctor.image) ? profileDoctor.image : null} alt='' /></div>
                     <div className='info-doctor'>
                         <div className='name'>{this.changeNameDoctorIfChangeLanguage()}</div>
                         {isShowDescript && <div className='description'>{profileDoctor && profileDoctor.Markdown ? profileDoctor.Markdown.description : ''}</div>}

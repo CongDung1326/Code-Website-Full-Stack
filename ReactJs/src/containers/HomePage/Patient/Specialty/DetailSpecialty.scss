@@ -22,4 +22,28 @@
             }
         }
     }
+
+    .specialty-info {
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 5px;
+        background: #ececec;
+
+        .specialty-name {
+            h3 {
+                font-weight: bold;
+            }
+        }
+
+        .specialty-description {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .read-more {
+        color: blue;
+        cursor: pointer;
+        display: inline-block;
+    }
 }
