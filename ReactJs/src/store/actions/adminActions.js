@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor, getAllSpecialty } from '../../services/userServices'
+import { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor, getAllSpecialty, getAllClinic } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -521,4 +521,29 @@ export const getAllProvinceSuccess = (provinces) => ({
 });
 export const getAllProvinceFailed = () => ({
     type: actionTypes.GET_ALL_PROVINCE_FAILED,
+});
+
+// Get all clinic
+export const getAllClinicStart = (id, location) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllClinic(id, location);
+
+            if (res && res.errCode === 0) {
+                dispatch(getAllClinicSuccess(res.clinics))
+            }
+            else {
+                dispatch(getAllClinicFailed())
+            }
+        } catch (e) {
+            dispatch(getAllClinicFailed());
+        }
+    }
+}
+export const getAllClinicSuccess = (clinics) => ({
+    type: actionTypes.GET_ALL_CLINIC_SUCCESS,
+    clinics: clinics,
+});
+export const getAllClinicFailed = () => ({
+    type: actionTypes.GET_ALL_CLINIC_FAILED,
 });

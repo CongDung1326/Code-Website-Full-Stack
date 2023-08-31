@@ -25,7 +25,6 @@ class DetailSpecialty extends Component {
 
     async componentDidMount() {
         if (this.props && this.props.match && this.props.match.params) {
-            let { id } = this.props.match.params;
             if (this.props && this.props.match && this.props.match.params) {
                 let { id } = this.props.match.params;
                 let res = await getAllSpecialty(id, 'ALL');

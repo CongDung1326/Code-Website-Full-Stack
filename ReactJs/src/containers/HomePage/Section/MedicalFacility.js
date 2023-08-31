@@ -1,12 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import * as actions from '../../../store/actions';
+import { withRouter } from 'react-router';
 
 import Slider from 'react-slick';
 
 class MedicalFacility extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            clinics: [],
+        }
+    }
+
+    async componentDidMount() {
+        await this.props.getAllClinicStart('ALL', 'ALL');
+    }
+
+    componentDidUpdate(prevProps) {
+        let { clinicsRedux } = this.props;
+        if (prevProps.clinicsRedux !== clinicsRedux) {
+            this.setState({
+                clinics: clinicsRedux,
+            })
+        }
+    }
+
+    handleDetailClinic = (clinic) => {
+        this.props.history.push(`/detail-clinic/${clinic.id}`);
+    }
 
     render() {
+        let { clinics } = this.state;
         let settings = {
             dots: true,
             infinite: true,
@@ -34,70 +61,17 @@ class MedicalFacility extends Component {
                                 <button className='see-more'><FormattedMessage id="slick.find" /></button>
                             </div>
                             <Slider {...settings}>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
-                                <div className='section-img'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/083122lo-go-viet-duc.jpg" alt="" />
-                                    <p className='name'><FormattedMessage id="slick.medical_facility_name.viet_duc" /></p>
-                                </div>
+                                {clinics && clinics.length > 0 &&
+                                    clinics.map((item, value) => {
+                                        return (
+                                            <div onClick={() => this.handleDetailClinic(item)} className='section-img' key={value} >
+                                                {/* <img src={item.image} alt="" /> */}
+                                                <div className='div-image' style={{ backgroundImage: `url(${item.image})` }}></div>
+                                                <p className='name'>{item.name}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </Slider>
                         </div>
                     </div>
@@ -111,12 +85,14 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn, // Các biến từ redux
         language: state.app.language, // state.app.language là ta lấy từ file appReducer.js
+        clinicsRedux: state.admin.clinics,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getAllClinicStart: (id, location) => dispatch(actions.getAllClinicStart(id, location)),
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MedicalFacility));

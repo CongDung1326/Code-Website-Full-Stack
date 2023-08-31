@@ -138,6 +138,7 @@ let postMoreInfoDoctor = async (data) => {
         body: qs.stringify({
             doctorId: data.doctorId,
             specialtyId: data.specialtyId,
+            clinicId: data.clinicId,
             priceId: data.priceId,
             provinceId: data.provinceId,
             paymentId: data.paymentId,
@@ -155,6 +156,7 @@ let putMoreInfoDoctor = async (data) => {
         body: qs.stringify({
             doctorId: data.doctorId,
             specialtyId: data.specialtyId,
+            clinicId: data.clinicId,
             priceId: data.priceId,
             provinceId: data.provinceId,
             paymentId: data.paymentId,
@@ -243,4 +245,10 @@ let createNewClinic = async (data) => {
     }).then(res => res.json())
 }
 
-export { createNewClinic, getAllSpecialty, createNewSpecialty, postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let getAllClinic = async (id, location) => {
+    return await fetch(`http://localhost:8080/api/get-all-clinic?id=${id}&location=${location}`, {
+        method: "GET",
+    }).then(res => res.json())
+}
+
+export { getAllClinic, createNewClinic, getAllSpecialty, createNewSpecialty, postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }

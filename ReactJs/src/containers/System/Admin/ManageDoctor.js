@@ -29,6 +29,7 @@ class ManageDoctor extends Component {
             selectPay: null,
             selectProvince: null,
             selectSpecialty: null,
+            selectClinic: null,
             contentMarkdown: '',
             contentHTML: '',
             description: '',
@@ -38,6 +39,7 @@ class ManageDoctor extends Component {
             detailPayment: null,
             detailProvince: null,
             detailSpecialty: null,
+            detailClinic: null,
             method: '',
             nameClinic: '',
             addressClinic: '',
@@ -51,10 +53,11 @@ class ManageDoctor extends Component {
         await this.props.getAllDoctorStart();
         await this.props.getSelectMoreInfoDoctorStart();
         await this.props.getAllSpecialtyStart('ALL', 'ALL');
+        await this.props.getAllClinicStart('ALL', 'ALL');
     }
 
     async componentDidUpdate(prevProps) {
-        let { dataAllDoctorRedux, language, detailDoctorRedux, priceRedux, paymentRedux, provinceRedux, doctorInfoRedux, specialtiesRedux } = this.props;
+        let { clinicsRedux, dataAllDoctorRedux, language, detailDoctorRedux, priceRedux, paymentRedux, provinceRedux, doctorInfoRedux, specialtiesRedux } = this.props;
 
         if (prevProps.dataAllDoctorRedux !== dataAllDoctorRedux) {
             let dataSelect = this.buildDataInputSelect(this.props.dataAllDoctorRedux, 'USERS');
@@ -107,13 +110,21 @@ class ManageDoctor extends Component {
                 doctorInfo: doctorInfoRedux
             })
         }
+
+        if (prevProps.clinicsRedux !== clinicsRedux) {
+            let clinic = this.buildDataInputSelect(clinicsRedux, 'CLINIC');
+
+            this.setState({
+                detailClinic: clinic,
+            })
+        }
     }
 
     handleSaveEditorMarkdown = async () => {
         try {
-            let { contentMarkdown, contentHTML, description, selectedDoctor, selectSpecialty, method, selectPay, selectPrice, selectProvince, addressClinic, nameClinic, note } = this.state;
+            let { selectClinic, contentMarkdown, contentHTML, description, selectedDoctor, selectSpecialty, method, selectPay, selectPrice, selectProvince, addressClinic, nameClinic, note } = this.state;
 
-            if (contentMarkdown && selectSpecialty && selectedDoctor && selectPay && selectPrice && selectProvince && nameClinic && addressClinic && note) {
+            if (contentMarkdown && selectSpecialty && selectedDoctor && selectPay && selectPrice && selectProvince && nameClinic && addressClinic && note && selectClinic) {
                 if (method === manageActions.CREATE) {
                     await this.props.postInfoDoctorStart({
                         contentHTML: contentHTML,
@@ -125,6 +136,7 @@ class ManageDoctor extends Component {
                     await this.props.createMoreInfoDoctorStart({
                         doctorId: selectedDoctor.value,
                         specialtyId: selectSpecialty.value,
+                        clinicId: selectClinic.value,
                         priceId: selectPrice.value,
                         provinceId: selectProvince.value,
                         paymentId: selectPay.value,
@@ -143,6 +155,7 @@ class ManageDoctor extends Component {
                         selectPay: null,
                         selectProvince: null,
                         selectSpecialty: null,
+                        selectClinic: null,
                         addressClinic: '',
                         nameClinic: '',
                         note: '',
@@ -160,6 +173,7 @@ class ManageDoctor extends Component {
                     await this.props.putMoreInfoDoctorStart({
                         doctorId: selectedDoctor.value,
                         specialtyId: selectSpecialty.value,
+                        clinicId: selectClinic.value,
                         priceId: selectPrice.value,
                         provinceId: selectProvince.value,
                         paymentId: selectPay.value,
@@ -178,6 +192,7 @@ class ManageDoctor extends Component {
                         selectPay: null,
                         selectProvince: null,
                         selectSpecialty: null,
+                        selectClinic: null,
                         addressClinic: '',
                         nameClinic: '',
                         note: '',
@@ -279,7 +294,7 @@ class ManageDoctor extends Component {
                     result.push(object);
                 })
             }
-            if (type === 'SPECIALTIES') {
+            if (type === 'SPECIALTIES' || type === 'CLINIC') {
                 inputData.map((item, index) => {
                     let object = {};
 
@@ -313,7 +328,7 @@ class ManageDoctor extends Component {
 
     render() {
         let { language } = this.props;
-        const { selectSpecialty, selectedDoctor, method, selectPay, selectPrice, selectProvince, nameClinic, addressClinic, note } = this.state;
+        const { selectClinic, selectSpecialty, selectedDoctor, method, selectPay, selectPrice, selectProvince, nameClinic, addressClinic, note } = this.state;
 
         return (
             <div className='manage-doctor-container'>
@@ -391,11 +406,11 @@ class ManageDoctor extends Component {
                     <div className='choose-clinic'>
                         <label><FormattedMessage id="manage_doctor.choose_clinic" /></label>
                         <Select
-                            // value={selectProvince}
-                            // onChange={this.handleChangeChooseOption}
-                            // options={this.state.detailProvince}
+                            value={selectClinic}
+                            onChange={this.handleChangeChooseOption}
+                            options={this.state.detailClinic}
                             placeholder=''
-                        // name='selectProvince'
+                            name='selectClinic'
                         />
                     </div>
                 </div>
@@ -416,6 +431,7 @@ const mapStateToProps = state => {
         provinceRedux: state.admin.provinceData,
         doctorInfoRedux: state.admin.doctorInfo,
         specialtiesRedux: state.admin.specialties,
+        clinicsRedux: state.admin.clinics,
     };
 };
 
@@ -430,6 +446,7 @@ const mapDispatchToProps = dispatch => {
         putMoreInfoDoctorStart: (data) => dispatch(actions.putMoreInfoDoctorStart(data)),
         getMoreInfoDoctorStart: (doctorId) => dispatch(actions.getMoreInfoDoctorStart(doctorId)),
         getAllSpecialtyStart: (id, location) => dispatch(actions.getAllSpecialtyStart(id, location)),
+        getAllClinicStart: (id, location) => dispatch(actions.getAllClinicStart(id, location)),
     };
 };
 
