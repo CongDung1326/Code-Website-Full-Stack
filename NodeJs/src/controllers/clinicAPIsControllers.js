@@ -15,22 +15,22 @@ let handleCreateNewClinic = async (req, res) => {
     }
 }
 
-// let handleGetAllSpecialty = async (req, res) => {
-//     try {
-//         let { id, location } = req.query;
-//         let infor = await specialtyAPIsService.getAllSpecialty(id, location);
+let handleGetAllClinic = async (req, res) => {
+    try {
+        let { id, location } = req.query;
+        let infor = await clinicAPIsService.getAllClinic(id, location);
 
-//         return res.status(200).json(infor);
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(200).json({
-//             errCode: -1,
-//             message: 'Error from server!'
-//         })
-//     }
-// }
+        return res.status(200).json(infor);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server!'
+        })
+    }
+}
 
 module.exports = {
     handleCreateNewClinic: handleCreateNewClinic,
-    //handleGetAllSpecialty: handleGetAllSpecialty,
+    handleGetAllClinic: handleGetAllClinic,
 }

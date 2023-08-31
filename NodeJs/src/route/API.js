@@ -41,6 +41,7 @@ let initAPIRoutes = (app) => {
     router.get('/get-all-specialty', specialtyAPIsControllers.handleGetAllSpecialty);
 
     router.post('/create-new-clinic', clinicAPIsControllers.handleCreateNewClinic)
+    router.get('/get-all-clinic', clinicAPIsControllers.handleGetAllClinic);
 
     router.get('/test', userAPIsControllers.test);
 
