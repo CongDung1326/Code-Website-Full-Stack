@@ -1,0 +1,42 @@
+.manage-patient-container {
+    padding: 0 20px;
+
+    .calendar {
+
+        table {
+            width: 100%;
+
+            td,
+            th {
+                border: 1px solid silver;
+                padding: 5px;
+
+                button {
+                    background: #00cc00;
+                    border-radius: 10px;
+                    margin: 0 10px 0 0;
+                    color: white;
+
+                    &.invoice {
+                        background: #ffd200;
+                    }
+                }
+            }
+        }
+    }
+
+    .date {
+        padding: 10px 0;
+
+        label {
+            display: block;
+        }
+
+        input {
+            border: 1px solid silver;
+            outline: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+    }
+}

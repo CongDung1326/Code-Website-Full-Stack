@@ -33,7 +33,7 @@ export const adminMenu = [
         menus: [
             {
                 name: 'menu.admin.manage_specialty', link: "/system/manage-specialty",
-            },
+            }
         ]
     },
     { //Quản lý Cẩm nang
@@ -49,7 +49,12 @@ export const doctorMenu = [
     { //Quản lý người dùng
         name: 'menu.admin.manage_user',
         menus: [
-            { name: 'menu.doctor.manage_schedule', link: "/doctor/manage-schedule" }
+            {
+                name: 'menu.doctor.manage_schedule', link: "/doctor/manage-schedule"
+            },
+            {
+                name: 'menu.doctor.manage_patient', link: "/doctor/manage-patient",
+            }
         ]
     },
 ];

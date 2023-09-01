@@ -55,7 +55,8 @@
             "handbook": "Handbook"
         },
         "doctor": {
-            "manage_schedule": "Manage doctor schedule"
+            "manage_schedule": "Manage doctor schedule",
+            "manage_patient": "Manage patient"
         }
     },
     "manage_user": {
@@ -140,5 +141,15 @@
         "clinic_address": "Clinic address",
         "upload": "Upload image",
         "save": "Save"
+    },
+    "manage_patient": {
+        "choose_date_examination": "Choose date examination",
+        "time": "Time",
+        "fullName": "Full name",
+        "address": "Address",
+        "gender": "Gender",
+        "actions": "Actions",
+        "confirm": "Confirm",
+        "invoice": "Send invoice"
     }
 }

@@ -50,6 +50,7 @@ class MedicalFacility extends Component {
                 }
             }]
         };
+        clinics = clinics.concat(clinics).concat(clinics).concat(clinics);
 
         return (
             <>

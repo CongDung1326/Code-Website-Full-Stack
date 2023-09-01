@@ -98,6 +98,10 @@ const actionTypes = Object.freeze({
     // Get all clinic
     GET_ALL_CLINIC_SUCCESS: "GET_ALL_CLINIC_SUCCESS",
     GET_ALL_CLINIC_FAILED: 'GET_ALL_CLINIC_FAILED',
+
+    // Get patient for doctor
+    GET_PATIENT_FOR_DOCTOR_SUCCESS: "GET_PATIENT_FOR_DOCTOR_SUCCESS",
+    GET_PATIENT_FOR_DOCTOR_FAILED: 'GET_PATIENT_FOR_DOCTOR_FAILED',
 })
 
 export default actionTypes;

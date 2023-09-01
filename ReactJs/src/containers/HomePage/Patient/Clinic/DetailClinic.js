@@ -47,7 +47,6 @@ class DetailClinic extends Component {
 
     render() {
         let { clinics, isShowMore, arrDoctorId } = this.state;
-        console.log('Check clinics: ', clinics);
 
         return (
             <>

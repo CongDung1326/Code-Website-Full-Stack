@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Route, Switch } from 'react-router-dom';
 import ManageSchedule from '../containers/Doctor/ManageSchedule';
-
+import ManagePatient from '../containers/Doctor/ManagePatient';
 import Header from '../containers/Header/Header';
 
 class Doctor extends Component {
@@ -15,6 +15,7 @@ class Doctor extends Component {
                     <div className="system-list">
                         <Switch>
                             <Route path="/doctor/manage-schedule" component={ManageSchedule} />
+                            <Route path="/doctor/manage-patient" component={ManagePatient} />
                         </Switch>
                     </div>
                 </div>

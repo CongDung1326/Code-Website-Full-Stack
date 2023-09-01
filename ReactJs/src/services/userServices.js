@@ -251,4 +251,10 @@ let getAllClinic = async (id, location) => {
     }).then(res => res.json())
 }
 
-export { getAllClinic, createNewClinic, getAllSpecialty, createNewSpecialty, postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let getPatientForDoctor = async (doctorId, date) => {
+    return await fetch(`http://localhost:8080/api/get-list-patient-for-doctor?doctorId=${doctorId}&date=${date}`, {
+        method: "GET",
+    }).then(res => res.json())
+}
+
+export { getPatientForDoctor, getAllClinic, createNewClinic, getAllSpecialty, createNewSpecialty, postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
