@@ -106,7 +106,38 @@ let postVerifyBookAppointment = (data) => {
     })
 }
 
+let getListPatientForDoctor = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.doctorId || !data.date) resolve({ errCode: 1, message: 'Missing parameter!' })
+            else {
+                let booking = await db.Booking.findAll({
+                    where: { doctorId: data.doctorId, date: data.date, statusId: 'S2' },
+                    include: [
+                        {
+                            model: db.User, as: 'patientData', attributes: ['email', 'lastName', 'gender', 'address'],
+                            include: [
+                                { model: db.Allcode, as: 'genderData', attributes: ['valueVi', 'valueEn'] }
+                            ],
+                        },
+                        { model: db.Allcode, as: 'timePatient', attributes: ['valueVi', 'valueEn'] },
+                    ],
+                    nest: true,
+                })
+
+                resolve({
+                    errCode: 0,
+                    booking: booking,
+                })
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     postBookAppointment: postBookAppointment,
     postVerifyBookAppointment: postVerifyBookAppointment,
+    getListPatientForDoctor: getListPatientForDoctor,
 }

@@ -36,6 +36,7 @@ let initAPIRoutes = (app) => {
 
     router.post('/patient-book-appointment', patientAPIsControllers.handlePostBookAppointment);
     router.post('/verify-booking', patientAPIsControllers.handlePostVerifyBookAppointment);
+    router.get('/get-list-patient-for-doctor', patientAPIsControllers.handleGetListPatientForDoctor);
 
     router.post('/create-new-specialty', specialtyAPIsControllers.handleCreateNewSpecialty);
     router.get('/get-all-specialty', specialtyAPIsControllers.handleGetAllSpecialty);
