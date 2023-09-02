@@ -1,4 +1,5 @@
 const db = require('../models/index.js') // Lấy dữ liệu database
+const emailService = require('./emailService.js');
 const _ = require('lodash');
 require('dotenv').config();
 
@@ -350,6 +351,41 @@ let getProfileDoctorById = (doctorId) => {
     })
 }
 
+let postSendRemedy = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.fullName || !data.language || !data.date || !data.doctorId || !data.image || !data.patientId || !data.timeType) resolve({ errCode: 1, message: 'Missing parameter!' });
+            else {
+                let appointment = await db.Booking.findOne({
+                    where: { date: data.date, doctorId: data.doctorId, patientId: data.patientId, timeType: data.timeType, statusId: 'S2' }
+                })
+                if (appointment) {
+                    appointment.statusId = 'S3'
+
+                    await appointment.save();
+                    await emailService.sendAttachment({
+                        receiverEmail: data.email,
+                        fullName: data.fullName,
+                        image: data.image,
+                        language: data.language,
+                    })
+                    resolve({
+                        errCode: 0,
+                        message: 'OK'
+                    })
+                } else {
+                    resolve({
+                        errCode: 2,
+                        message: `Can't find!`
+                    })
+                }
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     getDoctorHome: getDoctorHome,
     getAllDoctor: getAllDoctor,
@@ -362,4 +398,5 @@ module.exports = {
     putMoreInfoDoctor: putMoreInfoDoctor,
     getMoreInfoDoctor: getMoreInfoDoctor,
     getProfileDoctorById: getProfileDoctorById,
+    postSendRemedy: postSendRemedy,
 }

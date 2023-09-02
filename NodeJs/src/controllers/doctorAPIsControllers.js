@@ -165,6 +165,21 @@ let handleGetProfileDoctorById = async (req, res) => {
     }
 }
 
+let handlePostSendRemedy = async (req, res) => {
+    try {
+        let data = req.body;
+        let info = await doctorAPIsService.postSendRemedy(data);
+
+        return res.status(200).json(info);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server!'
+        })
+    }
+}
+
 module.exports = {
     handleGetDoctorHome: handleGetDoctorHome,
     handleGetAllDoctor: handleGetAllDoctor,
@@ -177,4 +192,5 @@ module.exports = {
     handleEditMoreInfoDoctor: handleEditMoreInfoDoctor,
     handleGetMoreInfoDoctor: handleGetMoreInfoDoctor,
     handleGetProfileDoctorById: handleGetProfileDoctorById,
+    handlePostSendRemedy: handlePostSendRemedy,
 }

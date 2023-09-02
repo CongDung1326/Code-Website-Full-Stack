@@ -33,6 +33,7 @@ let initAPIRoutes = (app) => {
     router.put('/edit-more-info-doctor', doctorAPIsControllers.handleEditMoreInfoDoctor)
     router.get('/get-more-info-doctor', doctorAPIsControllers.handleGetMoreInfoDoctor);
     router.get('/get-profile-doctor-by-id', doctorAPIsControllers.handleGetProfileDoctorById);
+    router.post('/send-remedy', doctorAPIsControllers.handlePostSendRemedy);
 
     router.post('/patient-book-appointment', patientAPIsControllers.handlePostBookAppointment);
     router.post('/verify-booking', patientAPIsControllers.handlePostVerifyBookAppointment);

@@ -55,6 +55,60 @@ let handleSendBodyEmail = (data) => {
     return result;
 }
 
+let sendAttachment = async (data) => {
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+            // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+            user: process.env.APP_EMAIL,
+            pass: process.env.APP_EMAIL_PASSWORD,
+        },
+    });
+
+    let info = await transporter.sendMail({
+        from: '"Don Vau 👻" <donvau0103@gmail.com>', // sender address
+        to: data.receiverEmail, // list of receivers
+        subject: (data.language === 'vi') ? "Thông tin đặt lịch khám bệnh" : 'Information to book a medical appointment', // Subject line
+        html: handleSendAttachment(data),
+        attachments: [
+            {
+                filename: 'text1.png',
+                content: data.image.split('base64')[1],
+                encoding: 'base64'
+            }
+        ]
+    })
+}
+
+let handleSendAttachment = (data) => {
+    let result = '';
+    if (data && data.language === 'vi') {
+        result =
+            `
+            <h3>Xin chào ${data.fullName}!</h3>
+            <p>Bạn nhận được email này vì đã đặt lịch khám bệnh online trên Don Vau website.</p>
+            <p>Thông tin đơn thuốc/hoá đơn được gửi trong file đính kèm</p>
+            <p>Xin chân thành cảm ơn</p>
+            ` // html body
+            ;
+    }
+    if (data && data.language === 'en') {
+        result =
+            `
+            <h3>Hello ${data.fullName}!</h3>
+            <p>You received this email because you booked an online medical appointment on the Don Vau website.</p>
+            <p>Prescription/invoice information is sent in the attached file</p>
+            <p>Sincerely thank</p>
+            ` // html body
+            ;
+    }
+
+    return result;
+}
+
 module.exports = {
     sendSimpleEmail: sendSimpleEmail,
+    sendAttachment: sendAttachment,
 }
