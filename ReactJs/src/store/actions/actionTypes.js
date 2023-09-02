@@ -102,6 +102,10 @@ const actionTypes = Object.freeze({
     // Get patient for doctor
     GET_PATIENT_FOR_DOCTOR_SUCCESS: "GET_PATIENT_FOR_DOCTOR_SUCCESS",
     GET_PATIENT_FOR_DOCTOR_FAILED: 'GET_PATIENT_FOR_DOCTOR_FAILED',
+
+    // Post send remedy
+    POST_SEND_REMEDY_SUCCESS: "POST_SEND_REMEDY_SUCCESS",
+    POST_SEND_REMEDY_FAILED: 'POST_SEND_REMEDY_FAILED',
 })
 
 export default actionTypes;

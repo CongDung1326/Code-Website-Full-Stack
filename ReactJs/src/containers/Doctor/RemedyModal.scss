@@ -1,0 +1,21 @@
+.send-medicine-patient-modal {
+    .modal-header {
+        height: 40px !important;
+        background: white !important;
+        color: black !important;
+
+        .modal-title {
+            font-weight: bold !important;
+        }
+    }
+
+    .modal-body {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        input {
+            width: 100%;
+        }
+    }
+}

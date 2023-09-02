@@ -19,6 +19,7 @@ const initialState = {
     provinces: [],
     clinics: [],
     patientBooking: [],
+    isSendRemedy: false,
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -209,6 +210,18 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.GET_PATIENT_FOR_DOCTOR_FAILED:
             state.patientBooking = [];
+            return {
+                ...state,
+            }
+
+        // Post send remedy
+        case actionTypes.POST_SEND_REMEDY_SUCCESS:
+            state.isSendRemedy = action.isSuccess;
+            return {
+                ...state,
+            }
+        case actionTypes.POST_SEND_REMEDY_FAILED:
+            state.isSendRemedy = false;
             return {
                 ...state,
             }

@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor, getAllSpecialty, getAllClinic, getPatientForDoctor } from '../../services/userServices'
+import { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor, getAllSpecialty, getAllClinic, getPatientForDoctor, postSendRemedy } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -570,4 +570,30 @@ export const getPatientForDoctorSuccess = (patients) => ({
 });
 export const getPatientForDoctorFailed = () => ({
     type: actionTypes.GET_PATIENT_FOR_DOCTOR_FAILED,
+});
+
+// Post send remedy
+export const postSendRemedyStart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await postSendRemedy(data);
+
+            console.log('Check state: ', res);
+            if (res && res.errCode === 0) {
+                dispatch(postSendRemedySuccess())
+            }
+            else {
+                dispatch(postSendRemedyFailed())
+            }
+        } catch (e) {
+            dispatch(postSendRemedyFailed());
+        }
+    }
+}
+export const postSendRemedySuccess = () => ({
+    type: actionTypes.POST_SEND_REMEDY_SUCCESS,
+    isSuccess: true,
+});
+export const postSendRemedyFailed = () => ({
+    type: actionTypes.POST_SEND_REMEDY_FAILED,
 });

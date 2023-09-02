@@ -1,0 +1,27 @@
+.loading-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1200;
+    top: 0;
+    left: 0;
+
+    .spinner-1 {
+        width: 50px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 8px solid;
+        border-color: silver rgba(192, 192, 192, 0.671);
+        animation: s1 1s infinite;
+    }
+
+    @keyframes s1 {
+        to {
+            transform: rotate(.5turn)
+        }
+    }
+}
