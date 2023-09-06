@@ -286,7 +286,7 @@ class ManageDoctor extends Component {
                 })
             }
             if (type === 'PRICE' || type === 'PAYMENT' || type === 'PROVINCE') {
-                inputData.map((item, index) => {
+                inputData.map((item) => {
                     let object = {};
 
                     object.label = (language === languages.VI) ? item.valueVi : item.valueEn;
@@ -295,7 +295,7 @@ class ManageDoctor extends Component {
                 })
             }
             if (type === 'SPECIALTIES' || type === 'CLINIC') {
-                inputData.map((item, index) => {
+                inputData.map((item) => {
                     let object = {};
 
                     object.label = item.name;
@@ -327,7 +327,6 @@ class ManageDoctor extends Component {
     }
 
     render() {
-        let { language } = this.props;
         const { selectClinic, selectSpecialty, selectedDoctor, method, selectPay, selectPrice, selectProvince, nameClinic, addressClinic, note } = this.state;
 
         return (

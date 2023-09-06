@@ -1,10 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
-
 
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 
@@ -24,6 +23,13 @@ import DetailClinic from './HomePage/Patient/Clinic/DetailClinic';
 import CustomScrollbars from '../components/CustomScrollbars';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isDecentralization: false,
+        }
+    }
 
     handlePersistorState = () => {
         const { persistor } = this.props;
@@ -43,10 +49,25 @@ class App extends Component {
         this.handlePersistorState();
     }
 
+    componentDidUpdate(prevProps) {
+        let { userInfo } = this.props;
+
+        if (prevProps.userInfo !== userInfo) {
+            if (userInfo && userInfo.roleId === 'R1') {
+                this.setState({
+                    isDecentralization: true,
+                })
+            }
+            else if (userInfo && userInfo.roleId === 'R2') {
+                history.replace('/doctor');
+            }
+        }
+    }
+
     render() {
         return (
             <Fragment>
-                <Router history={history}>
+                <Router history={history} forceRefresh={true}>
                     <div className="main-container">
                         <div className="content-container">
                             <CustomScrollbars style={{ height: '100vh', with: '100%' }}>
@@ -54,7 +75,9 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={Home} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
-                                    <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                    <Route path={path.SYSTEM}>
+                                        {this.state.isDecentralization === true ? <Route component={userIsAuthenticated(System)} /> : <Route component={userIsAuthenticated(Doctor)} />}
+                                    </Route>
                                     <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                                     <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
@@ -95,7 +118,8 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         started: state.app.started,
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        userInfo: state.user.userInfo,
     };
 };
 

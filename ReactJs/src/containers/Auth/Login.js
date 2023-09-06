@@ -50,7 +50,7 @@ class Login extends Component {
             }
             //
             else {
-                this.props.userLoginSuccess(user.user)
+                this.props.userLoginSuccess(user.user);
 
                 console.log('Login success!');
             }
