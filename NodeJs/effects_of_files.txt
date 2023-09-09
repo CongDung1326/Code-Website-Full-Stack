@@ -14,3 +14,4 @@
 - Hash Password là nó sẽ băm các password của chúng ta thành các password khó đọc hơn (tăng tính bảo mật)
 
 - Ngoài lề một chút là nếu nhìn các function quá nhiều ta muốn thu gọn là thì ấn tổ hợp phím (ctrl + k và ctrl + 0) và muốn mở ra lại thì (ctrl + k và ctrl + j)
+- Test github
