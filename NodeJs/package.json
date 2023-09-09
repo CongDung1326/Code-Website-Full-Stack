@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon babel-node ./src/server.js",
     "build-src": "babel ./src -d build --copy-files",
-    "build": "babel src -d lib"
+    "build": "node build/server.js"
   },
   "repository": {
     "type": "git",
