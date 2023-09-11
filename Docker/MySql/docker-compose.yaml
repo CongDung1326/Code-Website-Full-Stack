@@ -5,6 +5,6 @@ services:
     restart: always
     environment:
       - MYSQL_DATABASE=donvau
-      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ROOT_PASSWORD=01032006
     ports:
       - '3306:3306'

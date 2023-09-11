@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
 
-const sequelize = new Sequelize('donvau', 'root', null, {
+const sequelize = new Sequelize(process.env.DB_DATABASE_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     host: 'localhost',
     dialect: 'mysql', // Sử dụng kết nối với mysql
     logging: false // Dùng để tắt đi dòng (Executing (default): SELECT 1+1 AS result)
