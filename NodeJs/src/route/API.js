@@ -4,6 +4,7 @@ const doctorAPIsControllers = require('../controllers/doctorAPIsControllers.js')
 const patientAPIsControllers = require('../controllers/patientAPIsControllers.js');
 const specialtyAPIsControllers = require('../controllers/specialtyAPIsControllers.js');
 const clinicAPIsControllers = require('../controllers/clinicAPIsControllers.js');
+const handbookControllers = require('../controllers/handbookControllers.js');
 
 let router = express.Router();
 
@@ -34,6 +35,11 @@ let initAPIRoutes = (app) => {
     router.get('/get-more-info-doctor', doctorAPIsControllers.handleGetMoreInfoDoctor);
     router.get('/get-profile-doctor-by-id', doctorAPIsControllers.handleGetProfileDoctorById);
     router.post('/send-remedy', doctorAPIsControllers.handlePostSendRemedy);
+
+    // Handbook
+    router.post('/create-handbook', handbookControllers.handleCreateNewHandbook);
+    router.get('/get-handbook', handbookControllers.handleGetAllHandbook);
+    router.post('/delete-handbook', handbookControllers.handleDeleteHandbook);
 
     router.post('/patient-book-appointment', patientAPIsControllers.handlePostBookAppointment);
     router.post('/verify-booking', patientAPIsControllers.handlePostVerifyBookAppointment);

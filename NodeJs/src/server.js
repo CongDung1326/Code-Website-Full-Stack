@@ -28,6 +28,6 @@ viewEngine(app);
 initWebRoutes(app);
 initAPIRoutes(app);
 
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 8080;
 
 app.listen(port, () => console.log(`Server is running in http://localhost:${port}`));

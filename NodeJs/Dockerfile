@@ -2,7 +2,8 @@
 FROM node:14-alpine
 
 # Create link
-WORKDIR /donvau/backend
+# WORKDIR /donvau/backend
+WORKDIR /backend
 
 # Coppy all files whose first name is packge and ends is .json
 COPY package*.json ./
