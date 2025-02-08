@@ -274,4 +274,21 @@ let postSendRemedy = async (data) => {
     }).then(res => res.json())
 }
 
-export { postSendRemedy, getPatientForDoctor, getAllClinic, createNewClinic, getAllSpecialty, createNewSpecialty, postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor }
+let getAllHandbook = async (id) => {
+    return await fetch(`http://localhost:8080/api/get-handbook?id=${id}`, {
+        method: "GET",
+    }).then(res => res.json())
+}
+
+let createHandbook = async (data) => {
+    return await fetch(`http://localhost:8080/api/create-handbook`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
+        body: qs.stringify({
+            name: data.name,
+            image: data.image
+        })
+    }).then(res => res.json())
+}
+
+export { createHandbook, postSendRemedy, getPatientForDoctor, getAllClinic, createNewClinic, getAllSpecialty, createNewSpecialty, postVerifyBookAppointment, postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, getScheduleByDate, bulkCreateSchedule, handleLogin, getAllUsers, addNewUser, deleteUser, EditUser, handleGetAllCode, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor, getAllHandbook }

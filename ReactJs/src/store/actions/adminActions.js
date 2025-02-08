@@ -1,7 +1,7 @@
 // Learning Redux
 import actionTypes from './actionTypes';
 // Call API
-import { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor, getAllSpecialty, getAllClinic, getPatientForDoctor, postSendRemedy } from '../../services/userServices'
+import { postBookAppointment, getProfileDoctorById, getMoreInfoDoctor, putMoreInfoDoctor, postMoreInfoDoctor, handleGetAllCode, addNewUser, getAllUsers, deleteUser, EditUser, handleGetDoctorHome, handleGetAllDoctor, handlePostSaveInfoDoctor, getDetailDoctor, saveDetailDoctor, getAllSpecialty, getAllClinic, getPatientForDoctor, postSendRemedy, getAllHandbook, createHandbook } from '../../services/userServices'
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -578,7 +578,6 @@ export const postSendRemedyStart = (data) => {
         try {
             let res = await postSendRemedy(data);
 
-            console.log('Check state: ', res);
             if (res && res.errCode === 0) {
                 dispatch(postSendRemedySuccess())
             }
@@ -596,4 +595,52 @@ export const postSendRemedySuccess = () => ({
 });
 export const postSendRemedyFailed = () => ({
     type: actionTypes.POST_SEND_REMEDY_FAILED,
+});
+
+// Get handbook
+export const getHandbookStart = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllHandbook(id);
+            if (res && res.errCode === 0) {
+                dispatch(getHandbookSuccess(res.handbooks))
+            }
+            else {
+                dispatch(getHandbookFailed())
+            }
+        } catch (e) {
+            dispatch(getHandbookFailed());
+        }
+    }
+}
+export const getHandbookSuccess = (handbooks) => ({
+    type: actionTypes.GET_HANDBOOK_SUCCESS,
+    handbooks: handbooks
+});
+export const getHandbookFailed = () => ({
+    type: actionTypes.GET_HANDBOOK_FAILED,
+});
+
+// Create handbook
+export const postCreateHandbookStart = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await createHandbook(id);
+            if (res && res.errCode === 0) {
+                dispatch(postCreateHandbookSuccess(res.data))
+            }
+            else {
+                dispatch(postCreateHandbookFailed())
+            }
+        } catch (e) {
+            dispatch(postCreateHandbookFailed());
+        }
+    }
+}
+export const postCreateHandbookSuccess = () => ({
+    type: actionTypes.POST_CREATE_HANDBOOK_SUCCESS,
+    isSuccess: true
+});
+export const postCreateHandbookFailed = () => ({
+    type: actionTypes.POST_CREATE_HANDBOOK_FAILED,
 });

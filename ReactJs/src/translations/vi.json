@@ -134,6 +134,13 @@
         "upload": "Tải ảnh",
         "save": "Lưu"
     },
+    "manage_handbook": {
+        "title": "Quản lý cẩm nang",
+        "handbook_name": "Tên cẩm nang",
+        "handbook_image": "Ảnh cẩm nang",
+        "upload": "Tải ảnh",
+        "save": "Lưu"
+    },
     "manage_clinic": {
         "title": "Quản lý phòng khám",
         "clinic_name": "Tên phòng khám",

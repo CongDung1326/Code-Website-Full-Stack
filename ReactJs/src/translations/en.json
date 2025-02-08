@@ -80,6 +80,13 @@
             "save_edit": "Save edit"
         }
     },
+    "manage_handbook": {
+        "title": "Manage handbook",
+        "handbook_name": "Name handbook",
+        "handbook_image": "Image handbook",
+        "upload": "Upload image",
+        "save": "Save"
+    },
     "manage_schedule": {
         "manage_doctor_examination_plan": "Manage doctor's examination plan",
         "save_book_ticket": "Save info",

@@ -20,6 +20,7 @@ const initialState = {
     clinics: [],
     patientBooking: [],
     isSendRemedy: false,
+    dataHandbook: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -222,6 +223,18 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.POST_SEND_REMEDY_FAILED:
             state.isSendRemedy = false;
+            return {
+                ...state,
+            }
+
+        // Get handbook
+        case actionTypes.GET_HANDBOOK_SUCCESS:
+            state.dataHandbook = action.handbooks;
+            return {
+                ...state,
+            }
+        case actionTypes.GET_HANDBOOK_FAILED:
+            state.dataHandbook = [];
             return {
                 ...state,
             }

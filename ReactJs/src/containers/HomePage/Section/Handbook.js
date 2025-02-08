@@ -1,12 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../../../store/actions';
 import { FormattedMessage } from 'react-intl';
 
 import Slider from 'react-slick';
 
 class Handbook extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            handbooks: []
+        }
+    }
+
+    componentDidMount() {
+        this.props.getHandbookStart("all");
+    }
+
+    componentDidUpdate(prevProps) {
+        let { dataHandbookRedux } = this.props;
+        if (prevProps.dataHandbookRedux !== dataHandbookRedux) {
+            this.setState({
+                handbooks: dataHandbookRedux
+            })
+        }
+    }
+
     render() {
+        let { handbooks } = this.state;
+        handbooks = handbooks.concat(handbooks).concat(handbooks);
         let settings = {
             dots: true,
             infinite: true,
@@ -23,7 +47,6 @@ class Handbook extends Component {
                 }
             }]
         };
-
         return (
             <>
                 <div className='section-share section-handbook'>
@@ -34,22 +57,14 @@ class Handbook extends Component {
                                 <button className='see-more'><FormattedMessage id="slick.all_posts" /></button>
                             </div>
                             <Slider {...settings}>
-                                <div className='handbook-box'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w300/2023/08/02/174635-roi-loan-nhip-tim-cover.png" alt='' />
-                                    <div className='handbook-text'><h3>Rối loạn nhịp tim: Triệu chứng, nguyên nhân và cách điều trị</h3></div>
-                                </div>
-                                <div className='handbook-box'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w300/2023/08/02/174635-roi-loan-nhip-tim-cover.png" alt='' />
-                                    <div className='handbook-text'><h3>Rối loạn nhịp tim: Triệu chứng, nguyên nhân và cách điều trị</h3></div>
-                                </div>
-                                <div className='handbook-box'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w300/2023/08/02/174635-roi-loan-nhip-tim-cover.png" alt='' />
-                                    <div className='handbook-text'><h3>Rối loạn nhịp tim: Triệu chứng, nguyên nhân và cách điều trị</h3></div>
-                                </div>
-                                <div className='handbook-box'>
-                                    <img src="https://cdn.bookingcare.vn/fr/w300/2023/08/02/174635-roi-loan-nhip-tim-cover.png" alt='' />
-                                    <div className='handbook-text'><h3>Rối loạn nhịp tim: Triệu chứng, nguyên nhân và cách điều trị</h3></div>
-                                </div>
+                                {handbooks && handbooks.length > 0 && handbooks.map((handbook, index) => {
+                                    return (
+                                        <div className='handbook-box' key={index}>
+                                            <img src={handbook.image} alt='' />
+                                            <div className='handbook-text'><h3>{handbook.name}</h3></div>
+                                        </div>
+                                    )
+                                })}
                             </Slider>
                         </div>
                     </div>
@@ -62,12 +77,14 @@ class Handbook extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn, // Các biến từ redux
-        language: state.app.language, // state.app.language là ta lấy từ file appReducer.js
+        language: state.app.language, // state.app.language là ta lấy từ file appReducer.js,
+        dataHandbookRedux: state.admin.dataHandbook
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getHandbookStart: (id) => dispatch(actions.getHandbookStart(id))
     };
 };
 
