@@ -19,7 +19,7 @@ Quản lý lịch khám
 <image src="https://i.imgur.com/cGtEgjT.png">
 
 ## Quản Lý Tài Khoản Website
-- **Lưu ý:** nhớ đăng nhập thì mới được vào
+- **Lưu ý:** nhớ đăng nhập thì mới được vào cách vào thì nhấn [vào đây](https://quan-ly-phong-kham-frontend.vercel.app/%20/login?redirect=%2Fsystem) tài khoản đăng nhập thì [ở đây](https://github.com/CongDung1326/Code-Website-Full-Stack?tab=readme-ov-file#link-website)
 <image src="https://i.imgur.com/5lzR6nD.png">
 
 ## Quản Lý Thông Tin Bác Sĩ
@@ -38,4 +38,4 @@ Quản lý lịch khám
 <image src="https://i.imgur.com/Zn8Rr5e.png">
 
 ### Link website
-Đường dẫn tới website [tại đây](http://google.com.vn) Tài khoản|Mật khẩu admin: admin@gmail.com|54250748
+Đường dẫn tới website [tại đây](https://quan-ly-phong-kham-frontend.vercel.app/%20/home) Tài khoản|Mật khẩu admin: admin@gmail.com|54250748
