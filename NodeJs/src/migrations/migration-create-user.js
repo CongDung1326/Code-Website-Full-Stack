@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     // Muốn add table thì đọc thêm ở query sequelize
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('users', {
       // Ở user.js khai báo gì thì ở đây khái báo tương tự vậy
       id: {
         allowNull: false,
@@ -51,6 +51,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('users');
   }
 };

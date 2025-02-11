@@ -52,7 +52,7 @@ const getAllHandbook = (id) => {
                 })
             }
 
-            return resolve({ errCode: 0, specialties: `Can't find specialty!` });
+            return resolve({ errCode: 0, handbooks: `Can't find hanndbook!` });
         } catch (e) {
             return reject(e);
         }

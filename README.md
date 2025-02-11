@@ -38,4 +38,8 @@ Quản lý lịch khám
 <image src="https://i.imgur.com/Zn8Rr5e.png">
 
 ### Link website
+<<<<<<< HEAD
 Đường dẫn tới website [tại đây](https://quan-ly-phong-kham-frontend.vercel.app/home) Tài khoản|Mật khẩu admin: admin@gmail.com|54250748
+=======
+Đường dẫn tới website [tại đây](https://quan-ly-phong-kham-frontend.vercel.app/home) Tài khoản|Mật khẩu admin: admin@gmail.com|54250748
+>>>>>>> 78d4c2e (Upload to deploy website)

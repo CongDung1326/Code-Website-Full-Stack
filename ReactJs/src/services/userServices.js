@@ -1,12 +1,14 @@
 // import axios from "../axios";
 import axios from 'axios'
 import qs from 'querystring' // Thằng này có thể biến chuỗi của ta thành 1 query string (để cho website có thể hiểu)
+import config from '../config';
 
+const url = process.env.REACT_APP_BACKEND_URL;
 let handleLogin = async (username, password) => {
     // console.log ra để hiểu thêm về thằng querystring
     //console.log(qs.stringify([username, password]))
 
-    return await fetch('http://localhost:8080/api/login', {
+    return await fetch(url + '/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -17,7 +19,7 @@ let handleLogin = async (username, password) => {
 }
 
 let getAllUsers = async (id) => {
-    let users = await fetch(`http://localhost:8080/api/get-all-users?id=${id}`, {
+    let users = await fetch(url + `/api/get-all-users?id=${id}`, {
         method: 'GET', // method get thì sẽ không chuyền tham số body
     }).then(res => res.json())
 
@@ -25,7 +27,7 @@ let getAllUsers = async (id) => {
 }
 
 let addNewUser = async (data) => {
-    return await fetch('http://localhost:8080/api/create-new-user', {
+    return await fetch(url + '/api/create-new-user', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -44,7 +46,7 @@ let addNewUser = async (data) => {
 }
 
 let deleteUser = async (id) => {
-    return await fetch('http://localhost:8080/api/delete-user', {
+    return await fetch(url + '/api/delete-user', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -54,7 +56,7 @@ let deleteUser = async (id) => {
 }
 
 let EditUser = async (data) => {
-    return await fetch('http://localhost:8080/api/edit-user', {
+    return await fetch(url + '/api/edit-user', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -72,25 +74,25 @@ let EditUser = async (data) => {
 }
 
 let handleGetAllCode = async (inputData) => {
-    return await fetch(`http://localhost:8080/api/all-codes?type=${inputData}`, {
+    return await fetch(url + `/api/all-codes?type=${inputData}`, {
         method: "GET"
     }).then(res => res.json())
 }
 
 let handleGetDoctorHome = async (limit) => {
-    return await fetch(`http://localhost:8080/api/get-doctor-home?type=${limit}`, {
+    return await fetch(url + `/api/get-doctor-home?type=${limit}`, {
         method: 'GET'
     }).then(res => res.json())
 }
 
 let handleGetAllDoctor = async () => {
-    return await fetch(`http://localhost:8080/api/get-all-doctor`, {
+    return await fetch(url + `/api/get-all-doctor`, {
         method: 'GET'
     }).then(res => res.json());
 }
 
 let handlePostSaveInfoDoctor = async (data) => {
-    return await fetch(`http://localhost:8080/api/save-info-doctor`, {
+    return await fetch(url + `/api/save-info-doctor`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -103,13 +105,13 @@ let handlePostSaveInfoDoctor = async (data) => {
 }
 
 let getDetailDoctor = async (id) => {
-    return await fetch(`http://localhost:8080/api/get-detail-doctor-by-id?id=${id}`, {
+    return await fetch(url + `/api/get-detail-doctor-by-id?id=${id}`, {
         method: 'GET'
     }).then(res => res.json());
 }
 
 let saveDetailDoctor = async (data) => {
-    return await fetch(`http://localhost:8080/api/save-detail-doctor`, {
+    return await fetch(url + `/api/save-detail-doctor`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -122,17 +124,17 @@ let saveDetailDoctor = async (data) => {
 }
 
 let bulkCreateSchedule = async (data) => {
-    return axios.post(`http://localhost:8080/api/bulk-create-schedule`, data)
+    return axios.post(url + `/api/bulk-create-schedule`, data)
 }
 
 let getScheduleByDate = async (id, date) => {
-    return await fetch(`http://localhost:8080/api/get-schedule-doctor-by-date?id=${id}&date=${date}`, {
+    return await fetch(url + `/api/get-schedule-doctor-by-date?id=${id}&date=${date}`, {
         method: 'GET'
     }).then(res => res.json());
 }
 
 let postMoreInfoDoctor = async (data) => {
-    return await fetch(`http://localhost:8080/api/create-more-info-doctor`, {
+    return await fetch(url + `/api/create-more-info-doctor`, {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -150,7 +152,7 @@ let postMoreInfoDoctor = async (data) => {
 }
 
 let putMoreInfoDoctor = async (data) => {
-    return await fetch(`http://localhost:8080/api/edit-more-info-doctor`, {
+    return await fetch(url + `/api/edit-more-info-doctor`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -168,19 +170,19 @@ let putMoreInfoDoctor = async (data) => {
 }
 
 let getMoreInfoDoctor = async (id) => {
-    return await fetch(`http://localhost:8080/api/get-more-info-doctor?doctorId=${id}`, {
+    return await fetch(url + `/api/get-more-info-doctor?doctorId=${id}`, {
         method: "GET",
     }).then(res => res.json())
 }
 
 let getProfileDoctorById = async (id) => {
-    return await fetch(`http://localhost:8080/api/get-profile-doctor-by-id?id=${id}`, {
+    return await fetch(url + `/api/get-profile-doctor-by-id?id=${id}`, {
         method: "GET",
     }).then(res => res.json())
 }
 
 let postBookAppointment = async (data) => {
-    return await fetch(`http://localhost:8080/api/patient-book-appointment`, {
+    return await fetch(url + `/api/patient-book-appointment`, {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -202,7 +204,7 @@ let postBookAppointment = async (data) => {
 }
 
 let postVerifyBookAppointment = async (data) => {
-    return await fetch(`http://localhost:8080/api/verify-booking`, {
+    return await fetch(url + `/api/verify-booking`, {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -213,7 +215,7 @@ let postVerifyBookAppointment = async (data) => {
 }
 
 let createNewSpecialty = async (data) => {
-    return await fetch(`http://localhost:8080/api/create-new-specialty`, {
+    return await fetch(url + `/api/create-new-specialty`, {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -226,13 +228,13 @@ let createNewSpecialty = async (data) => {
 }
 
 let getAllSpecialty = async (id, location) => {
-    return await fetch(`http://localhost:8080/api/get-all-specialty?id=${id}&location=${location}`, {
+    return await fetch(url + `/api/get-all-specialty?id=${id}&location=${location}`, {
         method: "GET",
     }).then(res => res.json())
 }
 
 let createNewClinic = async (data) => {
-    return await fetch(`http://localhost:8080/api/create-new-clinic`, {
+    return await fetch(url + `/api/create-new-clinic`, {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -246,19 +248,19 @@ let createNewClinic = async (data) => {
 }
 
 let getAllClinic = async (id, location) => {
-    return await fetch(`http://localhost:8080/api/get-all-clinic?id=${id}&location=${location}`, {
+    return await fetch(url + `/api/get-all-clinic?id=${id}&location=${location}`, {
         method: "GET",
     }).then(res => res.json())
 }
 
 let getPatientForDoctor = async (doctorId, date) => {
-    return await fetch(`http://localhost:8080/api/get-list-patient-for-doctor?doctorId=${doctorId}&date=${date}`, {
+    return await fetch(url + `/api/get-list-patient-for-doctor?doctorId=${doctorId}&date=${date}`, {
         method: "GET",
     }).then(res => res.json())
 }
 
 let postSendRemedy = async (data) => {
-    return await fetch(`http://localhost:8080/api/send-remedy`, {
+    return await fetch(url + `/api/send-remedy`, {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
@@ -275,13 +277,13 @@ let postSendRemedy = async (data) => {
 }
 
 let getAllHandbook = async (id) => {
-    return await fetch(`http://localhost:8080/api/get-handbook?id=${id}`, {
+    return await fetch(url + `/api/get-handbook?id=${id}`, {
         method: "GET",
     }).then(res => res.json())
 }
 
 let createHandbook = async (data) => {
-    return await fetch(`http://localhost:8080/api/create-handbook`, {
+    return await fetch(url + `/api/create-handbook`, {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, // Bắt buộc ép nó ra kiểu x-www-form-urlencoded
         body: qs.stringify({
